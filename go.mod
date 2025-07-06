@@ -1,4 +1,4 @@
-module github.com/stainless-sdks/bluehive-go
+module github.com/bluehive-health/bluehive-sdk-go
 
 go 1.21
 

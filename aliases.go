@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package bluehive
+package githubcombluehivehealthbluehivesdkgo
 
 import (
-	"github.com/stainless-sdks/bluehive-go/internal/apierror"
-	"github.com/stainless-sdks/bluehive-go/packages/param"
+	"github.com/bluehive-health/bluehive-sdk-go/internal/apierror"
+	"github.com/bluehive-health/bluehive-sdk-go/packages/param"
 )
 
 // aliased to make [param.APIUnion] private when embedding

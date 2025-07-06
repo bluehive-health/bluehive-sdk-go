@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package bluehive_test
+package githubcombluehivehealthbluehivesdkgo_test
 
 import (
 	"context"
@@ -8,9 +8,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stainless-sdks/bluehive-go"
-	"github.com/stainless-sdks/bluehive-go/internal/testutil"
-	"github.com/stainless-sdks/bluehive-go/option"
+	"github.com/bluehive-health/bluehive-sdk-go"
+	"github.com/bluehive-health/bluehive-sdk-go/internal/testutil"
+	"github.com/bluehive-health/bluehive-sdk-go/option"
 )
 
 func TestDatabaseCheckHealth(t *testing.T) {
@@ -22,13 +22,13 @@ func TestDatabaseCheckHealth(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := bluehive.NewClient(
+	client := githubcombluehivehealthbluehivesdkgo.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Database.CheckHealth(context.TODO())
 	if err != nil {
-		var apierr *bluehive.Error
+		var apierr *githubcombluehivehealthbluehivesdkgo.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}

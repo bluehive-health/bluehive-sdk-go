@@ -2,7 +2,7 @@ package param
 
 import (
 	"encoding/json"
-	"github.com/stainless-sdks/bluehive-go/internal/encoding/json/sentinel"
+	"github.com/bluehive-health/bluehive-sdk-go/internal/encoding/json/sentinel"
 	"reflect"
 )
 

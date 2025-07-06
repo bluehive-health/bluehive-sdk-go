@@ -1,15 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package bluehive
+package githubcombluehivehealthbluehivesdkgo
 
 import (
 	"context"
 	"net/http"
 
-	"github.com/stainless-sdks/bluehive-go/internal/apijson"
-	"github.com/stainless-sdks/bluehive-go/internal/requestconfig"
-	"github.com/stainless-sdks/bluehive-go/option"
-	"github.com/stainless-sdks/bluehive-go/packages/respjson"
+	"github.com/bluehive-health/bluehive-sdk-go/internal/apijson"
+	"github.com/bluehive-health/bluehive-sdk-go/internal/requestconfig"
+	"github.com/bluehive-health/bluehive-sdk-go/option"
+	"github.com/bluehive-health/bluehive-sdk-go/packages/respjson"
 )
 
 // VersionService contains methods and other services that help with interacting

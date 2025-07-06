@@ -2,8 +2,8 @@ package apijson_test
 
 import (
 	"encoding/json"
-	"github.com/stainless-sdks/bluehive-go/internal/apijson"
-	"github.com/stainless-sdks/bluehive-go/packages/respjson"
+	"github.com/bluehive-health/bluehive-sdk-go/internal/apijson"
+	"github.com/bluehive-health/bluehive-sdk-go/packages/respjson"
 	"testing"
 )
 
