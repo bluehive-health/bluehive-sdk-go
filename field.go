@@ -1,4 +1,4 @@
-package bluehive
+package githubcombluehivehealthbluehivesdkgo
 
 import (
 	"github.com/bluehive-health/bluehive-sdk-go/packages/param"
