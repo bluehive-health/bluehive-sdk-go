@@ -1,7 +1,7 @@
 package apijson
 
 import (
-	"github.com/stainless-sdks/bluehive-go/packages/respjson"
+	"github.com/bluehive-health/bluehive-sdk-go/packages/respjson"
 	"reflect"
 )
 

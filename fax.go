@@ -8,11 +8,11 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/stainless-sdks/bluehive-go/internal/apijson"
-	"github.com/stainless-sdks/bluehive-go/internal/requestconfig"
-	"github.com/stainless-sdks/bluehive-go/option"
-	"github.com/stainless-sdks/bluehive-go/packages/param"
-	"github.com/stainless-sdks/bluehive-go/packages/respjson"
+	"github.com/bluehive-health/bluehive-sdk-go/internal/apijson"
+	"github.com/bluehive-health/bluehive-sdk-go/internal/requestconfig"
+	"github.com/bluehive-health/bluehive-sdk-go/option"
+	"github.com/bluehive-health/bluehive-sdk-go/packages/param"
+	"github.com/bluehive-health/bluehive-sdk-go/packages/respjson"
 )
 
 // FaxService contains methods and other services that help with interacting with

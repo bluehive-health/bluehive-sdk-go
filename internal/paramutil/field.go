@@ -1,8 +1,8 @@
 package paramutil
 
 import (
-	"github.com/stainless-sdks/bluehive-go/packages/param"
-	"github.com/stainless-sdks/bluehive-go/packages/respjson"
+	"github.com/bluehive-health/bluehive-sdk-go/packages/param"
+	"github.com/bluehive-health/bluehive-sdk-go/packages/respjson"
 )
 
 func AddrIfPresent[T comparable](v param.Opt[T]) *T {

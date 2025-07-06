@@ -1,8 +1,8 @@
 package sentinel_test
 
 import (
-	"github.com/stainless-sdks/bluehive-go/internal/encoding/json/sentinel"
-	"github.com/stainless-sdks/bluehive-go/packages/param"
+	"github.com/bluehive-health/bluehive-sdk-go/internal/encoding/json/sentinel"
+	"github.com/bluehive-health/bluehive-sdk-go/packages/param"
 	"reflect"
 	"slices"
 	"testing"

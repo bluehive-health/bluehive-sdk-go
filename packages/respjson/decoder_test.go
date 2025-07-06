@@ -3,8 +3,8 @@ package respjson_test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/stainless-sdks/bluehive-go/internal/apijson"
-	rj "github.com/stainless-sdks/bluehive-go/packages/respjson"
+	"github.com/bluehive-health/bluehive-sdk-go/internal/apijson"
+	rj "github.com/bluehive-health/bluehive-sdk-go/packages/respjson"
 	"reflect"
 	"testing"
 )

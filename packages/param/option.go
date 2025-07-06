@@ -3,7 +3,7 @@ package param
 import (
 	"encoding/json"
 	"fmt"
-	shimjson "github.com/stainless-sdks/bluehive-go/internal/encoding/json"
+	shimjson "github.com/bluehive-health/bluehive-sdk-go/internal/encoding/json"
 	"time"
 )
 

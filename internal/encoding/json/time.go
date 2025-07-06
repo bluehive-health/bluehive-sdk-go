@@ -2,7 +2,7 @@
 package json
 
 import (
-	"github.com/stainless-sdks/bluehive-go/internal/encoding/json/shims"
+	"github.com/bluehive-health/bluehive-sdk-go/internal/encoding/json/shims"
 	"reflect"
 	"time"
 )

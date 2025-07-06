@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stainless-sdks/bluehive-go"
-	"github.com/stainless-sdks/bluehive-go/internal"
-	"github.com/stainless-sdks/bluehive-go/option"
+	"github.com/bluehive-health/bluehive-sdk-go"
+	"github.com/bluehive-health/bluehive-sdk-go/internal"
+	"github.com/bluehive-health/bluehive-sdk-go/option"
 )
 
 type closureTransport struct {

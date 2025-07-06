@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"net/http/httputil"
 
-	"github.com/stainless-sdks/bluehive-go/internal/apijson"
-	"github.com/stainless-sdks/bluehive-go/packages/respjson"
+	"github.com/bluehive-health/bluehive-sdk-go/internal/apijson"
+	"github.com/bluehive-health/bluehive-sdk-go/packages/respjson"
 )
 
 // Error represents an error that originates from the API, i.e. when a request is

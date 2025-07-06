@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"time"
 
-	shimjson "github.com/stainless-sdks/bluehive-go/internal/encoding/json"
+	shimjson "github.com/bluehive-health/bluehive-sdk-go/internal/encoding/json"
 
 	"github.com/tidwall/sjson"
 )
