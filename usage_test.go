@@ -7,9 +7,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stainless-sdks/bluehive-go"
-	"github.com/stainless-sdks/bluehive-go/internal/testutil"
-	"github.com/stainless-sdks/bluehive-go/option"
+	"github.com/bluehive-health/bluehive-sdk-go"
+	"github.com/bluehive-health/bluehive-sdk-go/internal/testutil"
+	"github.com/bluehive-health/bluehive-sdk-go/option"
 )
 
 func TestUsage(t *testing.T) {

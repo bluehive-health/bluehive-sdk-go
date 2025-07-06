@@ -1,7 +1,7 @@
 package apiform
 
 import (
-	"github.com/stainless-sdks/bluehive-go/packages/param"
+	"github.com/bluehive-health/bluehive-sdk-go/packages/param"
 	"mime/multipart"
 	"reflect"
 )

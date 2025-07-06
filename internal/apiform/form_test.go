@@ -2,7 +2,7 @@ package apiform
 
 import (
 	"bytes"
-	"github.com/stainless-sdks/bluehive-go/packages/param"
+	"github.com/bluehive-health/bluehive-sdk-go/packages/param"
 	"io"
 	"mime/multipart"
 	"strings"

@@ -2,7 +2,7 @@ package param_test
 
 import (
 	"encoding/json"
-	"github.com/stainless-sdks/bluehive-go/packages/param"
+	"github.com/bluehive-health/bluehive-sdk-go/packages/param"
 	"testing"
 )
 
