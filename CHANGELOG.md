@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.1-alpha.2 (2025-07-08)
+
+Full Changelog: [v0.0.1-alpha.1...v0.0.1-alpha.2](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.0.1-alpha.1...v0.0.1-alpha.2)
+
+### Chores
+
+* lint tests ([310e678](https://github.com/bluehive-health/bluehive-sdk-go/commit/310e678ddf13aab96ef21439e17a64a0bb485df1))
+
 ## 0.0.1-alpha.1 (2025-07-06)
 
 Full Changelog: [v0.0.1-alpha.0...v0.0.1-alpha.1](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.0.1-alpha.0...v0.0.1-alpha.1)
