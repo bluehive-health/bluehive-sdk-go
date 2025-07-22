@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.0.1-alpha.4 (2025-07-22)
+
+Full Changelog: [v0.0.1-alpha.3...v0.0.1-alpha.4](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.0.1-alpha.3...v0.0.1-alpha.4)
+
+### Bug Fixes
+
+* **client:** process custom base url ahead of time ([af9233d](https://github.com/bluehive-health/bluehive-sdk-go/commit/af9233dde50dee94fb85ddb9fd9fd0ee9fbd691c))
+
+
+### Chores
+
+* lint tests in subpackages ([0911f5f](https://github.com/bluehive-health/bluehive-sdk-go/commit/0911f5f8030aae9b1a2023a600b9e40332e54965))
+
 ## 0.0.1-alpha.3 (2025-07-09)
 
 Full Changelog: [v0.0.1-alpha.2...v0.0.1-alpha.3](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.0.1-alpha.2...v0.0.1-alpha.3)
