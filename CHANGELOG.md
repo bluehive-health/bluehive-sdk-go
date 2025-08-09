@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.1 (2025-08-09)
+
+Full Changelog: [v0.0.1-alpha.4...v0.1.0-alpha.1](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.0.1-alpha.4...v0.1.0-alpha.1)
+
+### Features
+
+* **client:** support optional json html escaping ([4c282fb](https://github.com/bluehive-health/bluehive-sdk-go/commit/4c282fb4f48296e7a990db66a44a18d66307cf9f))
+
+
+### Chores
+
+* **internal:** update comment in script ([c73b43f](https://github.com/bluehive-health/bluehive-sdk-go/commit/c73b43f1b04e13249d11e3402b6e6aa21227ed36))
+* update @stainless-api/prism-cli to v5.15.0 ([3fe4a47](https://github.com/bluehive-health/bluehive-sdk-go/commit/3fe4a47803f24dacbc8716a6299b3ce8e03eaaf6))
+
 ## 0.0.1-alpha.4 (2025-07-22)
 
 Full Changelog: [v0.0.1-alpha.3...v0.0.1-alpha.4](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.0.1-alpha.3...v0.0.1-alpha.4)
