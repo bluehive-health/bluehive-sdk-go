@@ -21,6 +21,8 @@ type Client struct {
 	Providers ProviderService
 	Database  DatabaseService
 	Fax       FaxService
+	Employers EmployerService
+	Hl7       Hl7Service
 }
 
 // DefaultClientOptions read from the environment (BLUEHIVE_API_KEY,
@@ -50,6 +52,8 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Providers = NewProviderService(opts...)
 	r.Database = NewDatabaseService(opts...)
 	r.Fax = NewFaxService(opts...)
+	r.Employers = NewEmployerService(opts...)
+	r.Hl7 = NewHl7Service(opts...)
 
 	return
 }
