@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.3 (2025-08-13)
+
+Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
+
+### Features
+
+* **api:** manual updates ([16e1418](https://github.com/bluehive-health/bluehive-sdk-go/commit/16e1418ac375e8044559306736f654a896ac4b17))
+
 ## 0.1.0-alpha.2 (2025-08-13)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
