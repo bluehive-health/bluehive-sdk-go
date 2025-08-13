@@ -54,7 +54,7 @@ type Hl7ProcessParams struct {
 	//
 
 	// This field is a request body variant, only one variant field can be set. Raw HL7
-	// message content
+	// message content (for text/plain)
 	OfString param.Opt[string] `json:",inline"`
 	// This field is a request body variant, only one variant field can be set.
 	OfMessage *Hl7ProcessParamsBodyMessage `json:",inline"`
