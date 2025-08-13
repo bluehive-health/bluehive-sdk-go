@@ -56,9 +56,11 @@ func TestEmployerNewWithOptionalParams(t *testing.T) {
 		},
 		Demo:            githubcombluehivehealthbluehivesdkgo.Bool(true),
 		EmployeeConsent: githubcombluehivehealthbluehivesdkgo.Bool(true),
-		Metadata:        map[string]interface{}{},
-		OnsiteClinic:    githubcombluehivehealthbluehivesdkgo.Bool(true),
-		Website:         githubcombluehivehealthbluehivesdkgo.String("website"),
+		Metadata: map[string]any{
+			"foo": "bar",
+		},
+		OnsiteClinic: githubcombluehivehealthbluehivesdkgo.Bool(true),
+		Website:      githubcombluehivehealthbluehivesdkgo.String("website"),
 	})
 	if err != nil {
 		var apierr *githubcombluehivehealthbluehivesdkgo.Error
