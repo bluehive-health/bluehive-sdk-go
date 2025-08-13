@@ -130,7 +130,7 @@ type FaxGetStatusResponse struct {
 	// Number of pages in the fax
 	PageCount float64 `json:"pageCount"`
 	// Provider-specific additional data
-	ProviderData any `json:"providerData"`
+	ProviderData map[string]any `json:"providerData"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ID           respjson.Field

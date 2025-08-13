@@ -341,7 +341,7 @@ type EmployerNewParams struct {
 	// Checkr information (excluding sensitive token)
 	Checkr EmployerNewParamsCheckr `json:"checkr,omitzero"`
 	// Additional metadata for the employer
-	Metadata any `json:"metadata,omitzero"`
+	Metadata map[string]any `json:"metadata,omitzero"`
 	paramObj
 }
 
