@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2025-08-13)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Chores
+
+* **internal:** codegen related update ([04b0fd4](https://github.com/bluehive-health/bluehive-sdk-go/commit/04b0fd4813b1e0b91ded144e4183b5ad1483dd81))
+
 ## 0.1.0-alpha.1 (2025-08-09)
 
 Full Changelog: [v0.0.1-alpha.4...v0.1.0-alpha.1](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.0.1-alpha.4...v0.1.0-alpha.1)
