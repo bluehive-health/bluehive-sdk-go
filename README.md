@@ -1,6 +1,10 @@
 # BlueHive Go API Library
 
+<!-- x-release-please-start-version -->
+
 <a href="https://pkg.go.dev/github.com/bluehive-health/bluehive-sdk-go"><img src="https://pkg.go.dev/badge/github.com/bluehive-health/bluehive-sdk-go.svg" alt="Go Reference"></a>
+
+<!-- x-release-please-end -->
 
 The BlueHive Go library provides convenient access to the [BlueHive REST API](https://docs.bluehive.com/)
 from applications written in Go.
