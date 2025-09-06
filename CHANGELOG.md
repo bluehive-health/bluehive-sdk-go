@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.9 (2025-09-06)
+
+Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
+
+### Bug Fixes
+
+* **internal:** unmarshal correctly when there are multiple discriminators ([23bbdd1](https://github.com/bluehive-health/bluehive-sdk-go/commit/23bbdd1b10f5f32c0c9b64a89c5cee42503bdefb))
+
+
+### Chores
+
+* **internal:** codegen related update ([4d0f136](https://github.com/bluehive-health/bluehive-sdk-go/commit/4d0f136e9b70d48401c838870ba515069ffdc443))
+
 ## 0.1.0-alpha.8 (2025-08-29)
 
 Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
