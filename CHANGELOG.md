@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-alpha.10 (2025-09-20)
+
+Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
+
+### Bug Fixes
+
+* use slices.Concat instead of sometimes modifying r.Options ([f6f9ecc](https://github.com/bluehive-health/bluehive-sdk-go/commit/f6f9eccdd0434535e4e32bda7ab88d9643dba398))
+
+
+### Chores
+
+* bump minimum go version to 1.22 ([876effd](https://github.com/bluehive-health/bluehive-sdk-go/commit/876effde6e997136b2daa9c4176187ff484416f9))
+* do not install brew dependencies in ./scripts/bootstrap by default ([53e46f4](https://github.com/bluehive-health/bluehive-sdk-go/commit/53e46f4cb74a927244617bb97044f5e7ca8a40a8))
+* update more docs for 1.22 ([465efa0](https://github.com/bluehive-health/bluehive-sdk-go/commit/465efa0f8bbd716f1f85485942a10130d2d1ff71))
+
 ## 0.1.0-alpha.9 (2025-09-06)
 
 Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
