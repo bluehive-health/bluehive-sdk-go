@@ -35,7 +35,7 @@ go get -u 'github.com/bluehive-health/bluehive-sdk-go@v0.1.0-alpha.9'
 
 ## Requirements
 
-This library requires Go 1.18+.
+This library requires Go 1.22+.
 
 ## Usage
 
