@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"slices"
 
 	"github.com/bluehive-health/bluehive-sdk-go/internal/apijson"
 	"github.com/bluehive-health/bluehive-sdk-go/internal/requestconfig"
@@ -36,7 +37,7 @@ func NewFaxService(opts ...option.RequestOption) (r FaxService) {
 
 // Get a list of available fax providers and their configuration status.
 func (r *FaxService) ListProviders(ctx context.Context, opts ...option.RequestOption) (res *FaxListProvidersResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "v1/fax/providers"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -44,7 +45,7 @@ func (r *FaxService) ListProviders(ctx context.Context, opts ...option.RequestOp
 
 // Retrieve the current status and details of a fax by its ID.
 func (r *FaxService) GetStatus(ctx context.Context, id string, opts ...option.RequestOption) (res *FaxGetStatusResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -56,7 +57,7 @@ func (r *FaxService) GetStatus(ctx context.Context, id string, opts ...option.Re
 
 // Send a fax document to a specified number using the configured fax provider.
 func (r *FaxService) Send(ctx context.Context, body FaxSendParams, opts ...option.RequestOption) (res *FaxSendResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "v1/fax/send"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return

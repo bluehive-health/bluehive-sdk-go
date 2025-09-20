@@ -5,6 +5,7 @@ package githubcombluehivehealthbluehivesdkgo
 import (
 	"context"
 	"net/http"
+	"slices"
 
 	"github.com/bluehive-health/bluehive-sdk-go/internal/apijson"
 	"github.com/bluehive-health/bluehive-sdk-go/internal/requestconfig"
@@ -33,7 +34,7 @@ func NewHl7Service(opts ...option.RequestOption) (r Hl7Service) {
 
 // Process incoming HL7 messages from EHR systems
 func (r *Hl7Service) Process(ctx context.Context, body Hl7ProcessParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "v1/hl7/"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return
@@ -41,7 +42,7 @@ func (r *Hl7Service) Process(ctx context.Context, body Hl7ProcessParams, opts ..
 
 // Send lab results or documents via HL7
 func (r *Hl7Service) SendResults(ctx context.Context, body Hl7SendResultsParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "v1/hl7/results"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return
