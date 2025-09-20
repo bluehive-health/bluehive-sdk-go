@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"slices"
 	"time"
 
 	"github.com/bluehive-health/bluehive-sdk-go/internal/apijson"
@@ -37,7 +38,7 @@ func NewEmployerService(opts ...option.RequestOption) (r EmployerService) {
 
 // Create a new employer in the system.
 func (r *EmployerService) New(ctx context.Context, body EmployerNewParams, opts ...option.RequestOption) (res *EmployerNewResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "v1/employers"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return
@@ -45,7 +46,7 @@ func (r *EmployerService) New(ctx context.Context, body EmployerNewParams, opts 
 
 // Retrieve an employer by their unique ID.
 func (r *EmployerService) Get(ctx context.Context, employerID string, opts ...option.RequestOption) (res *EmployerGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if employerID == "" {
 		err = errors.New("missing required employerId parameter")
 		return

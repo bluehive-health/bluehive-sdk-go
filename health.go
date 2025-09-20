@@ -5,6 +5,7 @@ package githubcombluehivehealthbluehivesdkgo
 import (
 	"context"
 	"net/http"
+	"slices"
 
 	"github.com/bluehive-health/bluehive-sdk-go/internal/apijson"
 	"github.com/bluehive-health/bluehive-sdk-go/internal/requestconfig"
@@ -33,7 +34,7 @@ func NewHealthService(opts ...option.RequestOption) (r HealthService) {
 
 // Check the service health and ensure the API is running properly.
 func (r *HealthService) Check(ctx context.Context, opts ...option.RequestOption) (res *HealthCheckResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "v1/health"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
