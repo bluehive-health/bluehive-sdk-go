@@ -5,6 +5,7 @@ package githubcombluehivehealthbluehivesdkgo
 import (
 	"context"
 	"net/http"
+	"slices"
 
 	"github.com/bluehive-health/bluehive-sdk-go/internal/apijson"
 	"github.com/bluehive-health/bluehive-sdk-go/internal/requestconfig"
@@ -33,7 +34,7 @@ func NewVersionService(opts ...option.RequestOption) (r VersionService) {
 
 // Retrieve the current version of the BlueHive API.
 func (r *VersionService) Get(ctx context.Context, opts ...option.RequestOption) (res *VersionGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "v1/version"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return

@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/bluehive-health/bluehive-sdk-go/internal/apijson"
 	"github.com/bluehive-health/bluehive-sdk-go/internal/apiquery"
@@ -36,7 +37,7 @@ func NewProviderService(opts ...option.RequestOption) (r ProviderService) {
 
 // Search for healthcare providers by NPI number, name, or location proximity.
 func (r *ProviderService) Lookup(ctx context.Context, query ProviderLookupParams, opts ...option.RequestOption) (res *ProviderLookupResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "v1/providers/lookup"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

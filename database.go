@@ -5,6 +5,7 @@ package githubcombluehivehealthbluehivesdkgo
 import (
 	"context"
 	"net/http"
+	"slices"
 
 	"github.com/bluehive-health/bluehive-sdk-go/internal/apijson"
 	"github.com/bluehive-health/bluehive-sdk-go/internal/requestconfig"
@@ -33,7 +34,7 @@ func NewDatabaseService(opts ...option.RequestOption) (r DatabaseService) {
 
 // Check MongoDB database connectivity and retrieve health statistics.
 func (r *DatabaseService) CheckHealth(ctx context.Context, opts ...option.RequestOption) (res *DatabaseCheckHealthResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "v1/database/health"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
