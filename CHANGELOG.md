@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.11 (2025-09-26)
+
+Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
+
+### Bug Fixes
+
+* bugfix for setting JSON keys with special characters ([47a0ba7](https://github.com/bluehive-health/bluehive-sdk-go/commit/47a0ba779b5bc8a3bb0d68f7eadf79c529ae35ff))
+
 ## 0.1.0-alpha.10 (2025-09-20)
 
 Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
