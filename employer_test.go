@@ -42,13 +42,8 @@ func TestEmployerNewWithOptionalParams(t *testing.T) {
 			Primary: githubcombluehivehealthbluehivesdkgo.Bool(true),
 			Type:    githubcombluehivehealthbluehivesdkgo.String("type"),
 		}},
-		BillingAddress: githubcombluehivehealthbluehivesdkgo.EmployerNewParamsBillingAddress{
-			City:    "city",
-			State:   "state",
-			Street1: "street1",
-			ZipCode: "zipCode",
-			Country: githubcombluehivehealthbluehivesdkgo.String("country"),
-			Street2: githubcombluehivehealthbluehivesdkgo.String("street2"),
+		BillingAddress: map[string]any{
+			"foo": "bar",
 		},
 		Checkr: githubcombluehivehealthbluehivesdkgo.EmployerNewParamsCheckr{
 			ID:     "id",
