@@ -13,36 +13,6 @@ import (
 	"github.com/bluehive-health/bluehive-sdk-go/option"
 )
 
-func TestHl7ProcessWithOptionalParams(t *testing.T) {
-	t.Skip("Prism tests are disabled")
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := githubcombluehivehealthbluehivesdkgo.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithAPIKey("My API Key"),
-	)
-	_, err := client.Hl7.Process(context.TODO(), githubcombluehivehealthbluehivesdkgo.Hl7ProcessParams{
-		F:           githubcombluehivehealthbluehivesdkgo.String("f"),
-		Interface:   githubcombluehivehealthbluehivesdkgo.String("interface"),
-		LoginPasswd: githubcombluehivehealthbluehivesdkgo.String("login_passwd"),
-		LoginUser:   githubcombluehivehealthbluehivesdkgo.String("login_user"),
-		Message:     githubcombluehivehealthbluehivesdkgo.String("message"),
-		MessageB64:  githubcombluehivehealthbluehivesdkgo.String("message_b64"),
-	})
-	if err != nil {
-		var apierr *githubcombluehivehealthbluehivesdkgo.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
-	}
-}
-
 func TestHl7SendResults(t *testing.T) {
 	t.Skip("Prism tests are disabled")
 	baseURL := "http://localhost:4010"

@@ -757,16 +757,17 @@ func (r *EmployeeLinkUserParams) UnmarshalJSON(data []byte) error {
 
 type EmployeeUnlinkUserParams struct {
 	// ID of the employee to unlink
-	EmployeeID string `json:"employeeId,required"`
+	EmployeeID string `query:"employeeId,required" json:"-"`
 	// ID of the user to unlink from
-	UserID string `json:"userId,required"`
+	UserID string `query:"userId,required" json:"-"`
 	paramObj
 }
 
-func (r EmployeeUnlinkUserParams) MarshalJSON() (data []byte, err error) {
-	type shadow EmployeeUnlinkUserParams
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *EmployeeUnlinkUserParams) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
+// URLQuery serializes [EmployeeUnlinkUserParams]'s query parameters as
+// `url.Values`.
+func (r EmployeeUnlinkUserParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
 }
