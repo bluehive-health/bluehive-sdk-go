@@ -40,6 +40,14 @@ func (r *Hl7Service) Process(ctx context.Context, body Hl7ProcessParams, opts ..
 	return
 }
 
+// Send lab results or documents via HL7
+func (r *Hl7Service) SendResults(ctx context.Context, body Hl7SendResultsParams, opts ...option.RequestOption) (res *string, err error) {
+	opts = slices.Concat(r.Options, opts)
+	path := "v1/hl7/results"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
+	return
+}
+
 type Hl7ProcessParams struct {
 
 	//
@@ -100,5 +108,42 @@ func (r Hl7ProcessParamsBodyObject) MarshalJSON() (data []byte, err error) {
 	return param.MarshalWithExtras(r, (*shadow)(&r), r.ExtraFields)
 }
 func (r *Hl7ProcessParamsBodyObject) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type Hl7SendResultsParams struct {
+	// Employee ID to send results for
+	EmployeeID string `json:"employeeId,required"`
+	// File containing the results
+	File Hl7SendResultsParamsFile `json:"file,omitzero,required"`
+	paramObj
+}
+
+func (r Hl7SendResultsParams) MarshalJSON() (data []byte, err error) {
+	type shadow Hl7SendResultsParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *Hl7SendResultsParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// File containing the results
+//
+// The properties Base64, Name, Type are required.
+type Hl7SendResultsParamsFile struct {
+	// Base64 encoded file content
+	Base64 string `json:"base64,required"`
+	// File name
+	Name string `json:"name,required"`
+	// MIME type of the file
+	Type string `json:"type,required"`
+	paramObj
+}
+
+func (r Hl7SendResultsParamsFile) MarshalJSON() (data []byte, err error) {
+	type shadow Hl7SendResultsParamsFile
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *Hl7SendResultsParamsFile) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
