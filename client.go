@@ -16,14 +16,17 @@ import (
 // interacting with the bluehive API. You should not instantiate this client
 // directly, and instead use the [NewClient] method instead.
 type Client struct {
-	Options   []option.RequestOption
-	Health    HealthService
-	Version   VersionService
-	Providers ProviderService
-	Database  DatabaseService
-	Fax       FaxService
-	Employers EmployerService
-	Hl7       Hl7Service
+	Options      []option.RequestOption
+	Health       HealthService
+	Version      VersionService
+	Providers    ProviderService
+	Database     DatabaseService
+	Fax          FaxService
+	Employers    EmployerService
+	Hl7          Hl7Service
+	Orders       OrderService
+	Employees    EmployeeService
+	Integrations IntegrationService
 }
 
 // DefaultClientOptions read from the environment (BLUEHIVE_API_KEY,
@@ -55,6 +58,9 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Fax = NewFaxService(opts...)
 	r.Employers = NewEmployerService(opts...)
 	r.Hl7 = NewHl7Service(opts...)
+	r.Orders = NewOrderService(opts...)
+	r.Employees = NewEmployeeService(opts...)
+	r.Integrations = NewIntegrationService(opts...)
 
 	return
 }
