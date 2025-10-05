@@ -13,7 +13,7 @@ import (
 	"github.com/bluehive-health/bluehive-sdk-go/option"
 )
 
-func TestHl7ProcessWithOptionalParams(t *testing.T) {
+func TestIntegrationList(t *testing.T) {
 	t.Skip("Prism tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -26,13 +26,8 @@ func TestHl7ProcessWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Hl7.Process(context.TODO(), githubcombluehivehealthbluehivesdkgo.Hl7ProcessParams{
-		F:           githubcombluehivehealthbluehivesdkgo.String("f"),
-		Interface:   githubcombluehivehealthbluehivesdkgo.String("interface"),
-		LoginPasswd: githubcombluehivehealthbluehivesdkgo.String("login_passwd"),
-		LoginUser:   githubcombluehivehealthbluehivesdkgo.String("login_user"),
-		Message:     githubcombluehivehealthbluehivesdkgo.String("message"),
-		MessageB64:  githubcombluehivehealthbluehivesdkgo.String("message_b64"),
+	_, err := client.Integrations.List(context.TODO(), githubcombluehivehealthbluehivesdkgo.IntegrationListParams{
+		XBrandID: "x",
 	})
 	if err != nil {
 		var apierr *githubcombluehivehealthbluehivesdkgo.Error
@@ -43,7 +38,7 @@ func TestHl7ProcessWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestHl7SendResults(t *testing.T) {
+func TestIntegrationCheckActive(t *testing.T) {
 	t.Skip("Prism tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -56,14 +51,13 @@ func TestHl7SendResults(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Hl7.SendResults(context.TODO(), githubcombluehivehealthbluehivesdkgo.Hl7SendResultsParams{
-		EmployeeID: "employeeId",
-		File: githubcombluehivehealthbluehivesdkgo.Hl7SendResultsParamsFile{
-			Base64: "base64",
-			Name:   "name",
-			Type:   "type",
+	_, err := client.Integrations.CheckActive(
+		context.TODO(),
+		"name",
+		githubcombluehivehealthbluehivesdkgo.IntegrationCheckActiveParams{
+			XBrandID: "x",
 		},
-	})
+	)
 	if err != nil {
 		var apierr *githubcombluehivehealthbluehivesdkgo.Error
 		if errors.As(err, &apierr) {

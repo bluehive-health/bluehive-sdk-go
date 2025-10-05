@@ -23,7 +23,8 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewEmployerService] method instead.
 type EmployerService struct {
-	Options []option.RequestOption
+	Options        []option.RequestOption
+	ServiceBundles EmployerServiceBundleService
 }
 
 // NewEmployerService generates a new service that applies the given options to
@@ -32,6 +33,7 @@ type EmployerService struct {
 func NewEmployerService(opts ...option.RequestOption) (r EmployerService) {
 	r = EmployerService{}
 	r.Options = opts
+	r.ServiceBundles = NewEmployerServiceBundleService(opts...)
 	return
 }
 
@@ -51,6 +53,20 @@ func (r *EmployerService) Get(ctx context.Context, employerID string, opts ...op
 		return
 	}
 	path := fmt.Sprintf("v1/employers/%s", employerID)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
+	return
+}
+
+// Get Employers for Current User
+func (r *EmployerService) List(ctx context.Context, query EmployerListParams, opts ...option.RequestOption) (res *[]EmployerListResponse, err error) {
+	if !param.IsOmitted(query.LoginToken) {
+		opts = append(opts, option.WithHeader("login-token", fmt.Sprintf("%s", query.LoginToken)))
+	}
+	if !param.IsOmitted(query.UserID) {
+		opts = append(opts, option.WithHeader("user-id", fmt.Sprintf("%s", query.UserID)))
+	}
+	opts = slices.Concat(r.Options, opts)
+	path := "v1/employers/list"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }
@@ -92,6 +108,8 @@ func (r *EmployerNewResponse) UnmarshalJSON(data []byte) error {
 }
 
 type EmployerGetResponse map[string]any
+
+type EmployerListResponse map[string]any
 
 type EmployerNewParams struct {
 	Address         EmployerNewParamsAddress `json:"address,omitzero,required"`
@@ -164,4 +182,10 @@ func (r EmployerNewParamsCheckr) MarshalJSON() (data []byte, err error) {
 }
 func (r *EmployerNewParamsCheckr) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
+}
+
+type EmployerListParams struct {
+	LoginToken string `header:"login-token,required" json:"-"`
+	UserID     string `header:"user-id,required" json:"-"`
+	paramObj
 }
