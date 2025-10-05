@@ -32,12 +32,45 @@ func NewHl7Service(opts ...option.RequestOption) (r Hl7Service) {
 	return
 }
 
+// Process incoming HL7 messages from EHR systems. Accepts JSON with "message"
+// field, raw text/plain HL7 content, or form-encoded data.
+func (r *Hl7Service) Process(ctx context.Context, body Hl7ProcessParams, opts ...option.RequestOption) (res *string, err error) {
+	opts = slices.Concat(r.Options, opts)
+	path := "v1/hl7/"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
+	return
+}
+
 // Send lab results or documents via HL7
 func (r *Hl7Service) SendResults(ctx context.Context, body Hl7SendResultsParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/hl7/results"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return
+}
+
+type Hl7ProcessParams struct {
+	// Form field (legacy support)
+	F param.Opt[string] `json:"f,omitzero"`
+	// Interface identifier (legacy support)
+	Interface param.Opt[string] `json:"interface,omitzero"`
+	// Login password (legacy support)
+	LoginPasswd param.Opt[string] `json:"login_passwd,omitzero"`
+	// Login user (legacy support)
+	LoginUser param.Opt[string] `json:"login_user,omitzero"`
+	// HL7 message content - the primary way to send HL7 data
+	Message param.Opt[string] `json:"message,omitzero"`
+	// Base64 encoded HL7 message (legacy support)
+	MessageB64 param.Opt[string] `json:"message_b64,omitzero"`
+	paramObj
+}
+
+func (r Hl7ProcessParams) MarshalJSON() (data []byte, err error) {
+	type shadow Hl7ProcessParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *Hl7ProcessParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type Hl7SendResultsParams struct {
