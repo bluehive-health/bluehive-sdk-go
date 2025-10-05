@@ -32,7 +32,8 @@ func NewHl7Service(opts ...option.RequestOption) (r Hl7Service) {
 	return
 }
 
-// Process incoming HL7 messages from EHR systems
+// Process incoming HL7 messages from EHR systems. Accepts JSON with "message"
+// field, raw text/plain HL7 content, or form-encoded data.
 func (r *Hl7Service) Process(ctx context.Context, body Hl7ProcessParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/hl7/"
@@ -49,65 +50,26 @@ func (r *Hl7Service) SendResults(ctx context.Context, body Hl7SendResultsParams,
 }
 
 type Hl7ProcessParams struct {
-
-	//
-	// Request body variants
-	//
-
-	// This field is a request body variant, only one variant field can be set. Raw HL7
-	// message content (for text/plain)
-	OfString param.Opt[string] `json:",inline"`
-	// This field is a request body variant, only one variant field can be set. Object
-	// containing HL7 message
-	OfMessage *Hl7ProcessParamsBodyMessage `json:",inline"`
-	// This field is a request body variant, only one variant field can be set. Form
-	// data containing HL7 message
-	OfObject *Hl7ProcessParamsBodyObject `json:",inline"`
-
+	// Form field (legacy support)
+	F param.Opt[string] `json:"f,omitzero"`
+	// Interface identifier (legacy support)
+	Interface param.Opt[string] `json:"interface,omitzero"`
+	// Login password (legacy support)
+	LoginPasswd param.Opt[string] `json:"login_passwd,omitzero"`
+	// Login user (legacy support)
+	LoginUser param.Opt[string] `json:"login_user,omitzero"`
+	// HL7 message content - the primary way to send HL7 data
+	Message param.Opt[string] `json:"message,omitzero"`
+	// Base64 encoded HL7 message (legacy support)
+	MessageB64 param.Opt[string] `json:"message_b64,omitzero"`
 	paramObj
 }
 
-func (u Hl7ProcessParams) MarshalJSON() ([]byte, error) {
-	return param.MarshalUnion(u, u.OfString, u.OfMessage, u.OfObject)
-}
-func (r *Hl7ProcessParams) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Object containing HL7 message
-//
-// The property Message is required.
-type Hl7ProcessParamsBodyMessage struct {
-	// HL7 message content
-	Message string `json:"message,required"`
-	paramObj
-}
-
-func (r Hl7ProcessParamsBodyMessage) MarshalJSON() (data []byte, err error) {
-	type shadow Hl7ProcessParamsBodyMessage
+func (r Hl7ProcessParams) MarshalJSON() (data []byte, err error) {
+	type shadow Hl7ProcessParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *Hl7ProcessParamsBodyMessage) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Form data containing HL7 message
-type Hl7ProcessParamsBodyObject struct {
-	F           param.Opt[string] `json:"f,omitzero"`
-	Interface   param.Opt[string] `json:"interface,omitzero"`
-	LoginPasswd param.Opt[string] `json:"login_passwd,omitzero"`
-	LoginUser   param.Opt[string] `json:"login_user,omitzero"`
-	Message     param.Opt[string] `json:"message,omitzero"`
-	MessageB64  param.Opt[string] `json:"message_b64,omitzero"`
-	ExtraFields map[string]any    `json:"-"`
-	paramObj
-}
-
-func (r Hl7ProcessParamsBodyObject) MarshalJSON() (data []byte, err error) {
-	type shadow Hl7ProcessParamsBodyObject
-	return param.MarshalWithExtras(r, (*shadow)(&r), r.ExtraFields)
-}
-func (r *Hl7ProcessParamsBodyObject) UnmarshalJSON(data []byte) error {
+func (r *Hl7ProcessParams) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 

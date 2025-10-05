@@ -27,7 +27,12 @@ func TestHl7ProcessWithOptionalParams(t *testing.T) {
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Hl7.Process(context.TODO(), githubcombluehivehealthbluehivesdkgo.Hl7ProcessParams{
-		OfString: githubcombluehivehealthbluehivesdkgo.String("string"),
+		F:           githubcombluehivehealthbluehivesdkgo.String("f"),
+		Interface:   githubcombluehivehealthbluehivesdkgo.String("interface"),
+		LoginPasswd: githubcombluehivehealthbluehivesdkgo.String("login_passwd"),
+		LoginUser:   githubcombluehivehealthbluehivesdkgo.String("login_user"),
+		Message:     githubcombluehivehealthbluehivesdkgo.String("message"),
+		MessageB64:  githubcombluehivehealthbluehivesdkgo.String("message_b64"),
 	})
 	if err != nil {
 		var apierr *githubcombluehivehealthbluehivesdkgo.Error
