@@ -33,7 +33,11 @@ func TestEmployerServiceBundleNewWithOptionalParams(t *testing.T) {
 			BundleName: "x",
 			ServiceIDs: []string{"string"},
 			ID:         githubcombluehivehealthbluehivesdkgo.String("_id"),
+			Limit:      githubcombluehivehealthbluehivesdkgo.Float(0),
+			Occurrence: githubcombluehivehealthbluehivesdkgo.String("occurrence"),
+			Recurring:  githubcombluehivehealthbluehivesdkgo.Bool(true),
 			Roles:      []string{"string"},
+			StartDate:  githubcombluehivehealthbluehivesdkgo.String("startDate"),
 		},
 	)
 	if err != nil {
@@ -95,7 +99,11 @@ func TestEmployerServiceBundleUpdateWithOptionalParams(t *testing.T) {
 			BundleName: "x",
 			ServiceIDs: []string{"string"},
 			ID:         githubcombluehivehealthbluehivesdkgo.String("_id"),
+			Limit:      githubcombluehivehealthbluehivesdkgo.Float(0),
+			Occurrence: githubcombluehivehealthbluehivesdkgo.String("occurrence"),
+			Recurring:  githubcombluehivehealthbluehivesdkgo.Bool(true),
 			Roles:      []string{"string"},
+			StartDate:  githubcombluehivehealthbluehivesdkgo.String("startDate"),
 		},
 	)
 	if err != nil {
