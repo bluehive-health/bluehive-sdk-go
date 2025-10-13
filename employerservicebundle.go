@@ -115,7 +115,11 @@ type EmployerServiceBundleNewResponse struct {
 	ServiceIDs []string `json:"serviceIds,required"`
 	CreatedAt  string   `json:"createdAt"`
 	CreatedBy  string   `json:"createdBy"`
+	Limit      float64  `json:"limit"`
+	Occurrence string   `json:"occurrence"`
+	Recurring  bool     `json:"recurring"`
 	Roles      []string `json:"roles,nullable"`
+	StartDate  string   `json:"startDate"`
 	UpdatedAt  string   `json:"updatedAt"`
 	UpdatedBy  string   `json:"updatedBy"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -126,7 +130,11 @@ type EmployerServiceBundleNewResponse struct {
 		ServiceIDs  respjson.Field
 		CreatedAt   respjson.Field
 		CreatedBy   respjson.Field
+		Limit       respjson.Field
+		Occurrence  respjson.Field
+		Recurring   respjson.Field
 		Roles       respjson.Field
+		StartDate   respjson.Field
 		UpdatedAt   respjson.Field
 		UpdatedBy   respjson.Field
 		ExtraFields map[string]respjson.Field
@@ -147,7 +155,11 @@ type EmployerServiceBundleGetResponse struct {
 	ServiceIDs []string `json:"serviceIds,required"`
 	CreatedAt  string   `json:"createdAt"`
 	CreatedBy  string   `json:"createdBy"`
+	Limit      float64  `json:"limit"`
+	Occurrence string   `json:"occurrence"`
+	Recurring  bool     `json:"recurring"`
 	Roles      []string `json:"roles,nullable"`
+	StartDate  string   `json:"startDate"`
 	UpdatedAt  string   `json:"updatedAt"`
 	UpdatedBy  string   `json:"updatedBy"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -158,7 +170,11 @@ type EmployerServiceBundleGetResponse struct {
 		ServiceIDs  respjson.Field
 		CreatedAt   respjson.Field
 		CreatedBy   respjson.Field
+		Limit       respjson.Field
+		Occurrence  respjson.Field
+		Recurring   respjson.Field
 		Roles       respjson.Field
+		StartDate   respjson.Field
 		UpdatedAt   respjson.Field
 		UpdatedBy   respjson.Field
 		ExtraFields map[string]respjson.Field
@@ -179,7 +195,11 @@ type EmployerServiceBundleUpdateResponse struct {
 	ServiceIDs []string `json:"serviceIds,required"`
 	CreatedAt  string   `json:"createdAt"`
 	CreatedBy  string   `json:"createdBy"`
+	Limit      float64  `json:"limit"`
+	Occurrence string   `json:"occurrence"`
+	Recurring  bool     `json:"recurring"`
 	Roles      []string `json:"roles,nullable"`
+	StartDate  string   `json:"startDate"`
 	UpdatedAt  string   `json:"updatedAt"`
 	UpdatedBy  string   `json:"updatedBy"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -190,7 +210,11 @@ type EmployerServiceBundleUpdateResponse struct {
 		ServiceIDs  respjson.Field
 		CreatedAt   respjson.Field
 		CreatedBy   respjson.Field
+		Limit       respjson.Field
+		Occurrence  respjson.Field
+		Recurring   respjson.Field
 		Roles       respjson.Field
+		StartDate   respjson.Field
 		UpdatedAt   respjson.Field
 		UpdatedBy   respjson.Field
 		ExtraFields map[string]respjson.Field
@@ -211,7 +235,11 @@ type EmployerServiceBundleListResponse struct {
 	ServiceIDs []string `json:"serviceIds,required"`
 	CreatedAt  string   `json:"createdAt"`
 	CreatedBy  string   `json:"createdBy"`
+	Limit      float64  `json:"limit"`
+	Occurrence string   `json:"occurrence"`
+	Recurring  bool     `json:"recurring"`
 	Roles      []string `json:"roles,nullable"`
+	StartDate  string   `json:"startDate"`
 	UpdatedAt  string   `json:"updatedAt"`
 	UpdatedBy  string   `json:"updatedBy"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -222,7 +250,11 @@ type EmployerServiceBundleListResponse struct {
 		ServiceIDs  respjson.Field
 		CreatedAt   respjson.Field
 		CreatedBy   respjson.Field
+		Limit       respjson.Field
+		Occurrence  respjson.Field
+		Recurring   respjson.Field
 		Roles       respjson.Field
+		StartDate   respjson.Field
 		UpdatedAt   respjson.Field
 		UpdatedBy   respjson.Field
 		ExtraFields map[string]respjson.Field
@@ -237,10 +269,14 @@ func (r *EmployerServiceBundleListResponse) UnmarshalJSON(data []byte) error {
 }
 
 type EmployerServiceBundleNewParams struct {
-	BundleName string            `json:"bundleName,required"`
-	ServiceIDs []string          `json:"serviceIds,omitzero,required"`
-	ID         param.Opt[string] `json:"_id,omitzero"`
-	Roles      []string          `json:"roles,omitzero"`
+	BundleName string             `json:"bundleName,required"`
+	ServiceIDs []string           `json:"serviceIds,omitzero,required"`
+	ID         param.Opt[string]  `json:"_id,omitzero"`
+	Limit      param.Opt[float64] `json:"limit,omitzero"`
+	Occurrence param.Opt[string]  `json:"occurrence,omitzero"`
+	Recurring  param.Opt[bool]    `json:"recurring,omitzero"`
+	StartDate  param.Opt[string]  `json:"startDate,omitzero"`
+	Roles      []string           `json:"roles,omitzero"`
 	paramObj
 }
 
@@ -258,11 +294,15 @@ type EmployerServiceBundleGetParams struct {
 }
 
 type EmployerServiceBundleUpdateParams struct {
-	EmployerID string            `path:"employerId,required" json:"-"`
-	BundleName string            `json:"bundleName,required"`
-	ServiceIDs []string          `json:"serviceIds,omitzero,required"`
-	ID         param.Opt[string] `json:"_id,omitzero"`
-	Roles      []string          `json:"roles,omitzero"`
+	EmployerID string             `path:"employerId,required" json:"-"`
+	BundleName string             `json:"bundleName,required"`
+	ServiceIDs []string           `json:"serviceIds,omitzero,required"`
+	ID         param.Opt[string]  `json:"_id,omitzero"`
+	Limit      param.Opt[float64] `json:"limit,omitzero"`
+	Occurrence param.Opt[string]  `json:"occurrence,omitzero"`
+	Recurring  param.Opt[bool]    `json:"recurring,omitzero"`
+	StartDate  param.Opt[string]  `json:"startDate,omitzero"`
+	Roles      []string           `json:"roles,omitzero"`
 	paramObj
 }
 
