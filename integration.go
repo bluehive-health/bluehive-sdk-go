@@ -12,6 +12,7 @@ import (
 	"github.com/bluehive-health/bluehive-sdk-go/internal/apijson"
 	"github.com/bluehive-health/bluehive-sdk-go/internal/requestconfig"
 	"github.com/bluehive-health/bluehive-sdk-go/option"
+	"github.com/bluehive-health/bluehive-sdk-go/packages/param"
 	"github.com/bluehive-health/bluehive-sdk-go/packages/respjson"
 )
 
