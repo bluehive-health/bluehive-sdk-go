@@ -156,21 +156,27 @@ type OrderNewResponseUnion struct {
 	// This field is from variant [OrderNewResponseObject].
 	Message string `json:"message"`
 	// This field is from variant [OrderNewResponseObject].
+	PartialSuccess bool `json:"partialSuccess"`
+	// This field is from variant [OrderNewResponseObject].
 	SelfPay bool `json:"selfPay"`
+	// This field is from variant [OrderNewResponseObject].
+	UnavailableServices []OrderNewResponseObjectUnavailableService `json:"unavailableServices"`
 	// This field is from variant [OrderNewResponseObject].
 	OrderResults []OrderNewResponseObjectOrderResult `json:"orderResults"`
 	// This field is from variant [OrderNewResponseObject].
 	Status string `json:"status"`
 	JSON   struct {
-		OrderID          respjson.Field
-		OrderNumber      respjson.Field
-		Success          respjson.Field
-		HostedInvoiceURL respjson.Field
-		Message          respjson.Field
-		SelfPay          respjson.Field
-		OrderResults     respjson.Field
-		Status           respjson.Field
-		raw              string
+		OrderID             respjson.Field
+		OrderNumber         respjson.Field
+		Success             respjson.Field
+		HostedInvoiceURL    respjson.Field
+		Message             respjson.Field
+		PartialSuccess      respjson.Field
+		SelfPay             respjson.Field
+		UnavailableServices respjson.Field
+		OrderResults        respjson.Field
+		Status              respjson.Field
+		raw                 string
 	} `json:"-"`
 }
 
@@ -195,26 +201,50 @@ type OrderNewResponseObject struct {
 	OrderID     string `json:"orderId,required"`
 	OrderNumber string `json:"orderNumber,required"`
 	// Any of true.
-	Success          bool   `json:"success,required"`
-	HostedInvoiceURL string `json:"hostedInvoiceUrl" format:"uri"`
-	Message          string `json:"message"`
-	SelfPay          bool   `json:"selfPay"`
+	Success             bool                                       `json:"success,required"`
+	HostedInvoiceURL    string                                     `json:"hostedInvoiceUrl" format:"uri"`
+	Message             string                                     `json:"message"`
+	PartialSuccess      bool                                       `json:"partialSuccess"`
+	SelfPay             bool                                       `json:"selfPay"`
+	UnavailableServices []OrderNewResponseObjectUnavailableService `json:"unavailableServices"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		OrderID          respjson.Field
-		OrderNumber      respjson.Field
-		Success          respjson.Field
-		HostedInvoiceURL respjson.Field
-		Message          respjson.Field
-		SelfPay          respjson.Field
-		ExtraFields      map[string]respjson.Field
-		raw              string
+		OrderID             respjson.Field
+		OrderNumber         respjson.Field
+		Success             respjson.Field
+		HostedInvoiceURL    respjson.Field
+		Message             respjson.Field
+		PartialSuccess      respjson.Field
+		SelfPay             respjson.Field
+		UnavailableServices respjson.Field
+		ExtraFields         map[string]respjson.Field
+		raw                 string
 	} `json:"-"`
 }
 
 // Returns the unmodified JSON received from the API
 func (r OrderNewResponseObject) RawJSON() string { return r.JSON.raw }
 func (r *OrderNewResponseObject) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type OrderNewResponseObjectUnavailableService struct {
+	Reason      string `json:"reason,required"`
+	ServiceID   string `json:"serviceId,required"`
+	ServiceName string `json:"serviceName"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Reason      respjson.Field
+		ServiceID   respjson.Field
+		ServiceName respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r OrderNewResponseObjectUnavailableService) RawJSON() string { return r.JSON.raw }
+func (r *OrderNewResponseObjectUnavailableService) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -377,17 +407,23 @@ type OrderSendForEmployeeResponseUnion struct {
 	// This field is from variant [OrderSendForEmployeeResponseObject].
 	Message string `json:"message"`
 	// This field is from variant [OrderSendForEmployeeResponseObject].
+	PartialSuccess bool `json:"partialSuccess"`
+	// This field is from variant [OrderSendForEmployeeResponseObject].
+	UnavailableServices []OrderSendForEmployeeResponseObjectUnavailableService `json:"unavailableServices"`
+	// This field is from variant [OrderSendForEmployeeResponseObject].
 	OrderResults []OrderSendForEmployeeResponseObjectOrderResult `json:"orderResults"`
 	// This field is from variant [OrderSendForEmployeeResponseObject].
 	Status string `json:"status"`
 	JSON   struct {
-		OrderID      respjson.Field
-		OrderNumber  respjson.Field
-		Success      respjson.Field
-		Message      respjson.Field
-		OrderResults respjson.Field
-		Status       respjson.Field
-		raw          string
+		OrderID             respjson.Field
+		OrderNumber         respjson.Field
+		Success             respjson.Field
+		Message             respjson.Field
+		PartialSuccess      respjson.Field
+		UnavailableServices respjson.Field
+		OrderResults        respjson.Field
+		Status              respjson.Field
+		raw                 string
 	} `json:"-"`
 }
 
@@ -414,20 +450,47 @@ type OrderSendForEmployeeResponseObject struct {
 	// Any of true.
 	Success bool   `json:"success,required"`
 	Message string `json:"message"`
+	// True when some services were unavailable but order was still created
+	PartialSuccess bool `json:"partialSuccess"`
+	// Services that could not be included in the order
+	UnavailableServices []OrderSendForEmployeeResponseObjectUnavailableService `json:"unavailableServices"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		OrderID     respjson.Field
-		OrderNumber respjson.Field
-		Success     respjson.Field
-		Message     respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
+		OrderID             respjson.Field
+		OrderNumber         respjson.Field
+		Success             respjson.Field
+		Message             respjson.Field
+		PartialSuccess      respjson.Field
+		UnavailableServices respjson.Field
+		ExtraFields         map[string]respjson.Field
+		raw                 string
 	} `json:"-"`
 }
 
 // Returns the unmodified JSON received from the API
 func (r OrderSendForEmployeeResponseObject) RawJSON() string { return r.JSON.raw }
 func (r *OrderSendForEmployeeResponseObject) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type OrderSendForEmployeeResponseObjectUnavailableService struct {
+	// Why the service was unavailable
+	Reason      string `json:"reason,required"`
+	ServiceID   string `json:"serviceId,required"`
+	ServiceName string `json:"serviceName"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Reason      respjson.Field
+		ServiceID   respjson.Field
+		ServiceName respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r OrderSendForEmployeeResponseObjectUnavailableService) RawJSON() string { return r.JSON.raw }
+func (r *OrderSendForEmployeeResponseObjectUnavailableService) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
