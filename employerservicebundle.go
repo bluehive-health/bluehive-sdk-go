@@ -94,7 +94,7 @@ func (r *EmployerServiceBundleService) List(ctx context.Context, employerID stri
 // Delete Service Bundle
 func (r *EmployerServiceBundleService) Delete(ctx context.Context, id string, body EmployerServiceBundleDeleteParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if body.EmployerID == "" {
 		err = errors.New("missing required employerId parameter")
 		return
