@@ -115,30 +115,38 @@ type EmployerServiceBundleNewResponse struct {
 	ServiceIDs []string `json:"serviceIds,required"`
 	CreatedAt  string   `json:"createdAt"`
 	CreatedBy  string   `json:"createdBy"`
-	Limit      float64  `json:"limit"`
-	Occurrence string   `json:"occurrence"`
-	Recurring  bool     `json:"recurring"`
-	Roles      []string `json:"roles,nullable"`
-	StartDate  string   `json:"startDate"`
-	UpdatedAt  string   `json:"updatedAt"`
-	UpdatedBy  string   `json:"updatedBy"`
+	// Indicates if this bundle originated from a third-party integration. Externally
+	// managed bundles cannot be edited or deleted in BlueHive.
+	ExternallyManaged bool `json:"externallyManaged"`
+	// Name of the third-party integration that manages this bundle (e.g., "Enterprise
+	// Health"). Null if bundle was created in BlueHive.
+	Integration string   `json:"integration,nullable"`
+	Limit       float64  `json:"limit"`
+	Occurrence  string   `json:"occurrence"`
+	Recurring   bool     `json:"recurring"`
+	Roles       []string `json:"roles,nullable"`
+	StartDate   string   `json:"startDate"`
+	UpdatedAt   string   `json:"updatedAt"`
+	UpdatedBy   string   `json:"updatedBy"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID          respjson.Field
-		BundleName  respjson.Field
-		EmployerID  respjson.Field
-		ServiceIDs  respjson.Field
-		CreatedAt   respjson.Field
-		CreatedBy   respjson.Field
-		Limit       respjson.Field
-		Occurrence  respjson.Field
-		Recurring   respjson.Field
-		Roles       respjson.Field
-		StartDate   respjson.Field
-		UpdatedAt   respjson.Field
-		UpdatedBy   respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
+		ID                respjson.Field
+		BundleName        respjson.Field
+		EmployerID        respjson.Field
+		ServiceIDs        respjson.Field
+		CreatedAt         respjson.Field
+		CreatedBy         respjson.Field
+		ExternallyManaged respjson.Field
+		Integration       respjson.Field
+		Limit             respjson.Field
+		Occurrence        respjson.Field
+		Recurring         respjson.Field
+		Roles             respjson.Field
+		StartDate         respjson.Field
+		UpdatedAt         respjson.Field
+		UpdatedBy         respjson.Field
+		ExtraFields       map[string]respjson.Field
+		raw               string
 	} `json:"-"`
 }
 
@@ -155,30 +163,38 @@ type EmployerServiceBundleGetResponse struct {
 	ServiceIDs []string `json:"serviceIds,required"`
 	CreatedAt  string   `json:"createdAt"`
 	CreatedBy  string   `json:"createdBy"`
-	Limit      float64  `json:"limit"`
-	Occurrence string   `json:"occurrence"`
-	Recurring  bool     `json:"recurring"`
-	Roles      []string `json:"roles,nullable"`
-	StartDate  string   `json:"startDate"`
-	UpdatedAt  string   `json:"updatedAt"`
-	UpdatedBy  string   `json:"updatedBy"`
+	// Indicates if this bundle originated from a third-party integration. Externally
+	// managed bundles cannot be edited or deleted in BlueHive.
+	ExternallyManaged bool `json:"externallyManaged"`
+	// Name of the third-party integration that manages this bundle (e.g., "Enterprise
+	// Health"). Null if bundle was created in BlueHive.
+	Integration string   `json:"integration,nullable"`
+	Limit       float64  `json:"limit"`
+	Occurrence  string   `json:"occurrence"`
+	Recurring   bool     `json:"recurring"`
+	Roles       []string `json:"roles,nullable"`
+	StartDate   string   `json:"startDate"`
+	UpdatedAt   string   `json:"updatedAt"`
+	UpdatedBy   string   `json:"updatedBy"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID          respjson.Field
-		BundleName  respjson.Field
-		EmployerID  respjson.Field
-		ServiceIDs  respjson.Field
-		CreatedAt   respjson.Field
-		CreatedBy   respjson.Field
-		Limit       respjson.Field
-		Occurrence  respjson.Field
-		Recurring   respjson.Field
-		Roles       respjson.Field
-		StartDate   respjson.Field
-		UpdatedAt   respjson.Field
-		UpdatedBy   respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
+		ID                respjson.Field
+		BundleName        respjson.Field
+		EmployerID        respjson.Field
+		ServiceIDs        respjson.Field
+		CreatedAt         respjson.Field
+		CreatedBy         respjson.Field
+		ExternallyManaged respjson.Field
+		Integration       respjson.Field
+		Limit             respjson.Field
+		Occurrence        respjson.Field
+		Recurring         respjson.Field
+		Roles             respjson.Field
+		StartDate         respjson.Field
+		UpdatedAt         respjson.Field
+		UpdatedBy         respjson.Field
+		ExtraFields       map[string]respjson.Field
+		raw               string
 	} `json:"-"`
 }
 
@@ -195,30 +211,38 @@ type EmployerServiceBundleUpdateResponse struct {
 	ServiceIDs []string `json:"serviceIds,required"`
 	CreatedAt  string   `json:"createdAt"`
 	CreatedBy  string   `json:"createdBy"`
-	Limit      float64  `json:"limit"`
-	Occurrence string   `json:"occurrence"`
-	Recurring  bool     `json:"recurring"`
-	Roles      []string `json:"roles,nullable"`
-	StartDate  string   `json:"startDate"`
-	UpdatedAt  string   `json:"updatedAt"`
-	UpdatedBy  string   `json:"updatedBy"`
+	// Indicates if this bundle originated from a third-party integration. Externally
+	// managed bundles cannot be edited or deleted in BlueHive.
+	ExternallyManaged bool `json:"externallyManaged"`
+	// Name of the third-party integration that manages this bundle (e.g., "Enterprise
+	// Health"). Null if bundle was created in BlueHive.
+	Integration string   `json:"integration,nullable"`
+	Limit       float64  `json:"limit"`
+	Occurrence  string   `json:"occurrence"`
+	Recurring   bool     `json:"recurring"`
+	Roles       []string `json:"roles,nullable"`
+	StartDate   string   `json:"startDate"`
+	UpdatedAt   string   `json:"updatedAt"`
+	UpdatedBy   string   `json:"updatedBy"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID          respjson.Field
-		BundleName  respjson.Field
-		EmployerID  respjson.Field
-		ServiceIDs  respjson.Field
-		CreatedAt   respjson.Field
-		CreatedBy   respjson.Field
-		Limit       respjson.Field
-		Occurrence  respjson.Field
-		Recurring   respjson.Field
-		Roles       respjson.Field
-		StartDate   respjson.Field
-		UpdatedAt   respjson.Field
-		UpdatedBy   respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
+		ID                respjson.Field
+		BundleName        respjson.Field
+		EmployerID        respjson.Field
+		ServiceIDs        respjson.Field
+		CreatedAt         respjson.Field
+		CreatedBy         respjson.Field
+		ExternallyManaged respjson.Field
+		Integration       respjson.Field
+		Limit             respjson.Field
+		Occurrence        respjson.Field
+		Recurring         respjson.Field
+		Roles             respjson.Field
+		StartDate         respjson.Field
+		UpdatedAt         respjson.Field
+		UpdatedBy         respjson.Field
+		ExtraFields       map[string]respjson.Field
+		raw               string
 	} `json:"-"`
 }
 
@@ -235,30 +259,38 @@ type EmployerServiceBundleListResponse struct {
 	ServiceIDs []string `json:"serviceIds,required"`
 	CreatedAt  string   `json:"createdAt"`
 	CreatedBy  string   `json:"createdBy"`
-	Limit      float64  `json:"limit"`
-	Occurrence string   `json:"occurrence"`
-	Recurring  bool     `json:"recurring"`
-	Roles      []string `json:"roles,nullable"`
-	StartDate  string   `json:"startDate"`
-	UpdatedAt  string   `json:"updatedAt"`
-	UpdatedBy  string   `json:"updatedBy"`
+	// Indicates if this bundle originated from a third-party integration. Externally
+	// managed bundles cannot be edited or deleted in BlueHive.
+	ExternallyManaged bool `json:"externallyManaged"`
+	// Name of the third-party integration that manages this bundle (e.g., "Enterprise
+	// Health"). Null if bundle was created in BlueHive.
+	Integration string   `json:"integration,nullable"`
+	Limit       float64  `json:"limit"`
+	Occurrence  string   `json:"occurrence"`
+	Recurring   bool     `json:"recurring"`
+	Roles       []string `json:"roles,nullable"`
+	StartDate   string   `json:"startDate"`
+	UpdatedAt   string   `json:"updatedAt"`
+	UpdatedBy   string   `json:"updatedBy"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID          respjson.Field
-		BundleName  respjson.Field
-		EmployerID  respjson.Field
-		ServiceIDs  respjson.Field
-		CreatedAt   respjson.Field
-		CreatedBy   respjson.Field
-		Limit       respjson.Field
-		Occurrence  respjson.Field
-		Recurring   respjson.Field
-		Roles       respjson.Field
-		StartDate   respjson.Field
-		UpdatedAt   respjson.Field
-		UpdatedBy   respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
+		ID                respjson.Field
+		BundleName        respjson.Field
+		EmployerID        respjson.Field
+		ServiceIDs        respjson.Field
+		CreatedAt         respjson.Field
+		CreatedBy         respjson.Field
+		ExternallyManaged respjson.Field
+		Integration       respjson.Field
+		Limit             respjson.Field
+		Occurrence        respjson.Field
+		Recurring         respjson.Field
+		Roles             respjson.Field
+		StartDate         respjson.Field
+		UpdatedAt         respjson.Field
+		UpdatedBy         respjson.Field
+		ExtraFields       map[string]respjson.Field
+		raw               string
 	} `json:"-"`
 }
 
