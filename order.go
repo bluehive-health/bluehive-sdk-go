@@ -573,7 +573,11 @@ type OrderNewParamsBodyObject struct {
 	DueDates        []time.Time                       `json:"dueDates,omitzero" format:"date-time"`
 	EmployeeIDs     []string                          `json:"employeeIds,omitzero"`
 	// Optional arbitrary metadata (<=10KB when JSON stringified)
-	Metadata     map[string]any                        `json:"metadata,omitzero"`
+	Metadata map[string]any `json:"metadata,omitzero"`
+	// Order priority level
+	//
+	// Any of "normal", "high".
+	Priority     string                                `json:"priority,omitzero"`
 	ProvidersIDs []OrderNewParamsBodyObjectProvidersID `json:"providersIds,omitzero"`
 	Quantities   map[string]int64                      `json:"quantities,omitzero"`
 	ServicesIDs  []string                              `json:"servicesIds,omitzero"`
@@ -591,6 +595,9 @@ func (r *OrderNewParamsBodyObject) UnmarshalJSON(data []byte) error {
 func init() {
 	apijson.RegisterFieldValidator[OrderNewParamsBodyObject](
 		"paymentMethod", "self-pay", "employer-sponsored",
+	)
+	apijson.RegisterFieldValidator[OrderNewParamsBodyObject](
+		"priority", "normal", "high",
 	)
 }
 
@@ -870,6 +877,10 @@ type OrderSendForEmployeeParams struct {
 	// Optional arbitrary metadata to store on the order (non-indexed passthrough,
 	// <=10KB when JSON stringified)
 	Metadata map[string]any `json:"metadata,omitzero"`
+	// Order priority level
+	//
+	// Any of "normal", "high".
+	Priority OrderSendForEmployeeParamsPriority `json:"priority,omitzero"`
 	// Service ID to quantity mapping
 	Quantities map[string]int64 `json:"quantities,omitzero"`
 	paramObj
@@ -897,6 +908,14 @@ func (r OrderSendForEmployeeParamsProvidersID) MarshalJSON() (data []byte, err e
 func (r *OrderSendForEmployeeParamsProvidersID) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
+
+// Order priority level
+type OrderSendForEmployeeParamsPriority string
+
+const (
+	OrderSendForEmployeeParamsPriorityNormal OrderSendForEmployeeParamsPriority = "normal"
+	OrderSendForEmployeeParamsPriorityHigh   OrderSendForEmployeeParamsPriority = "high"
+)
 
 type OrderUpdateStatusParams struct {
 	// Any of "order_sent", "order_accepted", "order_refused", "employee_confirmed",

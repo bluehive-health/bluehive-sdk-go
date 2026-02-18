@@ -60,6 +60,7 @@ func TestOrderNewWithOptionalParams(t *testing.T) {
 			Metadata: map[string]any{
 				"foo": "bar",
 			},
+			Priority:        "normal",
 			ProviderCreated: githubcombluehivehealthbluehivesdkgo.Bool(true),
 			ProvidersIDs: []githubcombluehivehealthbluehivesdkgo.OrderNewParamsBodyObjectProvidersID{{
 				ProviderID: "x",
@@ -247,6 +248,7 @@ func TestOrderSendForEmployeeWithOptionalParams(t *testing.T) {
 		Metadata: map[string]any{
 			"foo": "bar",
 		},
+		Priority:        githubcombluehivehealthbluehivesdkgo.OrderSendForEmployeeParamsPriorityNormal,
 		ProviderCreated: githubcombluehivehealthbluehivesdkgo.Bool(true),
 		ProviderID:      githubcombluehivehealthbluehivesdkgo.String("providerId"),
 		Quantities: map[string]int64{
