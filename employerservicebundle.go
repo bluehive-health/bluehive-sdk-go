@@ -120,14 +120,15 @@ type EmployerServiceBundleNewResponse struct {
 	ExternallyManaged bool `json:"externallyManaged"`
 	// Name of the third-party integration that manages this bundle (e.g., "Enterprise
 	// Health"). Null if bundle was created in BlueHive.
-	Integration string   `json:"integration,nullable"`
-	Limit       float64  `json:"limit"`
-	Occurrence  string   `json:"occurrence"`
-	Recurring   bool     `json:"recurring"`
-	Roles       []string `json:"roles,nullable"`
-	StartDate   string   `json:"startDate"`
-	UpdatedAt   string   `json:"updatedAt"`
-	UpdatedBy   string   `json:"updatedBy"`
+	Integration     string                                          `json:"integration,nullable"`
+	IntegrationData EmployerServiceBundleNewResponseIntegrationData `json:"integrationData"`
+	Limit           float64                                         `json:"limit"`
+	Occurrence      string                                          `json:"occurrence"`
+	Recurring       bool                                            `json:"recurring"`
+	Roles           []string                                        `json:"roles,nullable"`
+	StartDate       string                                          `json:"startDate"`
+	UpdatedAt       string                                          `json:"updatedAt"`
+	UpdatedBy       string                                          `json:"updatedBy"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ID                respjson.Field
@@ -138,6 +139,7 @@ type EmployerServiceBundleNewResponse struct {
 		CreatedBy         respjson.Field
 		ExternallyManaged respjson.Field
 		Integration       respjson.Field
+		IntegrationData   respjson.Field
 		Limit             respjson.Field
 		Occurrence        respjson.Field
 		Recurring         respjson.Field
@@ -156,6 +158,40 @@ func (r *EmployerServiceBundleNewResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
+type EmployerServiceBundleNewResponseIntegrationData struct {
+	EnterpriseHealth EmployerServiceBundleNewResponseIntegrationDataEnterpriseHealth `json:"enterprise-health"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		EnterpriseHealth respjson.Field
+		ExtraFields      map[string]respjson.Field
+		raw              string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r EmployerServiceBundleNewResponseIntegrationData) RawJSON() string { return r.JSON.raw }
+func (r *EmployerServiceBundleNewResponseIntegrationData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type EmployerServiceBundleNewResponseIntegrationDataEnterpriseHealth struct {
+	AddOnServices bool `json:"addOnServices"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AddOnServices respjson.Field
+		ExtraFields   map[string]respjson.Field
+		raw           string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r EmployerServiceBundleNewResponseIntegrationDataEnterpriseHealth) RawJSON() string {
+	return r.JSON.raw
+}
+func (r *EmployerServiceBundleNewResponseIntegrationDataEnterpriseHealth) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
 type EmployerServiceBundleGetResponse struct {
 	ID         string   `json:"_id,required"`
 	BundleName string   `json:"bundleName,required"`
@@ -168,14 +204,15 @@ type EmployerServiceBundleGetResponse struct {
 	ExternallyManaged bool `json:"externallyManaged"`
 	// Name of the third-party integration that manages this bundle (e.g., "Enterprise
 	// Health"). Null if bundle was created in BlueHive.
-	Integration string   `json:"integration,nullable"`
-	Limit       float64  `json:"limit"`
-	Occurrence  string   `json:"occurrence"`
-	Recurring   bool     `json:"recurring"`
-	Roles       []string `json:"roles,nullable"`
-	StartDate   string   `json:"startDate"`
-	UpdatedAt   string   `json:"updatedAt"`
-	UpdatedBy   string   `json:"updatedBy"`
+	Integration     string                                          `json:"integration,nullable"`
+	IntegrationData EmployerServiceBundleGetResponseIntegrationData `json:"integrationData"`
+	Limit           float64                                         `json:"limit"`
+	Occurrence      string                                          `json:"occurrence"`
+	Recurring       bool                                            `json:"recurring"`
+	Roles           []string                                        `json:"roles,nullable"`
+	StartDate       string                                          `json:"startDate"`
+	UpdatedAt       string                                          `json:"updatedAt"`
+	UpdatedBy       string                                          `json:"updatedBy"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ID                respjson.Field
@@ -186,6 +223,7 @@ type EmployerServiceBundleGetResponse struct {
 		CreatedBy         respjson.Field
 		ExternallyManaged respjson.Field
 		Integration       respjson.Field
+		IntegrationData   respjson.Field
 		Limit             respjson.Field
 		Occurrence        respjson.Field
 		Recurring         respjson.Field
@@ -204,6 +242,40 @@ func (r *EmployerServiceBundleGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
+type EmployerServiceBundleGetResponseIntegrationData struct {
+	EnterpriseHealth EmployerServiceBundleGetResponseIntegrationDataEnterpriseHealth `json:"enterprise-health"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		EnterpriseHealth respjson.Field
+		ExtraFields      map[string]respjson.Field
+		raw              string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r EmployerServiceBundleGetResponseIntegrationData) RawJSON() string { return r.JSON.raw }
+func (r *EmployerServiceBundleGetResponseIntegrationData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type EmployerServiceBundleGetResponseIntegrationDataEnterpriseHealth struct {
+	AddOnServices bool `json:"addOnServices"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AddOnServices respjson.Field
+		ExtraFields   map[string]respjson.Field
+		raw           string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r EmployerServiceBundleGetResponseIntegrationDataEnterpriseHealth) RawJSON() string {
+	return r.JSON.raw
+}
+func (r *EmployerServiceBundleGetResponseIntegrationDataEnterpriseHealth) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
 type EmployerServiceBundleUpdateResponse struct {
 	ID         string   `json:"_id,required"`
 	BundleName string   `json:"bundleName,required"`
@@ -216,14 +288,15 @@ type EmployerServiceBundleUpdateResponse struct {
 	ExternallyManaged bool `json:"externallyManaged"`
 	// Name of the third-party integration that manages this bundle (e.g., "Enterprise
 	// Health"). Null if bundle was created in BlueHive.
-	Integration string   `json:"integration,nullable"`
-	Limit       float64  `json:"limit"`
-	Occurrence  string   `json:"occurrence"`
-	Recurring   bool     `json:"recurring"`
-	Roles       []string `json:"roles,nullable"`
-	StartDate   string   `json:"startDate"`
-	UpdatedAt   string   `json:"updatedAt"`
-	UpdatedBy   string   `json:"updatedBy"`
+	Integration     string                                             `json:"integration,nullable"`
+	IntegrationData EmployerServiceBundleUpdateResponseIntegrationData `json:"integrationData"`
+	Limit           float64                                            `json:"limit"`
+	Occurrence      string                                             `json:"occurrence"`
+	Recurring       bool                                               `json:"recurring"`
+	Roles           []string                                           `json:"roles,nullable"`
+	StartDate       string                                             `json:"startDate"`
+	UpdatedAt       string                                             `json:"updatedAt"`
+	UpdatedBy       string                                             `json:"updatedBy"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ID                respjson.Field
@@ -234,6 +307,7 @@ type EmployerServiceBundleUpdateResponse struct {
 		CreatedBy         respjson.Field
 		ExternallyManaged respjson.Field
 		Integration       respjson.Field
+		IntegrationData   respjson.Field
 		Limit             respjson.Field
 		Occurrence        respjson.Field
 		Recurring         respjson.Field
@@ -252,6 +326,40 @@ func (r *EmployerServiceBundleUpdateResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
+type EmployerServiceBundleUpdateResponseIntegrationData struct {
+	EnterpriseHealth EmployerServiceBundleUpdateResponseIntegrationDataEnterpriseHealth `json:"enterprise-health"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		EnterpriseHealth respjson.Field
+		ExtraFields      map[string]respjson.Field
+		raw              string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r EmployerServiceBundleUpdateResponseIntegrationData) RawJSON() string { return r.JSON.raw }
+func (r *EmployerServiceBundleUpdateResponseIntegrationData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type EmployerServiceBundleUpdateResponseIntegrationDataEnterpriseHealth struct {
+	AddOnServices bool `json:"addOnServices"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AddOnServices respjson.Field
+		ExtraFields   map[string]respjson.Field
+		raw           string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r EmployerServiceBundleUpdateResponseIntegrationDataEnterpriseHealth) RawJSON() string {
+	return r.JSON.raw
+}
+func (r *EmployerServiceBundleUpdateResponseIntegrationDataEnterpriseHealth) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
 type EmployerServiceBundleListResponse struct {
 	ID         string   `json:"_id,required"`
 	BundleName string   `json:"bundleName,required"`
@@ -264,14 +372,15 @@ type EmployerServiceBundleListResponse struct {
 	ExternallyManaged bool `json:"externallyManaged"`
 	// Name of the third-party integration that manages this bundle (e.g., "Enterprise
 	// Health"). Null if bundle was created in BlueHive.
-	Integration string   `json:"integration,nullable"`
-	Limit       float64  `json:"limit"`
-	Occurrence  string   `json:"occurrence"`
-	Recurring   bool     `json:"recurring"`
-	Roles       []string `json:"roles,nullable"`
-	StartDate   string   `json:"startDate"`
-	UpdatedAt   string   `json:"updatedAt"`
-	UpdatedBy   string   `json:"updatedBy"`
+	Integration     string                                           `json:"integration,nullable"`
+	IntegrationData EmployerServiceBundleListResponseIntegrationData `json:"integrationData"`
+	Limit           float64                                          `json:"limit"`
+	Occurrence      string                                           `json:"occurrence"`
+	Recurring       bool                                             `json:"recurring"`
+	Roles           []string                                         `json:"roles,nullable"`
+	StartDate       string                                           `json:"startDate"`
+	UpdatedAt       string                                           `json:"updatedAt"`
+	UpdatedBy       string                                           `json:"updatedBy"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ID                respjson.Field
@@ -282,6 +391,7 @@ type EmployerServiceBundleListResponse struct {
 		CreatedBy         respjson.Field
 		ExternallyManaged respjson.Field
 		Integration       respjson.Field
+		IntegrationData   respjson.Field
 		Limit             respjson.Field
 		Occurrence        respjson.Field
 		Recurring         respjson.Field
@@ -297,6 +407,40 @@ type EmployerServiceBundleListResponse struct {
 // Returns the unmodified JSON received from the API
 func (r EmployerServiceBundleListResponse) RawJSON() string { return r.JSON.raw }
 func (r *EmployerServiceBundleListResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type EmployerServiceBundleListResponseIntegrationData struct {
+	EnterpriseHealth EmployerServiceBundleListResponseIntegrationDataEnterpriseHealth `json:"enterprise-health"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		EnterpriseHealth respjson.Field
+		ExtraFields      map[string]respjson.Field
+		raw              string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r EmployerServiceBundleListResponseIntegrationData) RawJSON() string { return r.JSON.raw }
+func (r *EmployerServiceBundleListResponseIntegrationData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type EmployerServiceBundleListResponseIntegrationDataEnterpriseHealth struct {
+	AddOnServices bool `json:"addOnServices"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AddOnServices respjson.Field
+		ExtraFields   map[string]respjson.Field
+		raw           string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r EmployerServiceBundleListResponseIntegrationDataEnterpriseHealth) RawJSON() string {
+	return r.JSON.raw
+}
+func (r *EmployerServiceBundleListResponseIntegrationDataEnterpriseHealth) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
