@@ -39,7 +39,7 @@ func NewIntegrationService(opts ...option.RequestOption) (r IntegrationService) 
 // object if none). Brand resolved via x-brand-id header.
 func (r *IntegrationService) List(ctx context.Context, query IntegrationListParams, opts ...option.RequestOption) (res *IntegrationListResponse, err error) {
 	if !param.IsOmitted(query.XBrandID) {
-		opts = append(opts, option.WithHeader("x-brand-id", fmt.Sprintf("%s", query.XBrandID)))
+		opts = append(opts, option.WithHeader("x-brand-id", fmt.Sprintf("%v", query.XBrandID)))
 	}
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/integrations"
@@ -51,7 +51,7 @@ func (r *IntegrationService) List(ctx context.Context, query IntegrationListPara
 // resolved via x-brand-id header).
 func (r *IntegrationService) CheckActive(ctx context.Context, name string, query IntegrationCheckActiveParams, opts ...option.RequestOption) (res *IntegrationCheckActiveResponse, err error) {
 	if !param.IsOmitted(query.XBrandID) {
-		opts = append(opts, option.WithHeader("x-brand-id", fmt.Sprintf("%s", query.XBrandID)))
+		opts = append(opts, option.WithHeader("x-brand-id", fmt.Sprintf("%v", query.XBrandID)))
 	}
 	opts = slices.Concat(r.Options, opts)
 	if name == "" {
