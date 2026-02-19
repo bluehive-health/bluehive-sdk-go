@@ -60,10 +60,10 @@ func (r *EmployerService) Get(ctx context.Context, employerID string, opts ...op
 // Get Employers for Current User
 func (r *EmployerService) List(ctx context.Context, query EmployerListParams, opts ...option.RequestOption) (res *[]EmployerListResponse, err error) {
 	if !param.IsOmitted(query.LoginToken) {
-		opts = append(opts, option.WithHeader("login-token", fmt.Sprintf("%s", query.LoginToken)))
+		opts = append(opts, option.WithHeader("login-token", fmt.Sprintf("%v", query.LoginToken)))
 	}
 	if !param.IsOmitted(query.UserID) {
-		opts = append(opts, option.WithHeader("user-id", fmt.Sprintf("%s", query.UserID)))
+		opts = append(opts, option.WithHeader("user-id", fmt.Sprintf("%v", query.UserID)))
 	}
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/employers/list"

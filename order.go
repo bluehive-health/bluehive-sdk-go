@@ -104,10 +104,10 @@ func (r *OrderService) ScheduleAppointment(ctx context.Context, orderID string, 
 // ID. This endpoint specifically handles employer-to-employee order sending.
 func (r *OrderService) SendForEmployee(ctx context.Context, params OrderSendForEmployeeParams, opts ...option.RequestOption) (res *OrderSendForEmployeeResponseUnion, err error) {
 	if !param.IsOmitted(params.LoginToken) {
-		opts = append(opts, option.WithHeader("login-token", fmt.Sprintf("%s", params.LoginToken)))
+		opts = append(opts, option.WithHeader("login-token", fmt.Sprintf("%v", params.LoginToken)))
 	}
 	if !param.IsOmitted(params.UserID) {
-		opts = append(opts, option.WithHeader("user-id", fmt.Sprintf("%s", params.UserID)))
+		opts = append(opts, option.WithHeader("user-id", fmt.Sprintf("%v", params.UserID)))
 	}
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/orders/send"
