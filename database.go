@@ -44,9 +44,9 @@ type DatabaseCheckHealthResponse struct {
 	// Database health status
 	//
 	// Any of "ok", "error".
-	Status DatabaseCheckHealthResponseStatus `json:"status,required"`
+	Status DatabaseCheckHealthResponseStatus `json:"status" api:"required"`
 	// Health check timestamp
-	Timestamp string `json:"timestamp,required"`
+	Timestamp string `json:"timestamp" api:"required"`
 	// Database name (hidden in production)
 	Database string `json:"database"`
 	// Error message if status is error

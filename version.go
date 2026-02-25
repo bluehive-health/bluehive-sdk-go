@@ -41,7 +41,7 @@ func (r *VersionService) Get(ctx context.Context, opts ...option.RequestOption) 
 }
 
 type VersionGetResponse struct {
-	Version string `json:"version,required"`
+	Version string `json:"version" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Version     respjson.Field

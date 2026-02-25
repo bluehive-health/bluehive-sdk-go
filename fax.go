@@ -64,7 +64,7 @@ func (r *FaxService) Send(ctx context.Context, body FaxSendParams, opts ...optio
 }
 
 type FaxListProvidersResponse struct {
-	Providers []FaxListProvidersResponseProvider `json:"providers,required"`
+	Providers []FaxListProvidersResponseProvider `json:"providers" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Providers   respjson.Field
@@ -81,11 +81,11 @@ func (r *FaxListProvidersResponse) UnmarshalJSON(data []byte) error {
 
 type FaxListProvidersResponseProvider struct {
 	// Whether the provider is properly configured
-	Configured bool `json:"configured,required"`
+	Configured bool `json:"configured" api:"required"`
 	// Whether this is the default provider
-	IsDefault bool `json:"isDefault,required"`
+	IsDefault bool `json:"isDefault" api:"required"`
 	// Provider name
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Configured  respjson.Field
@@ -104,22 +104,22 @@ func (r *FaxListProvidersResponseProvider) UnmarshalJSON(data []byte) error {
 
 type FaxGetStatusResponse struct {
 	// Fax identifier
-	ID string `json:"id,required"`
+	ID string `json:"id" api:"required"`
 	// ISO timestamp when fax was created
-	CreatedAt string `json:"createdAt,required"`
+	CreatedAt string `json:"createdAt" api:"required"`
 	// Sender fax number
-	From string `json:"from,required"`
+	From string `json:"from" api:"required"`
 	// Provider used to send the fax
-	Provider string `json:"provider,required"`
+	Provider string `json:"provider" api:"required"`
 	// Current fax status
 	//
 	// Any of "queued", "dialing", "sending", "delivered", "failed", "cancelled",
 	// "retrying".
-	Status FaxGetStatusResponseStatus `json:"status,required"`
+	Status FaxGetStatusResponseStatus `json:"status" api:"required"`
 	// Recipient fax number
-	To string `json:"to,required"`
+	To string `json:"to" api:"required"`
 	// ISO timestamp when status was last updated
-	UpdatedAt string `json:"updatedAt,required"`
+	UpdatedAt string `json:"updatedAt" api:"required"`
 	// Cost of the fax
 	Cost float64 `json:"cost"`
 	// ISO timestamp when fax was delivered
@@ -173,20 +173,20 @@ const (
 
 type FaxSendResponse struct {
 	// Unique fax identifier
-	ID string `json:"id,required"`
+	ID string `json:"id" api:"required"`
 	// ISO timestamp when fax was created
-	CreatedAt string `json:"createdAt,required"`
+	CreatedAt string `json:"createdAt" api:"required"`
 	// Sender fax number
-	From string `json:"from,required"`
+	From string `json:"from" api:"required"`
 	// Provider used to send the fax
-	Provider string `json:"provider,required"`
+	Provider string `json:"provider" api:"required"`
 	// Current fax status
 	//
 	// Any of "queued", "dialing", "sending", "delivered", "failed", "cancelled",
 	// "retrying".
-	Status FaxSendResponseStatus `json:"status,required"`
+	Status FaxSendResponseStatus `json:"status" api:"required"`
 	// Recipient fax number
-	To string `json:"to,required"`
+	To string `json:"to" api:"required"`
 	// Estimated delivery time (ISO timestamp)
 	EstimatedDelivery string `json:"estimatedDelivery"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -223,9 +223,9 @@ const (
 )
 
 type FaxSendParams struct {
-	Document FaxSendParamsDocument `json:"document,omitzero,required"`
+	Document FaxSendParamsDocument `json:"document,omitzero" api:"required"`
 	// Recipient fax number (E.164 format preferred)
-	To string `json:"to,required"`
+	To string `json:"to" api:"required"`
 	// Sender fax number (optional, uses default if not provided)
 	From param.Opt[string] `json:"from,omitzero"`
 	// Optional provider override (uses default if not specified)
@@ -246,12 +246,12 @@ func (r *FaxSendParams) UnmarshalJSON(data []byte) error {
 // The properties Content, ContentType are required.
 type FaxSendParamsDocument struct {
 	// Base64 encoded document content
-	Content string `json:"content,required"`
+	Content string `json:"content" api:"required"`
 	// MIME type of the document
 	//
 	// Any of "application/pdf", "image/tiff", "image/tif", "image/jpeg", "image/jpg",
 	// "image/png", "text/plain".
-	ContentType string `json:"contentType,omitzero,required"`
+	ContentType string `json:"contentType,omitzero" api:"required"`
 	// Optional filename for the document
 	Filename param.Opt[string] `json:"filename,omitzero"`
 	paramObj

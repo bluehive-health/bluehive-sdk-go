@@ -198,10 +198,10 @@ func (r *OrderNewResponseUnion) UnmarshalJSON(data []byte) error {
 }
 
 type OrderNewResponseObject struct {
-	OrderID     string `json:"orderId,required"`
-	OrderNumber string `json:"orderNumber,required"`
+	OrderID     string `json:"orderId" api:"required"`
+	OrderNumber string `json:"orderNumber" api:"required"`
 	// Any of true.
-	Success             bool                                       `json:"success,required"`
+	Success             bool                                       `json:"success" api:"required"`
 	HostedInvoiceURL    string                                     `json:"hostedInvoiceUrl" format:"uri"`
 	Message             string                                     `json:"message"`
 	PartialSuccess      bool                                       `json:"partialSuccess"`
@@ -229,8 +229,8 @@ func (r *OrderNewResponseObject) UnmarshalJSON(data []byte) error {
 }
 
 type OrderNewResponseObjectUnavailableService struct {
-	Reason      string `json:"reason,required"`
-	ServiceID   string `json:"serviceId,required"`
+	Reason      string `json:"reason" api:"required"`
+	ServiceID   string `json:"serviceId" api:"required"`
 	ServiceName string `json:"serviceName"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -269,11 +269,11 @@ func (r *OrderGetResponse) UnmarshalJSON(data []byte) error {
 }
 
 type OrderUpdateResponse struct {
-	Message     string `json:"message,required"`
-	OrderID     string `json:"orderId,required"`
-	OrderNumber string `json:"orderNumber,required"`
+	Message     string `json:"message" api:"required"`
+	OrderID     string `json:"orderId" api:"required"`
+	OrderNumber string `json:"orderNumber" api:"required"`
 	// Any of true.
-	Success       bool     `json:"success,required"`
+	Success       bool     `json:"success" api:"required"`
 	UpdatedFields []string `json:"updatedFields"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -294,8 +294,8 @@ func (r *OrderUpdateResponse) UnmarshalJSON(data []byte) error {
 }
 
 type OrderGetResultsResponse struct {
-	Meta     OrderGetResultsResponseMeta      `json:"meta,required"`
-	Services []OrderGetResultsResponseService `json:"services,required"`
+	Meta     OrderGetResultsResponseMeta      `json:"meta" api:"required"`
+	Services []OrderGetResultsResponseService `json:"services" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Meta        respjson.Field
@@ -312,11 +312,11 @@ func (r *OrderGetResultsResponse) UnmarshalJSON(data []byte) error {
 }
 
 type OrderGetResultsResponseMeta struct {
-	OrderID       string  `json:"orderId,required"`
-	Page          float64 `json:"page,required"`
-	PageSize      float64 `json:"pageSize,required"`
-	Returned      float64 `json:"returned,required"`
-	TotalServices float64 `json:"totalServices,required"`
+	OrderID       string  `json:"orderId" api:"required"`
+	Page          float64 `json:"page" api:"required"`
+	PageSize      float64 `json:"pageSize" api:"required"`
+	Returned      float64 `json:"returned" api:"required"`
+	TotalServices float64 `json:"totalServices" api:"required"`
 	EmployeeID    string  `json:"employeeId"`
 	OrderNumber   string  `json:"orderNumber"`
 	ProviderID    string  `json:"providerId"`
@@ -342,8 +342,8 @@ func (r *OrderGetResultsResponseMeta) UnmarshalJSON(data []byte) error {
 }
 
 type OrderGetResultsResponseService struct {
-	ServiceID         string    `json:"serviceId,required"`
-	Status            string    `json:"status,required"`
+	ServiceID         string    `json:"serviceId" api:"required"`
+	Status            string    `json:"status" api:"required"`
 	AltTxt            string    `json:"altTxt"`
 	CompletedDatetime time.Time `json:"completed_datetime" format:"date-time"`
 	Contacts          []string  `json:"contacts"`
@@ -376,8 +376,8 @@ func (r *OrderGetResultsResponseService) UnmarshalJSON(data []byte) error {
 }
 
 type OrderScheduleAppointmentResponse struct {
-	Message string `json:"message,required"`
-	Success bool   `json:"success,required"`
+	Message string `json:"message" api:"required"`
+	Success bool   `json:"success" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Message     respjson.Field
@@ -445,10 +445,10 @@ func (r *OrderSendForEmployeeResponseUnion) UnmarshalJSON(data []byte) error {
 }
 
 type OrderSendForEmployeeResponseObject struct {
-	OrderID     string `json:"orderId,required"`
-	OrderNumber string `json:"orderNumber,required"`
+	OrderID     string `json:"orderId" api:"required"`
+	OrderNumber string `json:"orderNumber" api:"required"`
 	// Any of true.
-	Success bool   `json:"success,required"`
+	Success bool   `json:"success" api:"required"`
 	Message string `json:"message"`
 	// True when some services were unavailable but order was still created
 	PartialSuccess bool `json:"partialSuccess"`
@@ -475,8 +475,8 @@ func (r *OrderSendForEmployeeResponseObject) UnmarshalJSON(data []byte) error {
 
 type OrderSendForEmployeeResponseObjectUnavailableService struct {
 	// Why the service was unavailable
-	Reason      string `json:"reason,required"`
-	ServiceID   string `json:"serviceId,required"`
+	Reason      string `json:"reason" api:"required"`
+	ServiceID   string `json:"serviceId" api:"required"`
 	ServiceName string `json:"serviceName"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -558,10 +558,10 @@ func (r *OrderNewParams) UnmarshalJSON(data []byte) error {
 // The properties PaymentMethod, Person, ProviderID, Services are required.
 type OrderNewParamsBodyObject struct {
 	// Any of "self-pay", "employer-sponsored".
-	PaymentMethod   string                            `json:"paymentMethod,omitzero,required"`
-	Person          OrderNewParamsBodyObjectPerson    `json:"person,omitzero,required"`
-	ProviderID      string                            `json:"providerId,required"`
-	Services        []OrderNewParamsBodyObjectService `json:"services,omitzero,required"`
+	PaymentMethod   string                            `json:"paymentMethod,omitzero" api:"required"`
+	Person          OrderNewParamsBodyObjectPerson    `json:"person,omitzero" api:"required"`
+	ProviderID      string                            `json:"providerId" api:"required"`
+	Services        []OrderNewParamsBodyObjectService `json:"services,omitzero" api:"required"`
 	ID              param.Opt[string]                 `json:"_id,omitzero"`
 	BrandID         param.Opt[string]                 `json:"brandId,omitzero"`
 	DueDate         param.Opt[time.Time]              `json:"dueDate,omitzero" format:"date-time"`
@@ -604,17 +604,17 @@ func init() {
 // The properties City, Dob, Email, FirstName, LastName, Phone, State, Street,
 // Zipcode are required.
 type OrderNewParamsBodyObjectPerson struct {
-	City string `json:"city,required"`
+	City string `json:"city" api:"required"`
 	// Date of birth in YYYY-MM-DD format
-	Dob       string `json:"dob,required"`
-	Email     string `json:"email,required"`
-	FirstName string `json:"firstName,required"`
-	LastName  string `json:"lastName,required"`
-	Phone     string `json:"phone,required"`
-	State     string `json:"state,required"`
-	Street    string `json:"street,required"`
+	Dob       string `json:"dob" api:"required"`
+	Email     string `json:"email" api:"required"`
+	FirstName string `json:"firstName" api:"required"`
+	LastName  string `json:"lastName" api:"required"`
+	Phone     string `json:"phone" api:"required"`
+	State     string `json:"state" api:"required"`
+	Street    string `json:"street" api:"required"`
 	// US ZIP code in 12345 or 12345-6789 format
-	Zipcode string            `json:"zipcode,required"`
+	Zipcode string            `json:"zipcode" api:"required"`
 	Country param.Opt[string] `json:"country,omitzero"`
 	County  param.Opt[string] `json:"county,omitzero"`
 	Street2 param.Opt[string] `json:"street2,omitzero"`
@@ -631,8 +631,8 @@ func (r *OrderNewParamsBodyObjectPerson) UnmarshalJSON(data []byte) error {
 
 // The properties ID, Quantity are required.
 type OrderNewParamsBodyObjectService struct {
-	ID         string          `json:"_id,required"`
-	Quantity   int64           `json:"quantity,required"`
+	ID         string          `json:"_id" api:"required"`
+	Quantity   int64           `json:"quantity" api:"required"`
 	AutoAccept param.Opt[bool] `json:"autoAccept,omitzero"`
 	paramObj
 }
@@ -647,7 +647,7 @@ func (r *OrderNewParamsBodyObjectService) UnmarshalJSON(data []byte) error {
 
 // The property ProviderID is required.
 type OrderNewParamsBodyObjectProvidersID struct {
-	ProviderID string            `json:"providerId,required"`
+	ProviderID string            `json:"providerId" api:"required"`
 	ServiceID  param.Opt[string] `json:"serviceId,omitzero"`
 	paramObj
 }
@@ -681,7 +681,7 @@ func (r *OrderUpdateParams) UnmarshalJSON(data []byte) error {
 
 // The property ServiceID is required.
 type OrderUpdateParamsService struct {
-	ServiceID string               `json:"serviceId,required"`
+	ServiceID string               `json:"serviceId" api:"required"`
 	DueDate   param.Opt[time.Time] `json:"dueDate,omitzero" format:"date-time"`
 	Results   map[string]any       `json:"results,omitzero"`
 	// Any of "pending", "in_progress", "completed", "cancelled", "rejected".
@@ -733,7 +733,7 @@ func (r OrderGetResultsParams) URLQuery() (v url.Values, err error) {
 }
 
 type OrderScheduleAppointmentParams struct {
-	Appointment OrderScheduleAppointmentParamsAppointmentUnion `json:"appointment,omitzero,required"`
+	Appointment OrderScheduleAppointmentParamsAppointmentUnion `json:"appointment,omitzero" api:"required"`
 	// Order access code for authorization
 	OrderAccessCode param.Opt[string] `json:"orderAccessCode,omitzero"`
 	// Provider ID for authorization
@@ -827,11 +827,11 @@ func (u OrderScheduleAppointmentParamsAppointmentUnion) GetDateTime() *time.Time
 // The properties Date, DateTime, Time are required.
 type OrderScheduleAppointmentParamsAppointmentObject struct {
 	// Required for appointment type
-	Date string `json:"date,required"`
+	Date string `json:"date" api:"required"`
 	// Required for appointment type
-	DateTime time.Time `json:"dateTime,required" format:"date-time"`
+	DateTime time.Time `json:"dateTime" api:"required" format:"date-time"`
 	// Required for appointment type
-	Time string `json:"time,required"`
+	Time string `json:"time" api:"required"`
 	// Optional for walkin type
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Any of "appointment".
@@ -855,15 +855,15 @@ func init() {
 
 type OrderSendForEmployeeParams struct {
 	// Employee ID to send order to
-	EmployeeID string `json:"employeeId,required"`
+	EmployeeID string `json:"employeeId" api:"required"`
 	// Employer ID sending the order
-	EmployerID string `json:"employerId,required"`
+	EmployerID string `json:"employerId" api:"required"`
 	// Array mapping each service (by index) to a provider; serviceId optional
-	ProvidersIDs []OrderSendForEmployeeParamsProvidersID `json:"providersIds,omitzero,required"`
+	ProvidersIDs []OrderSendForEmployeeParamsProvidersID `json:"providersIds,omitzero" api:"required"`
 	// Array of service IDs to include in the order
-	ServicesIDs []string `json:"servicesIds,omitzero,required"`
-	LoginToken  string   `header:"login-token,required" json:"-"`
-	UserID      string   `header:"user-id,required" json:"-"`
+	ServicesIDs []string `json:"servicesIds,omitzero" api:"required"`
+	LoginToken  string   `header:"login-token" api:"required" json:"-"`
+	UserID      string   `header:"user-id" api:"required" json:"-"`
 	// Brand ID for branded orders
 	BrandID param.Opt[string] `json:"brandId,omitzero"`
 	// Due date for the order (date or date-time ISO string)
@@ -896,7 +896,7 @@ func (r *OrderSendForEmployeeParams) UnmarshalJSON(data []byte) error {
 
 // The property ProviderID is required.
 type OrderSendForEmployeeParamsProvidersID struct {
-	ProviderID string            `json:"providerId,required"`
+	ProviderID string            `json:"providerId" api:"required"`
 	ServiceID  param.Opt[string] `json:"serviceId,omitzero"`
 	paramObj
 }
@@ -920,7 +920,7 @@ const (
 type OrderUpdateStatusParams struct {
 	// Any of "order_sent", "order_accepted", "order_refused", "employee_confirmed",
 	// "order_fulfilled", "order_complete".
-	Status  OrderUpdateStatusParamsStatus `json:"status,omitzero,required"`
+	Status  OrderUpdateStatusParamsStatus `json:"status,omitzero" api:"required"`
 	Message param.Opt[string]             `json:"message,omitzero"`
 	paramObj
 }
@@ -945,9 +945,9 @@ const (
 )
 
 type OrderUploadResultsParams struct {
-	CaptchaToken    string `json:"captchaToken,required"`
-	OrderAccessCode string `json:"orderAccessCode,required"`
-	ServiceID       string `json:"serviceId,required"`
+	CaptchaToken    string `json:"captchaToken" api:"required"`
+	OrderAccessCode string `json:"orderAccessCode" api:"required"`
+	ServiceID       string `json:"serviceId" api:"required"`
 	// Date of birth in YYYY-MM-DD format
 	Dob      param.Opt[string]              `json:"dob,omitzero"`
 	LastName param.Opt[string]              `json:"lastName,omitzero"`
@@ -966,9 +966,9 @@ func (r *OrderUploadResultsParams) UnmarshalJSON(data []byte) error {
 
 // The properties Base64, Name, Type are required.
 type OrderUploadResultsParamsFile struct {
-	Base64 string `json:"base64,required"`
-	Name   string `json:"name,required"`
-	Type   string `json:"type,required"`
+	Base64 string `json:"base64" api:"required"`
+	Name   string `json:"name" api:"required"`
+	Type   string `json:"type" api:"required"`
 	paramObj
 }
 

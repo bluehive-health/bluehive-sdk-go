@@ -42,9 +42,9 @@ func (r *Hl7Service) SendResults(ctx context.Context, body Hl7SendResultsParams,
 
 type Hl7SendResultsParams struct {
 	// Employee ID to send results for
-	EmployeeID string `json:"employeeId,required"`
+	EmployeeID string `json:"employeeId" api:"required"`
 	// File containing the results
-	File Hl7SendResultsParamsFile `json:"file,omitzero,required"`
+	File Hl7SendResultsParamsFile `json:"file,omitzero" api:"required"`
 	paramObj
 }
 
@@ -61,11 +61,11 @@ func (r *Hl7SendResultsParams) UnmarshalJSON(data []byte) error {
 // The properties Base64, Name, Type are required.
 type Hl7SendResultsParamsFile struct {
 	// Base64 encoded file content
-	Base64 string `json:"base64,required"`
+	Base64 string `json:"base64" api:"required"`
 	// File name
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// MIME type of the file
-	Type string `json:"type,required"`
+	Type string `json:"type" api:"required"`
 	paramObj
 }
 

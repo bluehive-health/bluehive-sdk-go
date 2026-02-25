@@ -45,9 +45,9 @@ func (r *ProviderService) Lookup(ctx context.Context, query ProviderLookupParams
 
 type ProviderLookupResponse struct {
 	// Number of providers found
-	Count float64 `json:"count,required"`
+	Count float64 `json:"count" api:"required"`
 	// List of matching providers
-	Providers []ProviderLookupResponseProvider `json:"providers,required"`
+	Providers []ProviderLookupResponseProvider `json:"providers" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Count       respjson.Field
@@ -65,29 +65,29 @@ func (r *ProviderLookupResponse) UnmarshalJSON(data []byte) error {
 
 type ProviderLookupResponseProvider struct {
 	// Primary address line
-	Address1 string `json:"address_1,required"`
+	Address1 string `json:"address_1" api:"required"`
 	// Secondary address line (suite, unit, etc.)
-	Address2 string `json:"address_2,required"`
+	Address2 string `json:"address_2" api:"required"`
 	// City
-	City string `json:"city,required"`
+	City string `json:"city" api:"required"`
 	// Country code
-	Country string `json:"country,required"`
+	Country string `json:"country" api:"required"`
 	// Distance in miles from the provided ZIP code
-	Distance float64 `json:"distance,required"`
+	Distance float64 `json:"distance" api:"required"`
 	// Fax number
-	FaxNumber string `json:"fax_number,required"`
+	FaxNumber string `json:"fax_number" api:"required"`
 	// Provider first name
-	Firstname string `json:"firstname,required"`
+	Firstname string `json:"firstname" api:"required"`
 	// Provider last name or organization name
-	Lastname string `json:"lastname,required"`
+	Lastname string `json:"lastname" api:"required"`
 	// National Provider Identifier (NPI) number
-	Npi string `json:"npi,required"`
+	Npi string `json:"npi" api:"required"`
 	// Postal/ZIP code
-	PostalCode string `json:"postal_code,required"`
+	PostalCode string `json:"postal_code" api:"required"`
 	// State or province code
-	StateProvince string `json:"state_province,required"`
+	StateProvince string `json:"state_province" api:"required"`
 	// Work phone number
-	WorkPhone string `json:"work_phone,required"`
+	WorkPhone string `json:"work_phone" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Address1      respjson.Field
