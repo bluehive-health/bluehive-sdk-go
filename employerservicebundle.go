@@ -109,10 +109,10 @@ func (r *EmployerServiceBundleService) Delete(ctx context.Context, id string, bo
 }
 
 type EmployerServiceBundleNewResponse struct {
-	ID         string   `json:"_id,required"`
-	BundleName string   `json:"bundleName,required"`
-	EmployerID string   `json:"employerId,required"`
-	ServiceIDs []string `json:"serviceIds,required"`
+	ID         string   `json:"_id" api:"required"`
+	BundleName string   `json:"bundleName" api:"required"`
+	EmployerID string   `json:"employerId" api:"required"`
+	ServiceIDs []string `json:"serviceIds" api:"required"`
 	CreatedAt  string   `json:"createdAt"`
 	CreatedBy  string   `json:"createdBy"`
 	// Indicates if this bundle originated from a third-party integration. Externally
@@ -120,12 +120,12 @@ type EmployerServiceBundleNewResponse struct {
 	ExternallyManaged bool `json:"externallyManaged"`
 	// Name of the third-party integration that manages this bundle (e.g., "Enterprise
 	// Health"). Null if bundle was created in BlueHive.
-	Integration     string                                          `json:"integration,nullable"`
+	Integration     string                                          `json:"integration" api:"nullable"`
 	IntegrationData EmployerServiceBundleNewResponseIntegrationData `json:"integrationData"`
 	Limit           float64                                         `json:"limit"`
 	Occurrence      string                                          `json:"occurrence"`
 	Recurring       bool                                            `json:"recurring"`
-	Roles           []string                                        `json:"roles,nullable"`
+	Roles           []string                                        `json:"roles" api:"nullable"`
 	StartDate       string                                          `json:"startDate"`
 	UpdatedAt       string                                          `json:"updatedAt"`
 	UpdatedBy       string                                          `json:"updatedBy"`
@@ -193,10 +193,10 @@ func (r *EmployerServiceBundleNewResponseIntegrationDataEnterpriseHealth) Unmars
 }
 
 type EmployerServiceBundleGetResponse struct {
-	ID         string   `json:"_id,required"`
-	BundleName string   `json:"bundleName,required"`
-	EmployerID string   `json:"employerId,required"`
-	ServiceIDs []string `json:"serviceIds,required"`
+	ID         string   `json:"_id" api:"required"`
+	BundleName string   `json:"bundleName" api:"required"`
+	EmployerID string   `json:"employerId" api:"required"`
+	ServiceIDs []string `json:"serviceIds" api:"required"`
 	CreatedAt  string   `json:"createdAt"`
 	CreatedBy  string   `json:"createdBy"`
 	// Indicates if this bundle originated from a third-party integration. Externally
@@ -204,12 +204,12 @@ type EmployerServiceBundleGetResponse struct {
 	ExternallyManaged bool `json:"externallyManaged"`
 	// Name of the third-party integration that manages this bundle (e.g., "Enterprise
 	// Health"). Null if bundle was created in BlueHive.
-	Integration     string                                          `json:"integration,nullable"`
+	Integration     string                                          `json:"integration" api:"nullable"`
 	IntegrationData EmployerServiceBundleGetResponseIntegrationData `json:"integrationData"`
 	Limit           float64                                         `json:"limit"`
 	Occurrence      string                                          `json:"occurrence"`
 	Recurring       bool                                            `json:"recurring"`
-	Roles           []string                                        `json:"roles,nullable"`
+	Roles           []string                                        `json:"roles" api:"nullable"`
 	StartDate       string                                          `json:"startDate"`
 	UpdatedAt       string                                          `json:"updatedAt"`
 	UpdatedBy       string                                          `json:"updatedBy"`
@@ -277,10 +277,10 @@ func (r *EmployerServiceBundleGetResponseIntegrationDataEnterpriseHealth) Unmars
 }
 
 type EmployerServiceBundleUpdateResponse struct {
-	ID         string   `json:"_id,required"`
-	BundleName string   `json:"bundleName,required"`
-	EmployerID string   `json:"employerId,required"`
-	ServiceIDs []string `json:"serviceIds,required"`
+	ID         string   `json:"_id" api:"required"`
+	BundleName string   `json:"bundleName" api:"required"`
+	EmployerID string   `json:"employerId" api:"required"`
+	ServiceIDs []string `json:"serviceIds" api:"required"`
 	CreatedAt  string   `json:"createdAt"`
 	CreatedBy  string   `json:"createdBy"`
 	// Indicates if this bundle originated from a third-party integration. Externally
@@ -288,12 +288,12 @@ type EmployerServiceBundleUpdateResponse struct {
 	ExternallyManaged bool `json:"externallyManaged"`
 	// Name of the third-party integration that manages this bundle (e.g., "Enterprise
 	// Health"). Null if bundle was created in BlueHive.
-	Integration     string                                             `json:"integration,nullable"`
+	Integration     string                                             `json:"integration" api:"nullable"`
 	IntegrationData EmployerServiceBundleUpdateResponseIntegrationData `json:"integrationData"`
 	Limit           float64                                            `json:"limit"`
 	Occurrence      string                                             `json:"occurrence"`
 	Recurring       bool                                               `json:"recurring"`
-	Roles           []string                                           `json:"roles,nullable"`
+	Roles           []string                                           `json:"roles" api:"nullable"`
 	StartDate       string                                             `json:"startDate"`
 	UpdatedAt       string                                             `json:"updatedAt"`
 	UpdatedBy       string                                             `json:"updatedBy"`
@@ -361,10 +361,10 @@ func (r *EmployerServiceBundleUpdateResponseIntegrationDataEnterpriseHealth) Unm
 }
 
 type EmployerServiceBundleListResponse struct {
-	ID         string   `json:"_id,required"`
-	BundleName string   `json:"bundleName,required"`
-	EmployerID string   `json:"employerId,required"`
-	ServiceIDs []string `json:"serviceIds,required"`
+	ID         string   `json:"_id" api:"required"`
+	BundleName string   `json:"bundleName" api:"required"`
+	EmployerID string   `json:"employerId" api:"required"`
+	ServiceIDs []string `json:"serviceIds" api:"required"`
 	CreatedAt  string   `json:"createdAt"`
 	CreatedBy  string   `json:"createdBy"`
 	// Indicates if this bundle originated from a third-party integration. Externally
@@ -372,12 +372,12 @@ type EmployerServiceBundleListResponse struct {
 	ExternallyManaged bool `json:"externallyManaged"`
 	// Name of the third-party integration that manages this bundle (e.g., "Enterprise
 	// Health"). Null if bundle was created in BlueHive.
-	Integration     string                                           `json:"integration,nullable"`
+	Integration     string                                           `json:"integration" api:"nullable"`
 	IntegrationData EmployerServiceBundleListResponseIntegrationData `json:"integrationData"`
 	Limit           float64                                          `json:"limit"`
 	Occurrence      string                                           `json:"occurrence"`
 	Recurring       bool                                             `json:"recurring"`
-	Roles           []string                                         `json:"roles,nullable"`
+	Roles           []string                                         `json:"roles" api:"nullable"`
 	StartDate       string                                           `json:"startDate"`
 	UpdatedAt       string                                           `json:"updatedAt"`
 	UpdatedBy       string                                           `json:"updatedBy"`
@@ -445,8 +445,8 @@ func (r *EmployerServiceBundleListResponseIntegrationDataEnterpriseHealth) Unmar
 }
 
 type EmployerServiceBundleNewParams struct {
-	BundleName string             `json:"bundleName,required"`
-	ServiceIDs []string           `json:"serviceIds,omitzero,required"`
+	BundleName string             `json:"bundleName" api:"required"`
+	ServiceIDs []string           `json:"serviceIds,omitzero" api:"required"`
 	ID         param.Opt[string]  `json:"_id,omitzero"`
 	Limit      param.Opt[float64] `json:"limit,omitzero"`
 	Occurrence param.Opt[string]  `json:"occurrence,omitzero"`
@@ -465,14 +465,14 @@ func (r *EmployerServiceBundleNewParams) UnmarshalJSON(data []byte) error {
 }
 
 type EmployerServiceBundleGetParams struct {
-	EmployerID string `path:"employerId,required" json:"-"`
+	EmployerID string `path:"employerId" api:"required" json:"-"`
 	paramObj
 }
 
 type EmployerServiceBundleUpdateParams struct {
-	EmployerID string             `path:"employerId,required" json:"-"`
-	BundleName string             `json:"bundleName,required"`
-	ServiceIDs []string           `json:"serviceIds,omitzero,required"`
+	EmployerID string             `path:"employerId" api:"required" json:"-"`
+	BundleName string             `json:"bundleName" api:"required"`
+	ServiceIDs []string           `json:"serviceIds,omitzero" api:"required"`
 	ID         param.Opt[string]  `json:"_id,omitzero"`
 	Limit      param.Opt[float64] `json:"limit,omitzero"`
 	Occurrence param.Opt[string]  `json:"occurrence,omitzero"`
@@ -491,6 +491,6 @@ func (r *EmployerServiceBundleUpdateParams) UnmarshalJSON(data []byte) error {
 }
 
 type EmployerServiceBundleDeleteParams struct {
-	EmployerID string `path:"employerId,required" json:"-"`
+	EmployerID string `path:"employerId" api:"required" json:"-"`
 	paramObj
 }

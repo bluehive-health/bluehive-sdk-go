@@ -72,11 +72,11 @@ func (r *EmployerService) List(ctx context.Context, query EmployerListParams, op
 }
 
 type EmployerNewResponse struct {
-	ID              string           `json:"_id,required"`
-	Address         map[string]any   `json:"address,required"`
-	Email           string           `json:"email,required"`
-	Name            string           `json:"name,required"`
-	Phones          []map[string]any `json:"phones,required"`
+	ID              string           `json:"_id" api:"required"`
+	Address         map[string]any   `json:"address" api:"required"`
+	Email           string           `json:"email" api:"required"`
+	Name            string           `json:"name" api:"required"`
+	Phones          []map[string]any `json:"phones" api:"required"`
 	CreatedAt       string           `json:"createdAt"`
 	CreatedBy       string           `json:"createdBy"`
 	Demo            bool             `json:"demo"`
@@ -112,10 +112,10 @@ type EmployerGetResponse map[string]any
 type EmployerListResponse map[string]any
 
 type EmployerNewParams struct {
-	Address         EmployerNewParamsAddress `json:"address,omitzero,required"`
-	Email           string                   `json:"email,required" format:"email"`
-	Name            string                   `json:"name,required"`
-	Phones          []EmployerNewParamsPhone `json:"phones,omitzero,required"`
+	Address         EmployerNewParamsAddress `json:"address,omitzero" api:"required"`
+	Email           string                   `json:"email" api:"required" format:"email"`
+	Name            string                   `json:"name" api:"required"`
+	Phones          []EmployerNewParamsPhone `json:"phones,omitzero" api:"required"`
 	Demo            param.Opt[bool]          `json:"demo,omitzero"`
 	EmployeeConsent param.Opt[bool]          `json:"employeeConsent,omitzero"`
 	OnsiteClinic    param.Opt[bool]          `json:"onsiteClinic,omitzero"`
@@ -136,10 +136,10 @@ func (r *EmployerNewParams) UnmarshalJSON(data []byte) error {
 
 // The properties City, State, Street1, ZipCode are required.
 type EmployerNewParamsAddress struct {
-	City    string            `json:"city,required"`
-	State   string            `json:"state,required"`
-	Street1 string            `json:"street1,required"`
-	ZipCode string            `json:"zipCode,required"`
+	City    string            `json:"city" api:"required"`
+	State   string            `json:"state" api:"required"`
+	Street1 string            `json:"street1" api:"required"`
+	ZipCode string            `json:"zipCode" api:"required"`
 	Country param.Opt[string] `json:"country,omitzero"`
 	Street2 param.Opt[string] `json:"street2,omitzero"`
 	paramObj
@@ -155,7 +155,7 @@ func (r *EmployerNewParamsAddress) UnmarshalJSON(data []byte) error {
 
 // The property Number is required.
 type EmployerNewParamsPhone struct {
-	Number  string            `json:"number,required"`
+	Number  string            `json:"number" api:"required"`
 	Primary param.Opt[bool]   `json:"primary,omitzero"`
 	Type    param.Opt[string] `json:"type,omitzero"`
 	paramObj
@@ -171,7 +171,7 @@ func (r *EmployerNewParamsPhone) UnmarshalJSON(data []byte) error {
 
 // The property ID is required.
 type EmployerNewParamsCheckr struct {
-	ID     string            `json:"id,required"`
+	ID     string            `json:"id" api:"required"`
 	Status param.Opt[string] `json:"status,omitzero"`
 	paramObj
 }
@@ -185,7 +185,7 @@ func (r *EmployerNewParamsCheckr) UnmarshalJSON(data []byte) error {
 }
 
 type EmployerListParams struct {
-	LoginToken string `header:"login-token,required" json:"-"`
-	UserID     string `header:"user-id,required" json:"-"`
+	LoginToken string `header:"login-token" api:"required" json:"-"`
+	UserID     string `header:"user-id" api:"required" json:"-"`
 	paramObj
 }
