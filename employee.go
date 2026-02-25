@@ -106,9 +106,9 @@ func (r *EmployeeService) UnlinkUser(ctx context.Context, body EmployeeUnlinkUse
 // Employee created successfully
 type EmployeeNewResponse struct {
 	// ID of the created employee
-	EmployeeID string `json:"employeeId,required"`
-	Message    string `json:"message,required"`
-	Success    bool   `json:"success,required"`
+	EmployeeID string `json:"employeeId" api:"required"`
+	Message    string `json:"message" api:"required"`
+	Success    bool   `json:"success" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		EmployeeID  respjson.Field
@@ -128,9 +128,9 @@ func (r *EmployeeNewResponse) UnmarshalJSON(data []byte) error {
 // Employee found successfully
 type EmployeeGetResponse struct {
 	// Employee details
-	Employee EmployeeGetResponseEmployee `json:"employee,required"`
-	Message  string                      `json:"message,required"`
-	Success  bool                        `json:"success,required"`
+	Employee EmployeeGetResponseEmployee `json:"employee" api:"required"`
+	Message  string                      `json:"message" api:"required"`
+	Success  bool                        `json:"success" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Employee    respjson.Field
@@ -150,15 +150,15 @@ func (r *EmployeeGetResponse) UnmarshalJSON(data []byte) error {
 // Employee details
 type EmployeeGetResponseEmployee struct {
 	// Unique identifier
-	ID string `json:"_id,required"`
+	ID string `json:"_id" api:"required"`
 	// Email address
-	Email string `json:"email,required"`
+	Email string `json:"email" api:"required"`
 	// ID of associated employer
-	EmployerID string `json:"employer_id,required"`
+	EmployerID string `json:"employer_id" api:"required"`
 	// First name
-	FirstName string `json:"firstName,required"`
+	FirstName string `json:"firstName" api:"required"`
 	// Last name
-	LastName string `json:"lastName,required"`
+	LastName string `json:"lastName" api:"required"`
 	// Account status
 	//
 	// Any of "Active", "Inactive".
@@ -218,13 +218,13 @@ func (r *EmployeeGetResponseEmployee) UnmarshalJSON(data []byte) error {
 // Employee address
 type EmployeeGetResponseEmployeeAddress struct {
 	// City
-	City string `json:"city,required"`
+	City string `json:"city" api:"required"`
 	// Postal code
-	PostalCode string `json:"postalCode,required"`
+	PostalCode string `json:"postalCode" api:"required"`
 	// State
-	State string `json:"state,required"`
+	State string `json:"state" api:"required"`
 	// Street address line 1
-	Street1 string `json:"street1,required"`
+	Street1 string `json:"street1" api:"required"`
 	// Country
 	Country string `json:"country"`
 	// County
@@ -253,9 +253,9 @@ func (r *EmployeeGetResponseEmployeeAddress) UnmarshalJSON(data []byte) error {
 
 type EmployeeGetResponseEmployeeExtendedField struct {
 	// Field name
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// Field value
-	Value string `json:"value,required"`
+	Value string `json:"value" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Name        respjson.Field
@@ -273,11 +273,11 @@ func (r *EmployeeGetResponseEmployeeExtendedField) UnmarshalJSON(data []byte) er
 
 type EmployeeGetResponseEmployeePhone struct {
 	// Phone number
-	Number string `json:"number,required"`
+	Number string `json:"number" api:"required"`
 	// Type of phone number
 	//
 	// Any of "Cell", "Home", "Work", "Other".
-	Type string `json:"type,required"`
+	Type string `json:"type" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Number      respjson.Field
@@ -295,8 +295,8 @@ func (r *EmployeeGetResponseEmployeePhone) UnmarshalJSON(data []byte) error {
 
 // Employee updated successfully
 type EmployeeUpdateResponse struct {
-	Message string `json:"message,required"`
-	Success bool   `json:"success,required"`
+	Message string `json:"message" api:"required"`
+	Success bool   `json:"success" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Message     respjson.Field
@@ -315,11 +315,11 @@ func (r *EmployeeUpdateResponse) UnmarshalJSON(data []byte) error {
 // Employees retrieved successfully
 type EmployeeListResponse struct {
 	// List of employees
-	Employees []EmployeeListResponseEmployee `json:"employees,required"`
-	Message   string                         `json:"message,required"`
-	Success   bool                           `json:"success,required"`
+	Employees []EmployeeListResponseEmployee `json:"employees" api:"required"`
+	Message   string                         `json:"message" api:"required"`
+	Success   bool                           `json:"success" api:"required"`
 	// Total number of employees returned
-	Total float64 `json:"total,required"`
+	Total float64 `json:"total" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Employees   respjson.Field
@@ -340,15 +340,15 @@ func (r *EmployeeListResponse) UnmarshalJSON(data []byte) error {
 // Employee details
 type EmployeeListResponseEmployee struct {
 	// Unique identifier
-	ID string `json:"_id,required"`
+	ID string `json:"_id" api:"required"`
 	// Email address
-	Email string `json:"email,required"`
+	Email string `json:"email" api:"required"`
 	// ID of associated employer
-	EmployerID string `json:"employer_id,required"`
+	EmployerID string `json:"employer_id" api:"required"`
 	// First name
-	FirstName string `json:"firstName,required"`
+	FirstName string `json:"firstName" api:"required"`
 	// Last name
-	LastName string `json:"lastName,required"`
+	LastName string `json:"lastName" api:"required"`
 	// Account status
 	//
 	// Any of "Active", "Inactive".
@@ -408,13 +408,13 @@ func (r *EmployeeListResponseEmployee) UnmarshalJSON(data []byte) error {
 // Employee address
 type EmployeeListResponseEmployeeAddress struct {
 	// City
-	City string `json:"city,required"`
+	City string `json:"city" api:"required"`
 	// Postal code
-	PostalCode string `json:"postalCode,required"`
+	PostalCode string `json:"postalCode" api:"required"`
 	// State
-	State string `json:"state,required"`
+	State string `json:"state" api:"required"`
 	// Street address line 1
-	Street1 string `json:"street1,required"`
+	Street1 string `json:"street1" api:"required"`
 	// Country
 	Country string `json:"country"`
 	// County
@@ -443,9 +443,9 @@ func (r *EmployeeListResponseEmployeeAddress) UnmarshalJSON(data []byte) error {
 
 type EmployeeListResponseEmployeeExtendedField struct {
 	// Field name
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// Field value
-	Value string `json:"value,required"`
+	Value string `json:"value" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Name        respjson.Field
@@ -463,11 +463,11 @@ func (r *EmployeeListResponseEmployeeExtendedField) UnmarshalJSON(data []byte) e
 
 type EmployeeListResponseEmployeePhone struct {
 	// Phone number
-	Number string `json:"number,required"`
+	Number string `json:"number" api:"required"`
 	// Type of phone number
 	//
 	// Any of "Cell", "Home", "Work", "Other".
-	Type string `json:"type,required"`
+	Type string `json:"type" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Number      respjson.Field
@@ -485,8 +485,8 @@ func (r *EmployeeListResponseEmployeePhone) UnmarshalJSON(data []byte) error {
 
 // Employee deleted successfully
 type EmployeeDeleteResponse struct {
-	Message string `json:"message,required"`
-	Success bool   `json:"success,required"`
+	Message string `json:"message" api:"required"`
+	Success bool   `json:"success" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Message     respjson.Field
@@ -505,9 +505,9 @@ func (r *EmployeeDeleteResponse) UnmarshalJSON(data []byte) error {
 // Employee linked successfully
 type EmployeeLinkUserResponse struct {
 	// ID of the created link
-	LinkID  string `json:"linkId,required"`
-	Message string `json:"message,required"`
-	Success bool   `json:"success,required"`
+	LinkID  string `json:"linkId" api:"required"`
+	Message string `json:"message" api:"required"`
+	Success bool   `json:"success" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		LinkID      respjson.Field
@@ -526,8 +526,8 @@ func (r *EmployeeLinkUserResponse) UnmarshalJSON(data []byte) error {
 
 // Employee unlinked successfully
 type EmployeeUnlinkUserResponse struct {
-	Message string `json:"message,required"`
-	Success bool   `json:"success,required"`
+	Message string `json:"message" api:"required"`
+	Success bool   `json:"success" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Message     respjson.Field
@@ -544,9 +544,9 @@ func (r *EmployeeUnlinkUserResponse) UnmarshalJSON(data []byte) error {
 }
 
 type EmployeeNewParams struct {
-	Email      string            `json:"email,required" format:"email"`
-	FirstName  string            `json:"firstName,required"`
-	LastName   string            `json:"lastName,required"`
+	Email      string            `json:"email" api:"required" format:"email"`
+	FirstName  string            `json:"firstName" api:"required"`
+	LastName   string            `json:"lastName" api:"required"`
 	Blurb      param.Opt[string] `json:"blurb,omitzero"`
 	Dob        param.Opt[string] `json:"dob,omitzero"`
 	EmployerID param.Opt[string] `json:"employer_id,omitzero"`
@@ -577,10 +577,10 @@ const (
 
 // The properties City, PostalCode, State, Street1 are required.
 type EmployeeNewParamsAddress struct {
-	City       string            `json:"city,required"`
-	PostalCode string            `json:"postalCode,required"`
-	State      string            `json:"state,required"`
-	Street1    string            `json:"street1,required"`
+	City       string            `json:"city" api:"required"`
+	PostalCode string            `json:"postalCode" api:"required"`
+	State      string            `json:"state" api:"required"`
+	Street1    string            `json:"street1" api:"required"`
 	Country    param.Opt[string] `json:"country,omitzero"`
 	County     param.Opt[string] `json:"county,omitzero"`
 	Street2    param.Opt[string] `json:"street2,omitzero"`
@@ -597,8 +597,8 @@ func (r *EmployeeNewParamsAddress) UnmarshalJSON(data []byte) error {
 
 // The properties Name, Value are required.
 type EmployeeNewParamsExtendedField struct {
-	Name  string `json:"name,required"`
-	Value string `json:"value,required"`
+	Name  string `json:"name" api:"required"`
+	Value string `json:"value" api:"required"`
 	paramObj
 }
 
@@ -612,9 +612,9 @@ func (r *EmployeeNewParamsExtendedField) UnmarshalJSON(data []byte) error {
 
 // The properties Number, Type are required.
 type EmployeeNewParamsPhone struct {
-	Number string `json:"number,required"`
+	Number string `json:"number" api:"required"`
 	// Any of "Cell", "Home", "Work", "Other".
-	Type string `json:"type,omitzero,required"`
+	Type string `json:"type,omitzero" api:"required"`
 	paramObj
 }
 
@@ -633,7 +633,7 @@ func init() {
 }
 
 type EmployeeUpdateParams struct {
-	ID         string            `json:"_id,required"`
+	ID         string            `json:"_id" api:"required"`
 	Blurb      param.Opt[string] `json:"blurb,omitzero"`
 	Dob        param.Opt[string] `json:"dob,omitzero"`
 	Email      param.Opt[string] `json:"email,omitzero" format:"email"`
@@ -667,10 +667,10 @@ const (
 
 // The properties City, PostalCode, State, Street1 are required.
 type EmployeeUpdateParamsAddress struct {
-	City       string            `json:"city,required"`
-	PostalCode string            `json:"postalCode,required"`
-	State      string            `json:"state,required"`
-	Street1    string            `json:"street1,required"`
+	City       string            `json:"city" api:"required"`
+	PostalCode string            `json:"postalCode" api:"required"`
+	State      string            `json:"state" api:"required"`
+	Street1    string            `json:"street1" api:"required"`
 	Country    param.Opt[string] `json:"country,omitzero"`
 	County     param.Opt[string] `json:"county,omitzero"`
 	Street2    param.Opt[string] `json:"street2,omitzero"`
@@ -687,8 +687,8 @@ func (r *EmployeeUpdateParamsAddress) UnmarshalJSON(data []byte) error {
 
 // The properties Name, Value are required.
 type EmployeeUpdateParamsExtendedField struct {
-	Name  string `json:"name,required"`
-	Value string `json:"value,required"`
+	Name  string `json:"name" api:"required"`
+	Value string `json:"value" api:"required"`
 	paramObj
 }
 
@@ -702,9 +702,9 @@ func (r *EmployeeUpdateParamsExtendedField) UnmarshalJSON(data []byte) error {
 
 // The properties Number, Type are required.
 type EmployeeUpdateParamsPhone struct {
-	Number string `json:"number,required"`
+	Number string `json:"number" api:"required"`
 	// Any of "Cell", "Home", "Work", "Other".
-	Type string `json:"type,omitzero,required"`
+	Type string `json:"type,omitzero" api:"required"`
 	paramObj
 }
 
@@ -724,7 +724,7 @@ func init() {
 
 type EmployeeListParams struct {
 	// ID of the employer to list employees for
-	EmployerID string `query:"employerId,required" json:"-"`
+	EmployerID string `query:"employerId" api:"required" json:"-"`
 	// Maximum number of employees to return (default: 50)
 	Limit param.Opt[string] `query:"limit,omitzero" json:"-"`
 	// Number of employees to skip (default: 0)
@@ -741,8 +741,8 @@ func (r EmployeeListParams) URLQuery() (v url.Values, err error) {
 }
 
 type EmployeeLinkUserParams struct {
-	EmployeeID string   `json:"employeeId,required"`
-	UserID     string   `json:"userId,required"`
+	EmployeeID string   `json:"employeeId" api:"required"`
+	UserID     string   `json:"userId" api:"required"`
 	Role       []string `json:"role,omitzero"`
 	paramObj
 }
@@ -757,9 +757,9 @@ func (r *EmployeeLinkUserParams) UnmarshalJSON(data []byte) error {
 
 type EmployeeUnlinkUserParams struct {
 	// ID of the employee to unlink
-	EmployeeID string `query:"employeeId,required" json:"-"`
+	EmployeeID string `query:"employeeId" api:"required" json:"-"`
 	// ID of the user to unlink from
-	UserID string `query:"userId,required" json:"-"`
+	UserID string `query:"userId" api:"required" json:"-"`
 	paramObj
 }
 

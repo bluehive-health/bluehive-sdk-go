@@ -64,7 +64,7 @@ func (r *IntegrationService) CheckActive(ctx context.Context, name string, query
 }
 
 type IntegrationListResponse struct {
-	Integrations map[string]IntegrationListResponseIntegration `json:"integrations,required"`
+	Integrations map[string]IntegrationListResponseIntegration `json:"integrations" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Integrations respjson.Field
@@ -80,8 +80,8 @@ func (r *IntegrationListResponse) UnmarshalJSON(data []byte) error {
 }
 
 type IntegrationListResponseIntegration struct {
-	Active      bool           `json:"active,required"`
-	DisplayName string         `json:"displayName,required"`
+	Active      bool           `json:"active" api:"required"`
+	DisplayName string         `json:"displayName" api:"required"`
 	Config      map[string]any `json:"config"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -100,7 +100,7 @@ func (r *IntegrationListResponseIntegration) UnmarshalJSON(data []byte) error {
 }
 
 type IntegrationCheckActiveResponse struct {
-	Active bool `json:"active,required"`
+	Active bool `json:"active" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Active      respjson.Field
@@ -116,11 +116,11 @@ func (r *IntegrationCheckActiveResponse) UnmarshalJSON(data []byte) error {
 }
 
 type IntegrationListParams struct {
-	XBrandID string `header:"x-brand-id,required" json:"-"`
+	XBrandID string `header:"x-brand-id" api:"required" json:"-"`
 	paramObj
 }
 
 type IntegrationCheckActiveParams struct {
-	XBrandID string `header:"x-brand-id,required" json:"-"`
+	XBrandID string `header:"x-brand-id" api:"required" json:"-"`
 	paramObj
 }
