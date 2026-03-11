@@ -42,7 +42,7 @@ func (r *EmployerService) New(ctx context.Context, body EmployerNewParams, opts 
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/employers"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Get Employer
@@ -50,11 +50,11 @@ func (r *EmployerService) Get(ctx context.Context, employerID string, opts ...op
 	opts = slices.Concat(r.Options, opts)
 	if employerID == "" {
 		err = errors.New("missing required employerId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/employers/%s", employerID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Get Employers for Current User
@@ -68,7 +68,7 @@ func (r *EmployerService) List(ctx context.Context, query EmployerListParams, op
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/employers/list"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 type EmployerNewResponse struct {
