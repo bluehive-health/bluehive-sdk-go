@@ -40,7 +40,7 @@ func (r *ProviderService) Lookup(ctx context.Context, query ProviderLookupParams
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/providers/lookup"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type ProviderLookupResponse struct {

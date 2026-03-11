@@ -43,7 +43,7 @@ func (r *EmployeeService) New(ctx context.Context, body EmployeeNewParams, opts 
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/employees"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Retrieve an employee by their unique ID.
@@ -51,11 +51,11 @@ func (r *EmployeeService) Get(ctx context.Context, employeeID string, opts ...op
 	opts = slices.Concat(r.Options, opts)
 	if employeeID == "" {
 		err = errors.New("missing required employeeId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/employees/%s", employeeID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Update an existing employee in the system.
@@ -63,7 +63,7 @@ func (r *EmployeeService) Update(ctx context.Context, body EmployeeUpdateParams,
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/employees"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // List all employees for a given employer with pagination.
@@ -71,7 +71,7 @@ func (r *EmployeeService) List(ctx context.Context, query EmployeeListParams, op
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/employees"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Delete an employee from the system. Cannot delete employees with existing
@@ -80,11 +80,11 @@ func (r *EmployeeService) Delete(ctx context.Context, employeeID string, opts ..
 	opts = slices.Concat(r.Options, opts)
 	if employeeID == "" {
 		err = errors.New("missing required employeeId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/employees/%s", employeeID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Link an employee to a user account with specified roles
@@ -92,7 +92,7 @@ func (r *EmployeeService) LinkUser(ctx context.Context, body EmployeeLinkUserPar
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/employees/link-user"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Remove the link between an employee and a user account
@@ -100,7 +100,7 @@ func (r *EmployeeService) UnlinkUser(ctx context.Context, body EmployeeUnlinkUse
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/employees/unlink-user"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Employee created successfully

@@ -40,7 +40,7 @@ func (r *FaxService) ListProviders(ctx context.Context, opts ...option.RequestOp
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/fax/providers"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Retrieve the current status and details of a fax by its ID.
@@ -48,11 +48,11 @@ func (r *FaxService) GetStatus(ctx context.Context, id string, opts ...option.Re
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/fax/status/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Send a fax document to a specified number using the configured fax provider.
@@ -60,7 +60,7 @@ func (r *FaxService) Send(ctx context.Context, body FaxSendParams, opts ...optio
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/fax/send"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 type FaxListProvidersResponse struct {
