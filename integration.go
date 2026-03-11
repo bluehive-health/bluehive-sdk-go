@@ -44,7 +44,7 @@ func (r *IntegrationService) List(ctx context.Context, query IntegrationListPara
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/integrations"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Returns true if the named integration is active for the given brand (brand
@@ -56,11 +56,11 @@ func (r *IntegrationService) CheckActive(ctx context.Context, name string, query
 	opts = slices.Concat(r.Options, opts)
 	if name == "" {
 		err = errors.New("missing required name parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/integrations/%s", name)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 type IntegrationListResponse struct {

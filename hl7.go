@@ -37,7 +37,7 @@ func (r *Hl7Service) SendResults(ctx context.Context, body Hl7SendResultsParams,
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/hl7/results"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 type Hl7SendResultsParams struct {

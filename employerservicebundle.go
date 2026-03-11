@@ -40,11 +40,11 @@ func (r *EmployerServiceBundleService) New(ctx context.Context, employerID strin
 	opts = slices.Concat(r.Options, opts)
 	if employerID == "" {
 		err = errors.New("missing required employerId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/employers/%s/service-bundles", employerID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Get Service Bundle
@@ -52,15 +52,15 @@ func (r *EmployerServiceBundleService) Get(ctx context.Context, id string, query
 	opts = slices.Concat(r.Options, opts)
 	if query.EmployerID == "" {
 		err = errors.New("missing required employerId parameter")
-		return
+		return nil, err
 	}
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/employers/%s/service-bundles/%s", query.EmployerID, id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Update Service Bundle
@@ -68,15 +68,15 @@ func (r *EmployerServiceBundleService) Update(ctx context.Context, id string, pa
 	opts = slices.Concat(r.Options, opts)
 	if params.EmployerID == "" {
 		err = errors.New("missing required employerId parameter")
-		return
+		return nil, err
 	}
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/employers/%s/service-bundles/%s", params.EmployerID, id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, params, &res, opts...)
-	return
+	return res, err
 }
 
 // List Service Bundles
@@ -84,11 +84,11 @@ func (r *EmployerServiceBundleService) List(ctx context.Context, employerID stri
 	opts = slices.Concat(r.Options, opts)
 	if employerID == "" {
 		err = errors.New("missing required employerId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/employers/%s/service-bundles", employerID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Delete Service Bundle
@@ -97,15 +97,15 @@ func (r *EmployerServiceBundleService) Delete(ctx context.Context, id string, bo
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if body.EmployerID == "" {
 		err = errors.New("missing required employerId parameter")
-		return
+		return err
 	}
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("v1/employers/%s/service-bundles/%s", body.EmployerID, id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 type EmployerServiceBundleNewResponse struct {

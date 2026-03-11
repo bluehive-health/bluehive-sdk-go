@@ -46,7 +46,7 @@ func (r *OrderService) New(ctx context.Context, body OrderNewParams, opts ...opt
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/orders"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Retrieve details for a specific order
@@ -54,11 +54,11 @@ func (r *OrderService) Get(ctx context.Context, orderID string, opts ...option.R
 	opts = slices.Concat(r.Options, opts)
 	if orderID == "" {
 		err = errors.New("missing required orderId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/orders/%s", orderID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Update order details and associated order items. Allows updating order status,
@@ -67,11 +67,11 @@ func (r *OrderService) Update(ctx context.Context, orderID string, body OrderUpd
 	opts = slices.Concat(r.Options, opts)
 	if orderID == "" {
 		err = errors.New("missing required orderId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/orders/%s", orderID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Retrieve results for an order. Supports filtering by serviceId, status, date
@@ -80,11 +80,11 @@ func (r *OrderService) GetResults(ctx context.Context, orderID string, query Ord
 	opts = slices.Concat(r.Options, opts)
 	if orderID == "" {
 		err = errors.New("missing required orderId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/orders/%s/results", orderID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Schedule an appointment or walk-in for an existing order. Sends HL7 SIU^S12
@@ -93,11 +93,11 @@ func (r *OrderService) ScheduleAppointment(ctx context.Context, orderID string, 
 	opts = slices.Concat(r.Options, opts)
 	if orderID == "" {
 		err = errors.New("missing required orderId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/orders/%s/schedule-appointment", orderID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Send an order for a specific employee. Requires API key, login token, and user
@@ -112,7 +112,7 @@ func (r *OrderService) SendForEmployee(ctx context.Context, params OrderSendForE
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/orders/send"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
-	return
+	return res, err
 }
 
 // Update the status of an existing order
@@ -120,11 +120,11 @@ func (r *OrderService) UpdateStatus(ctx context.Context, orderID string, body Or
 	opts = slices.Concat(r.Options, opts)
 	if orderID == "" {
 		err = errors.New("missing required orderId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/orders/%s/status", orderID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Upload test results for a specific order item. Supports both existing fileIds
@@ -133,11 +133,11 @@ func (r *OrderService) UploadResults(ctx context.Context, orderID string, body O
 	opts = slices.Concat(r.Options, opts)
 	if orderID == "" {
 		err = errors.New("missing required orderId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v1/orders/%s/upload-results", orderID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // OrderNewResponseUnion contains all possible properties and values from
