@@ -151,9 +151,11 @@ func TestEmployeeListWithOptionalParams(t *testing.T) {
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Employees.List(context.TODO(), githubcombluehivehealthbluehivesdkgo.EmployeeListParams{
-		EmployerID: "employerId",
-		Limit:      githubcombluehivehealthbluehivesdkgo.String("269125115713"),
-		Offset:     githubcombluehivehealthbluehivesdkgo.String("269125115713"),
+		EmployerID:    "employerId",
+		ActiveAccount: githubcombluehivehealthbluehivesdkgo.EmployeeListParamsActiveAccountActive,
+		Limit:         githubcombluehivehealthbluehivesdkgo.String("269125115713"),
+		Offset:        githubcombluehivehealthbluehivesdkgo.String("269125115713"),
+		Search:        githubcombluehivehealthbluehivesdkgo.String("search"),
 	})
 	if err != nil {
 		var apierr *githubcombluehivehealthbluehivesdkgo.Error
