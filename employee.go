@@ -729,6 +729,14 @@ type EmployeeListParams struct {
 	Limit param.Opt[string] `query:"limit,omitzero" json:"-"`
 	// Number of employees to skip (default: 0)
 	Offset param.Opt[string] `query:"offset,omitzero" json:"-"`
+	// Search term to filter employees by first name, last name, or email
+	// (case-insensitive)
+	Search param.Opt[string] `query:"search,omitzero" json:"-"`
+	// Filter by account status. If omitted, returns all employees regardless of
+	// status.
+	//
+	// Any of "Active", "Inactive".
+	ActiveAccount EmployeeListParamsActiveAccount `query:"activeAccount,omitzero" json:"-"`
 	paramObj
 }
 
@@ -739,6 +747,15 @@ func (r EmployeeListParams) URLQuery() (v url.Values, err error) {
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
+
+// Filter by account status. If omitted, returns all employees regardless of
+// status.
+type EmployeeListParamsActiveAccount string
+
+const (
+	EmployeeListParamsActiveAccountActive   EmployeeListParamsActiveAccount = "Active"
+	EmployeeListParamsActiveAccountInactive EmployeeListParamsActiveAccount = "Inactive"
+)
 
 type EmployeeLinkUserParams struct {
 	EmployeeID string   `json:"employeeId" api:"required"`
