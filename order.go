@@ -735,7 +735,7 @@ func (r OrderGetResultsParams) URLQuery() (v url.Values, err error) {
 type OrderScheduleAppointmentParams struct {
 	Appointment OrderScheduleAppointmentParamsAppointmentUnion `json:"appointment,omitzero" api:"required"`
 	// Order access code for authorization
-	OrderAccessCode param.Opt[string] `json:"orderAccessCode,omitzero"`
+	OrderAccessCode string `json:"orderAccessCode" api:"required"`
 	// Provider ID for authorization
 	ProviderID param.Opt[string] `json:"providerId,omitzero"`
 	paramObj

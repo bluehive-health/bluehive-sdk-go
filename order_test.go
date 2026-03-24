@@ -206,7 +206,7 @@ func TestOrderScheduleAppointmentWithOptionalParams(t *testing.T) {
 					Type:     "appointment",
 				},
 			},
-			OrderAccessCode: githubcombluehivehealthbluehivesdkgo.String("orderAccessCode"),
+			OrderAccessCode: "orderAccessCode",
 			ProviderID:      githubcombluehivehealthbluehivesdkgo.String("providerId"),
 		},
 	)
