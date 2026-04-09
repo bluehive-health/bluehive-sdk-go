@@ -1,5 +1,74 @@
 # Changelog
 
+## 0.1.0-alpha.15 (2026-04-09)
+
+Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
+
+### Features
+
+* **api:** api update ([568aa91](https://github.com/bluehive-health/bluehive-sdk-go/commit/568aa917bfd7ec2a116ba8ffbe7b4133a6a09086))
+* **api:** api update ([e0c3ab6](https://github.com/bluehive-health/bluehive-sdk-go/commit/e0c3ab638169c854c02de778a64a3335ca0dedb0))
+* **api:** api update ([1f971cd](https://github.com/bluehive-health/bluehive-sdk-go/commit/1f971cd55e4e82f75ac056877156425ede7a2f36))
+* **api:** api update ([d5c7ee1](https://github.com/bluehive-health/bluehive-sdk-go/commit/d5c7ee16c1a6e8715b02084b7f7236ace50bd086))
+* **api:** api update ([6743aa0](https://github.com/bluehive-health/bluehive-sdk-go/commit/6743aa00dbab38e1e131fa660818c9526e1467d1))
+* **api:** api update ([a870ef3](https://github.com/bluehive-health/bluehive-sdk-go/commit/a870ef3227cb9dc16c6307664a0f14c7e58e3bb4))
+* **api:** api update ([8a0034c](https://github.com/bluehive-health/bluehive-sdk-go/commit/8a0034c38c604fc22c89a3514b536e165b45a1cd))
+* **api:** api update ([e394587](https://github.com/bluehive-health/bluehive-sdk-go/commit/e394587fccfbc33898730b9afe96e94e94ec0307))
+* **api:** manual updates ([b08e8f4](https://github.com/bluehive-health/bluehive-sdk-go/commit/b08e8f4686fe293c5146dc542e4e461b5d4125dd))
+* **api:** manual updates ([3f73510](https://github.com/bluehive-health/bluehive-sdk-go/commit/3f735109c8f3cbd5b46c9e0c8faec3899a930697))
+* **client:** add a convenient param.SetJSON helper ([b32ee94](https://github.com/bluehive-health/bluehive-sdk-go/commit/b32ee949ab9389c96938489985d012805e790e2c))
+* **encoder:** support bracket encoding form-data object members ([5beec67](https://github.com/bluehive-health/bluehive-sdk-go/commit/5beec678b963f170e1ceab99d16868304cb1cfc5))
+* **internal:** support comma format in multipart form encoding ([256862a](https://github.com/bluehive-health/bluehive-sdk-go/commit/256862ad5e1a01d51ff0b9a60b75c7ec5103d8e2))
+
+
+### Bug Fixes
+
+* allow canceling a request while it is waiting to retry ([4c791ea](https://github.com/bluehive-health/bluehive-sdk-go/commit/4c791eacee66577ab615ff99796b27222c67328f))
+* **client:** correctly specify Accept header with */* instead of empty ([da4aace](https://github.com/bluehive-health/bluehive-sdk-go/commit/da4aace3b4dc17c738263f780c74c386a258fa30))
+* **client:** make sure to import param package when used ([7985aad](https://github.com/bluehive-health/bluehive-sdk-go/commit/7985aadd0a6c75d537d6e2f347ebe0a834ba018f))
+* **client:** use correct format specifier for header serialization ([126df2d](https://github.com/bluehive-health/bluehive-sdk-go/commit/126df2d5f74652998056ca4e1861044b9cb6e929))
+* **docs:** add missing pointer prefix to api.md return types ([5347162](https://github.com/bluehive-health/bluehive-sdk-go/commit/53471626928eac618ea9bcf44ae78b169e865097))
+* **docs:** fix mcp installation instructions for remote servers ([50f4075](https://github.com/bluehive-health/bluehive-sdk-go/commit/50f4075f7a6647f59c374030c2c6da5362dc1891))
+* **encoder:** correctly serialize NullStruct ([aa17980](https://github.com/bluehive-health/bluehive-sdk-go/commit/aa179808de85eed847e5c4dc3bc4f09676e6b5ae))
+* fix for union type names ([740ba25](https://github.com/bluehive-health/bluehive-sdk-go/commit/740ba2597dd2b5e01bc923f5cc7714060749d93d))
+* **mcp:** correct code tool API endpoint ([5054b4a](https://github.com/bluehive-health/bluehive-sdk-go/commit/5054b4a2f6f7b1af2cf30ed71981639ca9652cd3))
+* prevent duplicate ? in query params ([5e5c3ea](https://github.com/bluehive-health/bluehive-sdk-go/commit/5e5c3ea1be8c863a804c32823fbb62008993c956))
+* rename param to avoid collision ([6b3c1a7](https://github.com/bluehive-health/bluehive-sdk-go/commit/6b3c1a7e9a9dc261b1cc91b178699c282b71bfe6))
+* skip usage tests that don't work with Prism ([16321fc](https://github.com/bluehive-health/bluehive-sdk-go/commit/16321fcc99b9a01c0a04e1e0515ab18887b999e4))
+
+
+### Chores
+
+* add float64 to valid types for RegisterFieldValidator ([fc27a8b](https://github.com/bluehive-health/bluehive-sdk-go/commit/fc27a8b3ae6eb2c2ead205fbb6a096bd5f903cad))
+* bump gjson version ([cc15261](https://github.com/bluehive-health/bluehive-sdk-go/commit/cc152612205d9b4e853d5c3a0d4155744c2f7bcf))
+* **ci:** skip lint on metadata-only changes ([1d0498b](https://github.com/bluehive-health/bluehive-sdk-go/commit/1d0498bec0c1d0e6289d14339b9e682ecdb0b6a2))
+* **ci:** skip uploading artifacts on stainless-internal branches ([1f2f07d](https://github.com/bluehive-health/bluehive-sdk-go/commit/1f2f07dc1eff60ec816105d9d8f1e6f3d85846d7))
+* **ci:** support opting out of skipping builds on metadata-only commits ([f0dee03](https://github.com/bluehive-health/bluehive-sdk-go/commit/f0dee033818ad5157697ed185ccba7438dcdf752))
+* **client:** fix multipart serialisation of Default() fields ([8e2fb1b](https://github.com/bluehive-health/bluehive-sdk-go/commit/8e2fb1bbe38b76108c3adb688a2568cbacc2ed0a))
+* elide duplicate aliases ([254622c](https://github.com/bluehive-health/bluehive-sdk-go/commit/254622c56501c05195f4c0b70fd996ef734bfa18))
+* **internal:** codegen related update ([3eea328](https://github.com/bluehive-health/bluehive-sdk-go/commit/3eea328ca84e7fa2a3778b8832b5a88d1827a2ee))
+* **internal:** codegen related update ([eeda857](https://github.com/bluehive-health/bluehive-sdk-go/commit/eeda85794cfdefda1a412b56071a8262b963be07))
+* **internal:** codegen related update ([41893a0](https://github.com/bluehive-health/bluehive-sdk-go/commit/41893a08f4518df9747d9b5caa50f6ea234c3d96))
+* **internal:** codegen related update ([9a0b14e](https://github.com/bluehive-health/bluehive-sdk-go/commit/9a0b14e5d04a5a92dc15a2621870f1fe66cc3713))
+* **internal:** grammar fix (it's -&gt; its) ([6b45c7e](https://github.com/bluehive-health/bluehive-sdk-go/commit/6b45c7e2b2c94dc65cd22d3adcff599efb603fe7))
+* **internal:** minor cleanup ([a473228](https://github.com/bluehive-health/bluehive-sdk-go/commit/a47322817ffa83b121adb5eda45071486f55112d))
+* **internal:** move custom custom `json` tags to `api` ([6eb7fad](https://github.com/bluehive-health/bluehive-sdk-go/commit/6eb7fad412b7b88e4f2e4c343f5bf82736ab8d49))
+* **internal:** remove mock server code ([8c835c4](https://github.com/bluehive-health/bluehive-sdk-go/commit/8c835c4a03c9aee4f2b81970aa0555e60b9f1110))
+* **internal:** support default value struct tag ([2aadfee](https://github.com/bluehive-health/bluehive-sdk-go/commit/2aadfee4d9aabee67aa775ad1ce9db94905576cf))
+* **internal:** tweak CI branches ([9e02176](https://github.com/bluehive-health/bluehive-sdk-go/commit/9e02176989242616a8dba95aabb0f26bfeded945))
+* **internal:** update `actions/checkout` version ([e9826dc](https://github.com/bluehive-health/bluehive-sdk-go/commit/e9826dccc2f370400d51cea3b55bc9938a972e70))
+* **internal:** update gitignore ([cdbc6ba](https://github.com/bluehive-health/bluehive-sdk-go/commit/cdbc6ba79a1d80cb7e9f0d63f4b2d77855feda76))
+* **internal:** use explicit returns ([08e3994](https://github.com/bluehive-health/bluehive-sdk-go/commit/08e3994d65d3ebc77468eb7725d5a7138610d0a4))
+* **internal:** use explicit returns in more places ([647b9a4](https://github.com/bluehive-health/bluehive-sdk-go/commit/647b9a4dcf8ffdd0d0e27e44103acf6b33440350))
+* remove unnecessary error check for url parsing ([6be7dfb](https://github.com/bluehive-health/bluehive-sdk-go/commit/6be7dfba26b1494ce9c3b6d4d75a7c46f7cd3c25))
+* update docs for api:"required" ([6fd8c71](https://github.com/bluehive-health/bluehive-sdk-go/commit/6fd8c7147af7c97925f07afa900a1cc0c1e294ab))
+* update mock server docs ([61d6e3e](https://github.com/bluehive-health/bluehive-sdk-go/commit/61d6e3e79cc40f7ba4f7548759a72e47ebca43e9))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([1739026](https://github.com/bluehive-health/bluehive-sdk-go/commit/17390262897acfa7cc8b0978574d688d350b1115))
+
 ## 0.1.0-alpha.14 (2025-10-05)
 
 Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)
