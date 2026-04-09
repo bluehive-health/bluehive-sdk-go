@@ -141,7 +141,7 @@ func (r *OrderService) UploadResults(ctx context.Context, orderID string, body O
 }
 
 // OrderNewResponseUnion contains all possible properties and values from
-// [OrderNewResponseObject], [OrderNewResponseObject].
+// [OrderNewResponseObject], [OrderNewResponseObject2].
 //
 // Use the methods beginning with 'As' to cast the union to one of its variants.
 type OrderNewResponseUnion struct {
@@ -149,21 +149,19 @@ type OrderNewResponseUnion struct {
 	OrderID string `json:"orderId"`
 	// This field is from variant [OrderNewResponseObject].
 	OrderNumber string `json:"orderNumber"`
-	// This field is from variant [OrderNewResponseObject].
-	Success bool `json:"success"`
+	Success     bool   `json:"success"`
 	// This field is from variant [OrderNewResponseObject].
 	HostedInvoiceURL string `json:"hostedInvoiceUrl"`
-	// This field is from variant [OrderNewResponseObject].
-	Message string `json:"message"`
-	// This field is from variant [OrderNewResponseObject].
-	PartialSuccess bool `json:"partialSuccess"`
+	Message          string `json:"message"`
+	PartialSuccess   bool   `json:"partialSuccess"`
 	// This field is from variant [OrderNewResponseObject].
 	SelfPay bool `json:"selfPay"`
-	// This field is from variant [OrderNewResponseObject].
-	UnavailableServices []OrderNewResponseObjectUnavailableService `json:"unavailableServices"`
-	// This field is from variant [OrderNewResponseObject].
-	OrderResults []OrderNewResponseObjectOrderResult `json:"orderResults"`
-	// This field is from variant [OrderNewResponseObject].
+	// This field is a union of [[]OrderNewResponseObjectUnavailableService],
+	// [[]OrderNewResponseObject2UnavailableService]
+	UnavailableServices OrderNewResponseUnionUnavailableServices `json:"unavailableServices"`
+	// This field is from variant [OrderNewResponseObject2].
+	OrderResults []OrderNewResponseObject2OrderResult `json:"orderResults"`
+	// This field is from variant [OrderNewResponseObject2].
 	Status string `json:"status"`
 	JSON   struct {
 		OrderID             respjson.Field
@@ -185,7 +183,7 @@ func (u OrderNewResponseUnion) AsOrderNewResponseObject() (v OrderNewResponseObj
 	return
 }
 
-func (u OrderNewResponseUnion) AsVariant2() (v OrderNewResponseObject) {
+func (u OrderNewResponseUnion) AsOrderNewResponseObject2() (v OrderNewResponseObject2) {
 	apijson.UnmarshalRoot(json.RawMessage(u.JSON.raw), &v)
 	return
 }
@@ -194,6 +192,34 @@ func (u OrderNewResponseUnion) AsVariant2() (v OrderNewResponseObject) {
 func (u OrderNewResponseUnion) RawJSON() string { return u.JSON.raw }
 
 func (r *OrderNewResponseUnion) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// OrderNewResponseUnionUnavailableServices is an implicit subunion of
+// [OrderNewResponseUnion]. OrderNewResponseUnionUnavailableServices provides
+// convenient access to the sub-properties of the union.
+//
+// For type safety it is recommended to directly use a variant of the
+// [OrderNewResponseUnion].
+//
+// If the underlying value is not a json object, one of the following properties
+// will be valid: OfOrderNewResponseObjectUnavailableServices
+// OfOrderNewResponseObject2UnavailableServices]
+type OrderNewResponseUnionUnavailableServices struct {
+	// This field will be present if the value is a
+	// [[]OrderNewResponseObjectUnavailableService] instead of an object.
+	OfOrderNewResponseObjectUnavailableServices []OrderNewResponseObjectUnavailableService `json:",inline"`
+	// This field will be present if the value is a
+	// [[]OrderNewResponseObject2UnavailableService] instead of an object.
+	OfOrderNewResponseObject2UnavailableServices []OrderNewResponseObject2UnavailableService `json:",inline"`
+	JSON                                         struct {
+		OfOrderNewResponseObjectUnavailableServices  respjson.Field
+		OfOrderNewResponseObject2UnavailableServices respjson.Field
+		raw                                          string
+	} `json:"-"`
+}
+
+func (r *OrderNewResponseUnionUnavailableServices) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -245,6 +271,74 @@ type OrderNewResponseObjectUnavailableService struct {
 // Returns the unmodified JSON received from the API
 func (r OrderNewResponseObjectUnavailableService) RawJSON() string { return r.JSON.raw }
 func (r *OrderNewResponseObjectUnavailableService) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type OrderNewResponseObject2 struct {
+	OrderResults []OrderNewResponseObject2OrderResult `json:"orderResults" api:"required"`
+	// Any of "split".
+	Status string `json:"status" api:"required"`
+	// Any of true.
+	Success             bool                                        `json:"success" api:"required"`
+	Message             string                                      `json:"message"`
+	PartialSuccess      bool                                        `json:"partialSuccess"`
+	UnavailableServices []OrderNewResponseObject2UnavailableService `json:"unavailableServices"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		OrderResults        respjson.Field
+		Status              respjson.Field
+		Success             respjson.Field
+		Message             respjson.Field
+		PartialSuccess      respjson.Field
+		UnavailableServices respjson.Field
+		ExtraFields         map[string]respjson.Field
+		raw                 string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r OrderNewResponseObject2) RawJSON() string { return r.JSON.raw }
+func (r *OrderNewResponseObject2) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type OrderNewResponseObject2OrderResult struct {
+	OrderID     string `json:"orderId" api:"required"`
+	OrderNumber string `json:"orderNumber" api:"required"`
+	ProviderID  string `json:"providerId" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		OrderID     respjson.Field
+		OrderNumber respjson.Field
+		ProviderID  respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r OrderNewResponseObject2OrderResult) RawJSON() string { return r.JSON.raw }
+func (r *OrderNewResponseObject2OrderResult) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type OrderNewResponseObject2UnavailableService struct {
+	Reason      string `json:"reason" api:"required"`
+	ServiceID   string `json:"serviceId" api:"required"`
+	ServiceName string `json:"serviceName"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Reason      respjson.Field
+		ServiceID   respjson.Field
+		ServiceName respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r OrderNewResponseObject2UnavailableService) RawJSON() string { return r.JSON.raw }
+func (r *OrderNewResponseObject2UnavailableService) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -394,25 +488,25 @@ func (r *OrderScheduleAppointmentResponse) UnmarshalJSON(data []byte) error {
 }
 
 // OrderSendForEmployeeResponseUnion contains all possible properties and values
-// from [OrderSendForEmployeeResponseObject], [OrderSendForEmployeeResponseObject].
+// from [OrderSendForEmployeeResponseObject],
+// [OrderSendForEmployeeResponseObject2].
 //
 // Use the methods beginning with 'As' to cast the union to one of its variants.
 type OrderSendForEmployeeResponseUnion struct {
 	// This field is from variant [OrderSendForEmployeeResponseObject].
 	OrderID string `json:"orderId"`
 	// This field is from variant [OrderSendForEmployeeResponseObject].
-	OrderNumber string `json:"orderNumber"`
-	// This field is from variant [OrderSendForEmployeeResponseObject].
-	Success bool `json:"success"`
-	// This field is from variant [OrderSendForEmployeeResponseObject].
-	Message string `json:"message"`
-	// This field is from variant [OrderSendForEmployeeResponseObject].
-	PartialSuccess bool `json:"partialSuccess"`
-	// This field is from variant [OrderSendForEmployeeResponseObject].
-	UnavailableServices []OrderSendForEmployeeResponseObjectUnavailableService `json:"unavailableServices"`
-	// This field is from variant [OrderSendForEmployeeResponseObject].
-	OrderResults []OrderSendForEmployeeResponseObjectOrderResult `json:"orderResults"`
-	// This field is from variant [OrderSendForEmployeeResponseObject].
+	OrderNumber    string `json:"orderNumber"`
+	Success        bool   `json:"success"`
+	Message        string `json:"message"`
+	PartialSuccess bool   `json:"partialSuccess"`
+	// This field is a union of
+	// [[]OrderSendForEmployeeResponseObjectUnavailableService],
+	// [[]OrderSendForEmployeeResponseObject2UnavailableService]
+	UnavailableServices OrderSendForEmployeeResponseUnionUnavailableServices `json:"unavailableServices"`
+	// This field is from variant [OrderSendForEmployeeResponseObject2].
+	OrderResults []OrderSendForEmployeeResponseObject2OrderResult `json:"orderResults"`
+	// This field is from variant [OrderSendForEmployeeResponseObject2].
 	Status string `json:"status"`
 	JSON   struct {
 		OrderID             respjson.Field
@@ -432,7 +526,7 @@ func (u OrderSendForEmployeeResponseUnion) AsOrderSendForEmployeeResponseObject(
 	return
 }
 
-func (u OrderSendForEmployeeResponseUnion) AsVariant2() (v OrderSendForEmployeeResponseObject) {
+func (u OrderSendForEmployeeResponseUnion) AsOrderSendForEmployeeResponseObject2() (v OrderSendForEmployeeResponseObject2) {
 	apijson.UnmarshalRoot(json.RawMessage(u.JSON.raw), &v)
 	return
 }
@@ -441,6 +535,35 @@ func (u OrderSendForEmployeeResponseUnion) AsVariant2() (v OrderSendForEmployeeR
 func (u OrderSendForEmployeeResponseUnion) RawJSON() string { return u.JSON.raw }
 
 func (r *OrderSendForEmployeeResponseUnion) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// OrderSendForEmployeeResponseUnionUnavailableServices is an implicit subunion of
+// [OrderSendForEmployeeResponseUnion].
+// OrderSendForEmployeeResponseUnionUnavailableServices provides convenient access
+// to the sub-properties of the union.
+//
+// For type safety it is recommended to directly use a variant of the
+// [OrderSendForEmployeeResponseUnion].
+//
+// If the underlying value is not a json object, one of the following properties
+// will be valid: OfOrderSendForEmployeeResponseObjectUnavailableServices
+// OfOrderSendForEmployeeResponseObject2UnavailableServices]
+type OrderSendForEmployeeResponseUnionUnavailableServices struct {
+	// This field will be present if the value is a
+	// [[]OrderSendForEmployeeResponseObjectUnavailableService] instead of an object.
+	OfOrderSendForEmployeeResponseObjectUnavailableServices []OrderSendForEmployeeResponseObjectUnavailableService `json:",inline"`
+	// This field will be present if the value is a
+	// [[]OrderSendForEmployeeResponseObject2UnavailableService] instead of an object.
+	OfOrderSendForEmployeeResponseObject2UnavailableServices []OrderSendForEmployeeResponseObject2UnavailableService `json:",inline"`
+	JSON                                                     struct {
+		OfOrderSendForEmployeeResponseObjectUnavailableServices  respjson.Field
+		OfOrderSendForEmployeeResponseObject2UnavailableServices respjson.Field
+		raw                                                      string
+	} `json:"-"`
+}
+
+func (r *OrderSendForEmployeeResponseUnionUnavailableServices) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -494,6 +617,77 @@ func (r *OrderSendForEmployeeResponseObjectUnavailableService) UnmarshalJSON(dat
 	return apijson.UnmarshalRoot(data, r)
 }
 
+type OrderSendForEmployeeResponseObject2 struct {
+	OrderResults []OrderSendForEmployeeResponseObject2OrderResult `json:"orderResults" api:"required"`
+	// Any of "split".
+	Status string `json:"status" api:"required"`
+	// Any of true.
+	Success bool   `json:"success" api:"required"`
+	Message string `json:"message"`
+	// True when some services were unavailable but orders were still created
+	PartialSuccess bool `json:"partialSuccess"`
+	// Services that could not be included in any order
+	UnavailableServices []OrderSendForEmployeeResponseObject2UnavailableService `json:"unavailableServices"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		OrderResults        respjson.Field
+		Status              respjson.Field
+		Success             respjson.Field
+		Message             respjson.Field
+		PartialSuccess      respjson.Field
+		UnavailableServices respjson.Field
+		ExtraFields         map[string]respjson.Field
+		raw                 string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r OrderSendForEmployeeResponseObject2) RawJSON() string { return r.JSON.raw }
+func (r *OrderSendForEmployeeResponseObject2) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type OrderSendForEmployeeResponseObject2OrderResult struct {
+	OrderID     string `json:"orderId" api:"required"`
+	OrderNumber string `json:"orderNumber" api:"required"`
+	ProviderID  string `json:"providerId" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		OrderID     respjson.Field
+		OrderNumber respjson.Field
+		ProviderID  respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r OrderSendForEmployeeResponseObject2OrderResult) RawJSON() string { return r.JSON.raw }
+func (r *OrderSendForEmployeeResponseObject2OrderResult) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type OrderSendForEmployeeResponseObject2UnavailableService struct {
+	// Why the service was unavailable
+	Reason      string `json:"reason" api:"required"`
+	ServiceID   string `json:"serviceId" api:"required"`
+	ServiceName string `json:"serviceName"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Reason      respjson.Field
+		ServiceID   respjson.Field
+		ServiceName respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r OrderSendForEmployeeResponseObject2UnavailableService) RawJSON() string { return r.JSON.raw }
+func (r *OrderSendForEmployeeResponseObject2UnavailableService) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
 type OrderUpdateStatusResponse struct {
 	Message string `json:"message"`
 	Success bool   `json:"success"`
@@ -539,17 +733,17 @@ type OrderNewParams struct {
 	// This field is a request body variant, only one variant field can be set.
 	OfObject *OrderNewParamsBodyObject `json:",inline"`
 	// This field is a request body variant, only one variant field can be set.
-	OfOrderNewsBodyObject *OrderNewParamsBodyObject `json:",inline"`
+	OfOrderNewsBodyObject2 *OrderNewParamsBodyObject2 `json:",inline"`
 	// This field is a request body variant, only one variant field can be set.
-	OfVariant2 *OrderNewParamsBodyObject `json:",inline"`
+	OfOrderNewsBodyObject3 *OrderNewParamsBodyObject3 `json:",inline"`
 	// This field is a request body variant, only one variant field can be set.
-	OfVariant3 *OrderNewParamsBodyObject `json:",inline"`
+	OfOrderNewsBodyObject4 *OrderNewParamsBodyObject4 `json:",inline"`
 
 	paramObj
 }
 
 func (u OrderNewParams) MarshalJSON() ([]byte, error) {
-	return param.MarshalUnion(u, u.OfObject, u.OfOrderNewsBodyObject, u.OfVariant2, u.OfVariant3)
+	return param.MarshalUnion(u, u.OfObject, u.OfOrderNewsBodyObject2, u.OfOrderNewsBodyObject3, u.OfOrderNewsBodyObject4)
 }
 func (r *OrderNewParams) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
@@ -660,6 +854,321 @@ func (r *OrderNewParamsBodyObjectProvidersID) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
+// The properties EmployeeID, EmployerID, Services are required.
+type OrderNewParamsBodyObject2 struct {
+	EmployeeID      string                             `json:"employeeId" api:"required"`
+	EmployerID      string                             `json:"employerId" api:"required"`
+	Services        []OrderNewParamsBodyObject2Service `json:"services,omitzero" api:"required"`
+	ID              param.Opt[string]                  `json:"_id,omitzero"`
+	BrandID         param.Opt[string]                  `json:"brandId,omitzero"`
+	DueDate         param.Opt[time.Time]               `json:"dueDate,omitzero" format:"date-time"`
+	ProviderCreated param.Opt[bool]                    `json:"providerCreated,omitzero"`
+	ProviderID      param.Opt[string]                  `json:"providerId,omitzero"`
+	ReCaptchaToken  param.Opt[string]                  `json:"reCaptchaToken,omitzero"`
+	TokenID         param.Opt[string]                  `json:"tokenId,omitzero"`
+	DueDates        []time.Time                        `json:"dueDates,omitzero" format:"date-time"`
+	EmployeeIDs     []string                           `json:"employeeIds,omitzero"`
+	// Optional arbitrary metadata (<=10KB when JSON stringified)
+	Metadata map[string]any `json:"metadata,omitzero"`
+	// Any of "self-pay", "employer-sponsored".
+	PaymentMethod string                          `json:"paymentMethod,omitzero"`
+	Person        OrderNewParamsBodyObject2Person `json:"person,omitzero"`
+	// Order priority level
+	//
+	// Any of "normal", "high".
+	Priority     string                                 `json:"priority,omitzero"`
+	ProvidersIDs []OrderNewParamsBodyObject2ProvidersID `json:"providersIds,omitzero"`
+	Quantities   map[string]int64                       `json:"quantities,omitzero"`
+	ServicesIDs  []string                               `json:"servicesIds,omitzero"`
+	paramObj
+}
+
+func (r OrderNewParamsBodyObject2) MarshalJSON() (data []byte, err error) {
+	type shadow OrderNewParamsBodyObject2
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OrderNewParamsBodyObject2) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func init() {
+	apijson.RegisterFieldValidator[OrderNewParamsBodyObject2](
+		"paymentMethod", "self-pay", "employer-sponsored",
+	)
+	apijson.RegisterFieldValidator[OrderNewParamsBodyObject2](
+		"priority", "normal", "high",
+	)
+}
+
+// The properties ID, Quantity are required.
+type OrderNewParamsBodyObject2Service struct {
+	ID         string          `json:"_id" api:"required"`
+	Quantity   int64           `json:"quantity" api:"required"`
+	AutoAccept param.Opt[bool] `json:"autoAccept,omitzero"`
+	paramObj
+}
+
+func (r OrderNewParamsBodyObject2Service) MarshalJSON() (data []byte, err error) {
+	type shadow OrderNewParamsBodyObject2Service
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OrderNewParamsBodyObject2Service) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// The properties City, Dob, Email, FirstName, LastName, Phone, State, Street,
+// Zipcode are required.
+type OrderNewParamsBodyObject2Person struct {
+	City string `json:"city" api:"required"`
+	// Date of birth in YYYY-MM-DD format
+	Dob       string `json:"dob" api:"required"`
+	Email     string `json:"email" api:"required"`
+	FirstName string `json:"firstName" api:"required"`
+	LastName  string `json:"lastName" api:"required"`
+	Phone     string `json:"phone" api:"required"`
+	State     string `json:"state" api:"required"`
+	Street    string `json:"street" api:"required"`
+	// US ZIP code in 12345 or 12345-6789 format
+	Zipcode string            `json:"zipcode" api:"required"`
+	Country param.Opt[string] `json:"country,omitzero"`
+	County  param.Opt[string] `json:"county,omitzero"`
+	Street2 param.Opt[string] `json:"street2,omitzero"`
+	paramObj
+}
+
+func (r OrderNewParamsBodyObject2Person) MarshalJSON() (data []byte, err error) {
+	type shadow OrderNewParamsBodyObject2Person
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OrderNewParamsBodyObject2Person) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// The property ProviderID is required.
+type OrderNewParamsBodyObject2ProvidersID struct {
+	ProviderID string            `json:"providerId" api:"required"`
+	ServiceID  param.Opt[string] `json:"serviceId,omitzero"`
+	paramObj
+}
+
+func (r OrderNewParamsBodyObject2ProvidersID) MarshalJSON() (data []byte, err error) {
+	type shadow OrderNewParamsBodyObject2ProvidersID
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OrderNewParamsBodyObject2ProvidersID) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// The properties EmployeeID, EmployerID, ProvidersIDs, ServicesIDs are required.
+type OrderNewParamsBodyObject3 struct {
+	EmployeeID      string                                 `json:"employeeId" api:"required"`
+	EmployerID      string                                 `json:"employerId" api:"required"`
+	ProvidersIDs    []OrderNewParamsBodyObject3ProvidersID `json:"providersIds,omitzero" api:"required"`
+	ServicesIDs     []string                               `json:"servicesIds,omitzero" api:"required"`
+	ID              param.Opt[string]                      `json:"_id,omitzero"`
+	BrandID         param.Opt[string]                      `json:"brandId,omitzero"`
+	DueDate         param.Opt[time.Time]                   `json:"dueDate,omitzero" format:"date-time"`
+	ProviderCreated param.Opt[bool]                        `json:"providerCreated,omitzero"`
+	ProviderID      param.Opt[string]                      `json:"providerId,omitzero"`
+	ReCaptchaToken  param.Opt[string]                      `json:"reCaptchaToken,omitzero"`
+	TokenID         param.Opt[string]                      `json:"tokenId,omitzero"`
+	DueDates        []time.Time                            `json:"dueDates,omitzero" format:"date-time"`
+	EmployeeIDs     []string                               `json:"employeeIds,omitzero"`
+	// Optional arbitrary metadata (<=10KB when JSON stringified)
+	Metadata map[string]any `json:"metadata,omitzero"`
+	// Any of "self-pay", "employer-sponsored".
+	PaymentMethod string                          `json:"paymentMethod,omitzero"`
+	Person        OrderNewParamsBodyObject3Person `json:"person,omitzero"`
+	// Order priority level
+	//
+	// Any of "normal", "high".
+	Priority   string                             `json:"priority,omitzero"`
+	Quantities map[string]int64                   `json:"quantities,omitzero"`
+	Services   []OrderNewParamsBodyObject3Service `json:"services,omitzero"`
+	paramObj
+}
+
+func (r OrderNewParamsBodyObject3) MarshalJSON() (data []byte, err error) {
+	type shadow OrderNewParamsBodyObject3
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OrderNewParamsBodyObject3) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func init() {
+	apijson.RegisterFieldValidator[OrderNewParamsBodyObject3](
+		"paymentMethod", "self-pay", "employer-sponsored",
+	)
+	apijson.RegisterFieldValidator[OrderNewParamsBodyObject3](
+		"priority", "normal", "high",
+	)
+}
+
+// The property ProviderID is required.
+type OrderNewParamsBodyObject3ProvidersID struct {
+	ProviderID string            `json:"providerId" api:"required"`
+	ServiceID  param.Opt[string] `json:"serviceId,omitzero"`
+	paramObj
+}
+
+func (r OrderNewParamsBodyObject3ProvidersID) MarshalJSON() (data []byte, err error) {
+	type shadow OrderNewParamsBodyObject3ProvidersID
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OrderNewParamsBodyObject3ProvidersID) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// The properties City, Dob, Email, FirstName, LastName, Phone, State, Street,
+// Zipcode are required.
+type OrderNewParamsBodyObject3Person struct {
+	City string `json:"city" api:"required"`
+	// Date of birth in YYYY-MM-DD format
+	Dob       string `json:"dob" api:"required"`
+	Email     string `json:"email" api:"required"`
+	FirstName string `json:"firstName" api:"required"`
+	LastName  string `json:"lastName" api:"required"`
+	Phone     string `json:"phone" api:"required"`
+	State     string `json:"state" api:"required"`
+	Street    string `json:"street" api:"required"`
+	// US ZIP code in 12345 or 12345-6789 format
+	Zipcode string            `json:"zipcode" api:"required"`
+	Country param.Opt[string] `json:"country,omitzero"`
+	County  param.Opt[string] `json:"county,omitzero"`
+	Street2 param.Opt[string] `json:"street2,omitzero"`
+	paramObj
+}
+
+func (r OrderNewParamsBodyObject3Person) MarshalJSON() (data []byte, err error) {
+	type shadow OrderNewParamsBodyObject3Person
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OrderNewParamsBodyObject3Person) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// The properties ID, Quantity are required.
+type OrderNewParamsBodyObject3Service struct {
+	ID         string          `json:"_id" api:"required"`
+	Quantity   int64           `json:"quantity" api:"required"`
+	AutoAccept param.Opt[bool] `json:"autoAccept,omitzero"`
+	paramObj
+}
+
+func (r OrderNewParamsBodyObject3Service) MarshalJSON() (data []byte, err error) {
+	type shadow OrderNewParamsBodyObject3Service
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OrderNewParamsBodyObject3Service) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// The properties EmployeeIDs, EmployerID, ProvidersIDs, ServicesIDs are required.
+type OrderNewParamsBodyObject4 struct {
+	EmployeeIDs     []string                               `json:"employeeIds,omitzero" api:"required"`
+	EmployerID      string                                 `json:"employerId" api:"required"`
+	ProvidersIDs    []OrderNewParamsBodyObject4ProvidersID `json:"providersIds,omitzero" api:"required"`
+	ServicesIDs     []string                               `json:"servicesIds,omitzero" api:"required"`
+	ID              param.Opt[string]                      `json:"_id,omitzero"`
+	BrandID         param.Opt[string]                      `json:"brandId,omitzero"`
+	DueDate         param.Opt[time.Time]                   `json:"dueDate,omitzero" format:"date-time"`
+	EmployeeID      param.Opt[string]                      `json:"employeeId,omitzero"`
+	ProviderCreated param.Opt[bool]                        `json:"providerCreated,omitzero"`
+	ProviderID      param.Opt[string]                      `json:"providerId,omitzero"`
+	ReCaptchaToken  param.Opt[string]                      `json:"reCaptchaToken,omitzero"`
+	TokenID         param.Opt[string]                      `json:"tokenId,omitzero"`
+	DueDates        []time.Time                            `json:"dueDates,omitzero" format:"date-time"`
+	// Optional arbitrary metadata (<=10KB when JSON stringified)
+	Metadata map[string]any `json:"metadata,omitzero"`
+	// Any of "self-pay", "employer-sponsored".
+	PaymentMethod string                          `json:"paymentMethod,omitzero"`
+	Person        OrderNewParamsBodyObject4Person `json:"person,omitzero"`
+	// Order priority level
+	//
+	// Any of "normal", "high".
+	Priority   string                             `json:"priority,omitzero"`
+	Quantities map[string]int64                   `json:"quantities,omitzero"`
+	Services   []OrderNewParamsBodyObject4Service `json:"services,omitzero"`
+	paramObj
+}
+
+func (r OrderNewParamsBodyObject4) MarshalJSON() (data []byte, err error) {
+	type shadow OrderNewParamsBodyObject4
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OrderNewParamsBodyObject4) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func init() {
+	apijson.RegisterFieldValidator[OrderNewParamsBodyObject4](
+		"paymentMethod", "self-pay", "employer-sponsored",
+	)
+	apijson.RegisterFieldValidator[OrderNewParamsBodyObject4](
+		"priority", "normal", "high",
+	)
+}
+
+// The property ProviderID is required.
+type OrderNewParamsBodyObject4ProvidersID struct {
+	ProviderID string            `json:"providerId" api:"required"`
+	ServiceID  param.Opt[string] `json:"serviceId,omitzero"`
+	paramObj
+}
+
+func (r OrderNewParamsBodyObject4ProvidersID) MarshalJSON() (data []byte, err error) {
+	type shadow OrderNewParamsBodyObject4ProvidersID
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OrderNewParamsBodyObject4ProvidersID) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// The properties City, Dob, Email, FirstName, LastName, Phone, State, Street,
+// Zipcode are required.
+type OrderNewParamsBodyObject4Person struct {
+	City string `json:"city" api:"required"`
+	// Date of birth in YYYY-MM-DD format
+	Dob       string `json:"dob" api:"required"`
+	Email     string `json:"email" api:"required"`
+	FirstName string `json:"firstName" api:"required"`
+	LastName  string `json:"lastName" api:"required"`
+	Phone     string `json:"phone" api:"required"`
+	State     string `json:"state" api:"required"`
+	Street    string `json:"street" api:"required"`
+	// US ZIP code in 12345 or 12345-6789 format
+	Zipcode string            `json:"zipcode" api:"required"`
+	Country param.Opt[string] `json:"country,omitzero"`
+	County  param.Opt[string] `json:"county,omitzero"`
+	Street2 param.Opt[string] `json:"street2,omitzero"`
+	paramObj
+}
+
+func (r OrderNewParamsBodyObject4Person) MarshalJSON() (data []byte, err error) {
+	type shadow OrderNewParamsBodyObject4Person
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OrderNewParamsBodyObject4Person) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// The properties ID, Quantity are required.
+type OrderNewParamsBodyObject4Service struct {
+	ID         string          `json:"_id" api:"required"`
+	Quantity   int64           `json:"quantity" api:"required"`
+	AutoAccept param.Opt[bool] `json:"autoAccept,omitzero"`
+	paramObj
+}
+
+func (r OrderNewParamsBodyObject4Service) MarshalJSON() (data []byte, err error) {
+	type shadow OrderNewParamsBodyObject4Service
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OrderNewParamsBodyObject4Service) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
 type OrderUpdateParams struct {
 	// Arbitrary metadata to update on the order (non-indexed passthrough, <=10KB when
 	// JSON stringified)
@@ -753,13 +1262,13 @@ func (r *OrderScheduleAppointmentParams) UnmarshalJSON(data []byte) error {
 //
 // Use [param.IsOmitted] to confirm if a field is set.
 type OrderScheduleAppointmentParamsAppointmentUnion struct {
-	OfOrderScheduleAppointmentsAppointmentObject *OrderScheduleAppointmentParamsAppointmentObject `json:",omitzero,inline"`
-	OfVariant2                                   *OrderScheduleAppointmentParamsAppointmentObject `json:",omitzero,inline"`
+	OfOrderScheduleAppointmentsAppointmentObject  *OrderScheduleAppointmentParamsAppointmentObject  `json:",omitzero,inline"`
+	OfOrderScheduleAppointmentsAppointmentObject2 *OrderScheduleAppointmentParamsAppointmentObject2 `json:",omitzero,inline"`
 	paramUnion
 }
 
 func (u OrderScheduleAppointmentParamsAppointmentUnion) MarshalJSON() ([]byte, error) {
-	return param.MarshalUnion(u, u.OfOrderScheduleAppointmentsAppointmentObject, u.OfVariant2)
+	return param.MarshalUnion(u, u.OfOrderScheduleAppointmentsAppointmentObject, u.OfOrderScheduleAppointmentsAppointmentObject2)
 }
 func (u *OrderScheduleAppointmentParamsAppointmentUnion) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, u)
@@ -768,8 +1277,8 @@ func (u *OrderScheduleAppointmentParamsAppointmentUnion) UnmarshalJSON(data []by
 func (u *OrderScheduleAppointmentParamsAppointmentUnion) asAny() any {
 	if !param.IsOmitted(u.OfOrderScheduleAppointmentsAppointmentObject) {
 		return u.OfOrderScheduleAppointmentsAppointmentObject
-	} else if !param.IsOmitted(u.OfVariant2) {
-		return u.OfVariant2
+	} else if !param.IsOmitted(u.OfOrderScheduleAppointmentsAppointmentObject2) {
+		return u.OfOrderScheduleAppointmentsAppointmentObject2
 	}
 	return nil
 }
@@ -778,7 +1287,7 @@ func (u *OrderScheduleAppointmentParamsAppointmentUnion) asAny() any {
 func (u OrderScheduleAppointmentParamsAppointmentUnion) GetDate() *string {
 	if vt := u.OfOrderScheduleAppointmentsAppointmentObject; vt != nil {
 		return (*string)(&vt.Date)
-	} else if vt := u.OfVariant2; vt != nil && vt.Date.Valid() {
+	} else if vt := u.OfOrderScheduleAppointmentsAppointmentObject2; vt != nil && vt.Date.Valid() {
 		return &vt.Date.Value
 	}
 	return nil
@@ -788,7 +1297,7 @@ func (u OrderScheduleAppointmentParamsAppointmentUnion) GetDate() *string {
 func (u OrderScheduleAppointmentParamsAppointmentUnion) GetTime() *string {
 	if vt := u.OfOrderScheduleAppointmentsAppointmentObject; vt != nil {
 		return (*string)(&vt.Time)
-	} else if vt := u.OfVariant2; vt != nil && vt.Time.Valid() {
+	} else if vt := u.OfOrderScheduleAppointmentsAppointmentObject2; vt != nil && vt.Time.Valid() {
 		return &vt.Time.Value
 	}
 	return nil
@@ -798,7 +1307,7 @@ func (u OrderScheduleAppointmentParamsAppointmentUnion) GetTime() *string {
 func (u OrderScheduleAppointmentParamsAppointmentUnion) GetNotes() *string {
 	if vt := u.OfOrderScheduleAppointmentsAppointmentObject; vt != nil && vt.Notes.Valid() {
 		return &vt.Notes.Value
-	} else if vt := u.OfVariant2; vt != nil && vt.Notes.Valid() {
+	} else if vt := u.OfOrderScheduleAppointmentsAppointmentObject2; vt != nil && vt.Notes.Valid() {
 		return &vt.Notes.Value
 	}
 	return nil
@@ -808,7 +1317,7 @@ func (u OrderScheduleAppointmentParamsAppointmentUnion) GetNotes() *string {
 func (u OrderScheduleAppointmentParamsAppointmentUnion) GetType() *string {
 	if vt := u.OfOrderScheduleAppointmentsAppointmentObject; vt != nil {
 		return (*string)(&vt.Type)
-	} else if vt := u.OfVariant2; vt != nil {
+	} else if vt := u.OfOrderScheduleAppointmentsAppointmentObject2; vt != nil {
 		return (*string)(&vt.Type)
 	}
 	return nil
@@ -818,7 +1327,7 @@ func (u OrderScheduleAppointmentParamsAppointmentUnion) GetType() *string {
 func (u OrderScheduleAppointmentParamsAppointmentUnion) GetDateTime() *time.Time {
 	if vt := u.OfOrderScheduleAppointmentsAppointmentObject; vt != nil {
 		return &vt.DateTime
-	} else if vt := u.OfVariant2; vt != nil && vt.DateTime.Valid() {
+	} else if vt := u.OfOrderScheduleAppointmentsAppointmentObject2; vt != nil && vt.DateTime.Valid() {
 		return &vt.DateTime.Value
 	}
 	return nil
@@ -850,6 +1359,34 @@ func (r *OrderScheduleAppointmentParamsAppointmentObject) UnmarshalJSON(data []b
 func init() {
 	apijson.RegisterFieldValidator[OrderScheduleAppointmentParamsAppointmentObject](
 		"type", "appointment",
+	)
+}
+
+type OrderScheduleAppointmentParamsAppointmentObject2 struct {
+	// Required for appointment type
+	Date param.Opt[string] `json:"date,omitzero"`
+	// Required for appointment type
+	DateTime param.Opt[time.Time] `json:"dateTime,omitzero" format:"date-time"`
+	// Optional for walkin type
+	Notes param.Opt[string] `json:"notes,omitzero"`
+	// Required for appointment type
+	Time param.Opt[string] `json:"time,omitzero"`
+	// Any of "walkin".
+	Type string `json:"type,omitzero"`
+	paramObj
+}
+
+func (r OrderScheduleAppointmentParamsAppointmentObject2) MarshalJSON() (data []byte, err error) {
+	type shadow OrderScheduleAppointmentParamsAppointmentObject2
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OrderScheduleAppointmentParamsAppointmentObject2) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func init() {
+	apijson.RegisterFieldValidator[OrderScheduleAppointmentParamsAppointmentObject2](
+		"type", "walkin",
 	)
 }
 
