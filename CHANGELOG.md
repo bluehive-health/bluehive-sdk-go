@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.16 (2026-04-26)
+
+Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
+
+### Features
+
+* **go:** add default http client with timeout ([9896e9a](https://github.com/bluehive-health/bluehive-sdk-go/commit/9896e9aa1067a478e10144960a4de6d283ab2e44))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([f0a6f59](https://github.com/bluehive-health/bluehive-sdk-go/commit/f0a6f59993f8b86f3f36b9cb80422c5ab4166e1a))
+
 ## 0.1.0-alpha.15 (2026-04-09)
 
 Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
