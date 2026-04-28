@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.17 (2026-04-28)
+
+Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
+
+### Features
+
+* support setting headers via env ([81e12ea](https://github.com/bluehive-health/bluehive-sdk-go/commit/81e12ea5e68dfa00b00ee0b9196bb987b82742fe))
+
 ## 0.1.0-alpha.16 (2026-04-26)
 
 Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
