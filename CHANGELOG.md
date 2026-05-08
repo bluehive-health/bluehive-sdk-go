@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.18 (2026-05-08)
+
+Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
+
+### Bug Fixes
+
+* **go:** avoid panic when http.DefaultTransport is wrapped ([32e913f](https://github.com/bluehive-health/bluehive-sdk-go/commit/32e913f55ef9bf0aa7a9394bba816005d18a74d6))
+
+
+### Chores
+
+* avoid embedding reflect.Type for dead code elimination ([7dd8d92](https://github.com/bluehive-health/bluehive-sdk-go/commit/7dd8d92bb41aa31969022b8e4aee382ba4fea104))
+* redact api-key headers in debug logs ([4946952](https://github.com/bluehive-health/bluehive-sdk-go/commit/494695209edca3fb01f2e96e9d9404252028fa43))
+
 ## 0.1.0-alpha.17 (2026-04-28)
 
 Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
