@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.19 (2026-05-14)
+
+Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
+
+### Features
+
+* **client:** optimize json encoder for internal types ([35a7d12](https://github.com/bluehive-health/bluehive-sdk-go/commit/35a7d12f4030e8277169bbb5943c951e03913782))
+
 ## 0.1.0-alpha.18 (2026-05-08)
 
 Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
