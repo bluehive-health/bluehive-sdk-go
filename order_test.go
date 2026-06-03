@@ -123,12 +123,14 @@ func TestOrderUpdateWithOptionalParams(t *testing.T) {
 		context.TODO(),
 		"orderId",
 		githubcombluehivehealthbluehivesdkgo.OrderUpdateParams{
+			ExpirationDate: githubcombluehivehealthbluehivesdkgo.Time(time.Now()),
 			Metadata: map[string]any{
 				"foo": "bar",
 			},
 			Services: []githubcombluehivehealthbluehivesdkgo.OrderUpdateParamsService{{
-				ServiceID: "x",
-				DueDate:   githubcombluehivehealthbluehivesdkgo.Time(time.Now()),
+				ServiceID:      "x",
+				DueDate:        githubcombluehivehealthbluehivesdkgo.Time(time.Now()),
+				ExpirationDate: githubcombluehivehealthbluehivesdkgo.Time(time.Now()),
 				Results: map[string]any{
 					"foo": "bar",
 				},
@@ -239,12 +241,13 @@ func TestOrderSendForEmployeeWithOptionalParams(t *testing.T) {
 			ProviderID: "providerId",
 			ServiceID:  githubcombluehivehealthbluehivesdkgo.String("serviceId"),
 		}},
-		ServicesIDs: []string{"string"},
-		LoginToken:  "login-token",
-		UserID:      "user-id",
-		BrandID:     githubcombluehivehealthbluehivesdkgo.String("brandId"),
-		DueDate:     githubcombluehivehealthbluehivesdkgo.String("dueDate"),
-		DueDates:    []string{"string"},
+		ServicesIDs:    []string{"string"},
+		LoginToken:     "login-token",
+		UserID:         "user-id",
+		BrandID:        githubcombluehivehealthbluehivesdkgo.String("brandId"),
+		DueDate:        githubcombluehivehealthbluehivesdkgo.String("dueDate"),
+		DueDates:       []string{"string"},
+		ExpirationDate: githubcombluehivehealthbluehivesdkgo.String("expirationDate"),
 		Metadata: map[string]any{
 			"foo": "bar",
 		},
