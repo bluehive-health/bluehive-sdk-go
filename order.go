@@ -1170,6 +1170,9 @@ func (r *OrderNewParamsBodyObject4Service) UnmarshalJSON(data []byte) error {
 }
 
 type OrderUpdateParams struct {
+	// Order expiration date (ISO 8601 format). Set to null to remove the expiration
+	// date.
+	ExpirationDate param.Opt[time.Time] `json:"expirationDate,omitzero" format:"date-time"`
 	// Arbitrary metadata to update on the order (non-indexed passthrough, <=10KB when
 	// JSON stringified)
 	Metadata map[string]any             `json:"metadata,omitzero"`
@@ -1192,7 +1195,9 @@ func (r *OrderUpdateParams) UnmarshalJSON(data []byte) error {
 type OrderUpdateParamsService struct {
 	ServiceID string               `json:"serviceId" api:"required"`
 	DueDate   param.Opt[time.Time] `json:"dueDate,omitzero" format:"date-time"`
-	Results   map[string]any       `json:"results,omitzero"`
+	// Service-level expiration date
+	ExpirationDate param.Opt[time.Time] `json:"expirationDate,omitzero" format:"date-time"`
+	Results        map[string]any       `json:"results,omitzero"`
 	// Any of "pending", "in_progress", "completed", "cancelled", "rejected".
 	Status string `json:"status,omitzero"`
 	paramObj
@@ -1405,6 +1410,8 @@ type OrderSendForEmployeeParams struct {
 	BrandID param.Opt[string] `json:"brandId,omitzero"`
 	// Due date for the order (date or date-time ISO string)
 	DueDate param.Opt[string] `json:"dueDate,omitzero"`
+	// Expiration date for the order (date or date-time ISO string)
+	ExpirationDate param.Opt[string] `json:"expirationDate,omitzero"`
 	// Whether this order is being created by a provider (affects permission checking)
 	ProviderCreated param.Opt[bool] `json:"providerCreated,omitzero"`
 	// Single provider ID (shortcut when all services map to one provider)
