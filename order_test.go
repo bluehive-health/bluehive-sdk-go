@@ -267,36 +267,6 @@ func TestOrderSendForEmployeeWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestOrderUpdateStatusWithOptionalParams(t *testing.T) {
-	t.Skip("Mock server tests are disabled")
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := githubcombluehivehealthbluehivesdkgo.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithAPIKey("My API Key"),
-	)
-	_, err := client.Orders.UpdateStatus(
-		context.TODO(),
-		"orderId",
-		githubcombluehivehealthbluehivesdkgo.OrderUpdateStatusParams{
-			Status:  githubcombluehivehealthbluehivesdkgo.OrderUpdateStatusParamsStatusOrderSent,
-			Message: githubcombluehivehealthbluehivesdkgo.String("message"),
-		},
-	)
-	if err != nil {
-		var apierr *githubcombluehivehealthbluehivesdkgo.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
-	}
-}
-
 func TestOrderUploadResultsWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"

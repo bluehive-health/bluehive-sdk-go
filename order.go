@@ -115,18 +115,6 @@ func (r *OrderService) SendForEmployee(ctx context.Context, params OrderSendForE
 	return res, err
 }
 
-// Update the status of an existing order
-func (r *OrderService) UpdateStatus(ctx context.Context, orderID string, body OrderUpdateStatusParams, opts ...option.RequestOption) (res *OrderUpdateStatusResponse, err error) {
-	opts = slices.Concat(r.Options, opts)
-	if orderID == "" {
-		err = errors.New("missing required orderId parameter")
-		return nil, err
-	}
-	path := fmt.Sprintf("v1/orders/%s/status", orderID)
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, &res, opts...)
-	return res, err
-}
-
 // Upload test results for a specific order item. Supports both existing fileIds
 // and base64 encoded files. Requires order access code and employee verification.
 func (r *OrderService) UploadResults(ctx context.Context, orderID string, body OrderUploadResultsParams, opts ...option.RequestOption) (res *OrderUploadResultsResponse, err error) {
@@ -685,24 +673,6 @@ type OrderSendForEmployeeResponseObject2UnavailableService struct {
 // Returns the unmodified JSON received from the API
 func (r OrderSendForEmployeeResponseObject2UnavailableService) RawJSON() string { return r.JSON.raw }
 func (r *OrderSendForEmployeeResponseObject2UnavailableService) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type OrderUpdateStatusResponse struct {
-	Message string `json:"message"`
-	Success bool   `json:"success"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		Message     respjson.Field
-		Success     respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r OrderUpdateStatusResponse) RawJSON() string { return r.JSON.raw }
-func (r *OrderUpdateStatusResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -1459,33 +1429,6 @@ type OrderSendForEmployeeParamsPriority string
 const (
 	OrderSendForEmployeeParamsPriorityNormal OrderSendForEmployeeParamsPriority = "normal"
 	OrderSendForEmployeeParamsPriorityHigh   OrderSendForEmployeeParamsPriority = "high"
-)
-
-type OrderUpdateStatusParams struct {
-	// Any of "order_sent", "order_accepted", "order_refused", "employee_confirmed",
-	// "order_fulfilled", "order_complete".
-	Status  OrderUpdateStatusParamsStatus `json:"status,omitzero" api:"required"`
-	Message param.Opt[string]             `json:"message,omitzero"`
-	paramObj
-}
-
-func (r OrderUpdateStatusParams) MarshalJSON() (data []byte, err error) {
-	type shadow OrderUpdateStatusParams
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *OrderUpdateStatusParams) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type OrderUpdateStatusParamsStatus string
-
-const (
-	OrderUpdateStatusParamsStatusOrderSent         OrderUpdateStatusParamsStatus = "order_sent"
-	OrderUpdateStatusParamsStatusOrderAccepted     OrderUpdateStatusParamsStatus = "order_accepted"
-	OrderUpdateStatusParamsStatusOrderRefused      OrderUpdateStatusParamsStatus = "order_refused"
-	OrderUpdateStatusParamsStatusEmployeeConfirmed OrderUpdateStatusParamsStatus = "employee_confirmed"
-	OrderUpdateStatusParamsStatusOrderFulfilled    OrderUpdateStatusParamsStatus = "order_fulfilled"
-	OrderUpdateStatusParamsStatusOrderComplete     OrderUpdateStatusParamsStatus = "order_complete"
 )
 
 type OrderUploadResultsParams struct {
