@@ -734,8 +734,10 @@ type OrderNewParamsBodyObject struct {
 	ProviderCreated param.Opt[bool]                   `json:"providerCreated,omitzero"`
 	ReCaptchaToken  param.Opt[string]                 `json:"reCaptchaToken,omitzero"`
 	TokenID         param.Opt[string]                 `json:"tokenId,omitzero"`
-	DueDates        []time.Time                       `json:"dueDates,omitzero" format:"date-time"`
-	EmployeeIDs     []string                          `json:"employeeIds,omitzero"`
+	// Map of serviceId to bundleId for per-bundle pricing disambiguation
+	BundleIDs   map[string]string `json:"bundleIds,omitzero"`
+	DueDates    []time.Time       `json:"dueDates,omitzero" format:"date-time"`
+	EmployeeIDs []string          `json:"employeeIds,omitzero"`
 	// Optional arbitrary metadata (<=10KB when JSON stringified)
 	Metadata map[string]any `json:"metadata,omitzero"`
 	// Order priority level
@@ -836,8 +838,10 @@ type OrderNewParamsBodyObject2 struct {
 	ProviderID      param.Opt[string]                  `json:"providerId,omitzero"`
 	ReCaptchaToken  param.Opt[string]                  `json:"reCaptchaToken,omitzero"`
 	TokenID         param.Opt[string]                  `json:"tokenId,omitzero"`
-	DueDates        []time.Time                        `json:"dueDates,omitzero" format:"date-time"`
-	EmployeeIDs     []string                           `json:"employeeIds,omitzero"`
+	// Map of serviceId to bundleId for per-bundle pricing disambiguation
+	BundleIDs   map[string]string `json:"bundleIds,omitzero"`
+	DueDates    []time.Time       `json:"dueDates,omitzero" format:"date-time"`
+	EmployeeIDs []string          `json:"employeeIds,omitzero"`
 	// Optional arbitrary metadata (<=10KB when JSON stringified)
 	Metadata map[string]any `json:"metadata,omitzero"`
 	// Any of "self-pay", "employer-sponsored".
@@ -942,8 +946,10 @@ type OrderNewParamsBodyObject3 struct {
 	ProviderID      param.Opt[string]                      `json:"providerId,omitzero"`
 	ReCaptchaToken  param.Opt[string]                      `json:"reCaptchaToken,omitzero"`
 	TokenID         param.Opt[string]                      `json:"tokenId,omitzero"`
-	DueDates        []time.Time                            `json:"dueDates,omitzero" format:"date-time"`
-	EmployeeIDs     []string                               `json:"employeeIds,omitzero"`
+	// Map of serviceId to bundleId for per-bundle pricing disambiguation
+	BundleIDs   map[string]string `json:"bundleIds,omitzero"`
+	DueDates    []time.Time       `json:"dueDates,omitzero" format:"date-time"`
+	EmployeeIDs []string          `json:"employeeIds,omitzero"`
 	// Optional arbitrary metadata (<=10KB when JSON stringified)
 	Metadata map[string]any `json:"metadata,omitzero"`
 	// Any of "self-pay", "employer-sponsored".
@@ -1048,7 +1054,9 @@ type OrderNewParamsBodyObject4 struct {
 	ProviderID      param.Opt[string]                      `json:"providerId,omitzero"`
 	ReCaptchaToken  param.Opt[string]                      `json:"reCaptchaToken,omitzero"`
 	TokenID         param.Opt[string]                      `json:"tokenId,omitzero"`
-	DueDates        []time.Time                            `json:"dueDates,omitzero" format:"date-time"`
+	// Map of serviceId to bundleId for per-bundle pricing disambiguation
+	BundleIDs map[string]string `json:"bundleIds,omitzero"`
+	DueDates  []time.Time       `json:"dueDates,omitzero" format:"date-time"`
 	// Optional arbitrary metadata (<=10KB when JSON stringified)
 	Metadata map[string]any `json:"metadata,omitzero"`
 	// Any of "self-pay", "employer-sponsored".
