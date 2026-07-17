@@ -50,8 +50,11 @@ func TestOrderNewWithOptionalParams(t *testing.T) {
 				Quantity:   1,
 				AutoAccept: githubcombluehivehealthbluehivesdkgo.Bool(true),
 			}},
-			ID:          githubcombluehivehealthbluehivesdkgo.String("_id"),
-			BrandID:     githubcombluehivehealthbluehivesdkgo.String("brandId"),
+			ID:      githubcombluehivehealthbluehivesdkgo.String("_id"),
+			BrandID: githubcombluehivehealthbluehivesdkgo.String("brandId"),
+			BundleIDs: map[string]string{
+				"foo": "string",
+			},
 			DueDate:     githubcombluehivehealthbluehivesdkgo.Time(time.Now()),
 			DueDates:    []time.Time{time.Now()},
 			EmployeeID:  githubcombluehivehealthbluehivesdkgo.String("employeeId"),
