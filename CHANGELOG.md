@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.22 (2026-07-18)
+
+Full Changelog: [v0.1.0-alpha.21...v0.1.0-alpha.22](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.21...v0.1.0-alpha.22)
+
+### Features
+
+* **api:** api update ([6043857](https://github.com/bluehive-health/bluehive-sdk-go/commit/6043857c080b59140f1c99f1af4123460609028f))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([9b9b8c8](https://github.com/bluehive-health/bluehive-sdk-go/commit/9b9b8c821e09ee6920035ae9711e0c9108594cfd))
+
 ## 0.1.0-alpha.21 (2026-06-10)
 
 Full Changelog: [v0.1.0-alpha.20...v0.1.0-alpha.21](https://github.com/bluehive-health/bluehive-sdk-go/compare/v0.1.0-alpha.20...v0.1.0-alpha.21)
