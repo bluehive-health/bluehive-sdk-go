@@ -1394,6 +1394,9 @@ type OrderSendForEmployeeParams struct {
 	ProviderCreated param.Opt[bool] `json:"providerCreated,omitzero"`
 	// Single provider ID (shortcut when all services map to one provider)
 	ProviderID param.Opt[string] `json:"providerId,omitzero"`
+	// Order IDs from a prior 409 DUPLICATE_OPEN_ORDER response the user chose to
+	// override; new duplicates still trigger a fresh 409
+	AcknowledgedDuplicateOrderIDs []string `json:"acknowledgedDuplicateOrderIds,omitzero"`
 	// Array of due dates per service
 	DueDates []string `json:"dueDates,omitzero"`
 	// Optional arbitrary metadata to store on the order (non-indexed passthrough,
