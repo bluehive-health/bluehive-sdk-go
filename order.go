@@ -1397,6 +1397,9 @@ type OrderSendForEmployeeParams struct {
 	// Order IDs from a prior 409 DUPLICATE_OPEN_ORDER response the user chose to
 	// override; new duplicates still trigger a fresh 409
 	AcknowledgedDuplicateOrderIDs []string `json:"acknowledgedDuplicateOrderIds,omitzero"`
+	// Per-service bundle mapping (serviceId → bundleId) used to scope the OBR-18
+	// parent bill id lookup to the ordered bundle.
+	BundleIDs map[string]string `json:"bundleIds,omitzero"`
 	// Array of due dates per service
 	DueDates []string `json:"dueDates,omitzero"`
 	// Optional arbitrary metadata to store on the order (non-indexed passthrough,

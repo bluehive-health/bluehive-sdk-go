@@ -249,9 +249,12 @@ func TestOrderSendForEmployeeWithOptionalParams(t *testing.T) {
 		UserID:                        "user-id",
 		AcknowledgedDuplicateOrderIDs: []string{"string"},
 		BrandID:                       githubcombluehivehealthbluehivesdkgo.String("brandId"),
-		DueDate:                       githubcombluehivehealthbluehivesdkgo.String("dueDate"),
-		DueDates:                      []string{"string"},
-		ExpirationDate:                githubcombluehivehealthbluehivesdkgo.String("expirationDate"),
+		BundleIDs: map[string]string{
+			"foo": "string",
+		},
+		DueDate:        githubcombluehivehealthbluehivesdkgo.String("dueDate"),
+		DueDates:       []string{"string"},
+		ExpirationDate: githubcombluehivehealthbluehivesdkgo.String("expirationDate"),
 		Metadata: map[string]any{
 			"foo": "bar",
 		},
