@@ -82,7 +82,9 @@ type EmployerNewResponse struct {
 	Demo            bool             `json:"demo"`
 	EmployeeConsent bool             `json:"employeeConsent"`
 	OnsiteClinic    bool             `json:"onsiteClinic"`
-	Website         string           `json:"website"`
+	// Any of "active", "waitlisted".
+	Status  EmployerNewResponseStatus `json:"status"`
+	Website string                    `json:"website"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ID              respjson.Field
@@ -95,6 +97,7 @@ type EmployerNewResponse struct {
 		Demo            respjson.Field
 		EmployeeConsent respjson.Field
 		OnsiteClinic    respjson.Field
+		Status          respjson.Field
 		Website         respjson.Field
 		ExtraFields     map[string]respjson.Field
 		raw             string
@@ -106,6 +109,13 @@ func (r EmployerNewResponse) RawJSON() string { return r.JSON.raw }
 func (r *EmployerNewResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
+
+type EmployerNewResponseStatus string
+
+const (
+	EmployerNewResponseStatusActive     EmployerNewResponseStatus = "active"
+	EmployerNewResponseStatusWaitlisted EmployerNewResponseStatus = "waitlisted"
+)
 
 type EmployerGetResponse map[string]any
 

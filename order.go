@@ -116,7 +116,10 @@ func (r *OrderService) SendForEmployee(ctx context.Context, params OrderSendForE
 }
 
 // Upload test results for a specific order item. Supports both existing fileIds
-// and base64 encoded files. Requires order access code and employee verification.
+// and base64 encoded files. Public SPA requests require an order access code and
+// CAPTCHA. Delegated requests require an internal API key and
+// x-provider-spa-session, send base64 file contents, and the API stores them in
+// BlueHive file storage.
 func (r *OrderService) UploadResults(ctx context.Context, orderID string, body OrderUploadResultsParams, opts ...option.RequestOption) (res *OrderUploadResultsResponse, err error) {
 	opts = slices.Concat(r.Options, opts)
 	if orderID == "" {
@@ -677,10 +680,12 @@ func (r *OrderSendForEmployeeResponseObject2UnavailableService) UnmarshalJSON(da
 }
 
 type OrderUploadResultsResponse struct {
-	Message string `json:"message"`
-	Success bool   `json:"success"`
+	FileIDs []string `json:"fileIds"`
+	Message string   `json:"message"`
+	Success bool     `json:"success"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
+		FileIDs     respjson.Field
 		Message     respjson.Field
 		Success     respjson.Field
 		ExtraFields map[string]respjson.Field
@@ -1446,9 +1451,9 @@ const (
 )
 
 type OrderUploadResultsParams struct {
-	CaptchaToken    string `json:"captchaToken" api:"required"`
-	OrderAccessCode string `json:"orderAccessCode" api:"required"`
-	ServiceID       string `json:"serviceId" api:"required"`
+	OrderAccessCode string            `json:"orderAccessCode" api:"required"`
+	ServiceID       string            `json:"serviceId" api:"required"`
+	CaptchaToken    param.Opt[string] `json:"captchaToken,omitzero"`
 	// Date of birth in YYYY-MM-DD format
 	Dob      param.Opt[string]              `json:"dob,omitzero"`
 	LastName param.Opt[string]              `json:"lastName,omitzero"`
