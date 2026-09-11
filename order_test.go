@@ -291,9 +291,9 @@ func TestOrderUploadResultsWithOptionalParams(t *testing.T) {
 		context.TODO(),
 		"orderId",
 		githubcombluehivehealthbluehivesdkgo.OrderUploadResultsParams{
-			CaptchaToken:    "x",
 			OrderAccessCode: "x",
 			ServiceID:       "x",
+			CaptchaToken:    githubcombluehivehealthbluehivesdkgo.String("captchaToken"),
 			Dob:             githubcombluehivehealthbluehivesdkgo.String("7321-69-10"),
 			FileIDs:         []string{"x"},
 			Files: []githubcombluehivehealthbluehivesdkgo.OrderUploadResultsParamsFile{{
